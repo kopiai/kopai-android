@@ -12,8 +12,9 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.kopai.shinkansen.R
 import com.kopai.shinkansen.data.ResultState
-import com.kopai.shinkansen.data.pref.UserModel
+import com.kopai.shinkansen.data.local.pref.UserPrefModel
 import com.kopai.shinkansen.databinding.ActivityLoginBinding
 import com.kopai.shinkansen.view.ViewModelFactory
 import com.kopai.shinkansen.view.main.MainActivity
@@ -77,11 +78,11 @@ class LoginActivity : AppCompatActivity() {
         email: String,
         token: String,
     ) {
-        viewModel.saveSession(UserModel(email, token))
+        viewModel.saveSession(UserPrefModel(email, token))
         ViewModelFactory.clearInstance()
         AlertDialog.Builder(this).apply {
-            setMessage("Anda berhasil login. Ayo sharing story anda!")
-            setPositiveButton("Lanjut") { _, _ ->
+            setMessage(getString(R.string.login_success))
+            setPositiveButton(getString(R.string.continue_login)) { _, _ ->
                 val intent = Intent(context, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)

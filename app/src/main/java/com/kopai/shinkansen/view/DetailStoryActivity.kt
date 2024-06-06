@@ -4,7 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.kopai.shinkansen.data.remote.response.ListStoryItem
+import com.kopai.shinkansen.data.remote.response.StoryItem
 import com.kopai.shinkansen.databinding.ActivityDetailStoryBinding
 
 class DetailStoryActivity : AppCompatActivity() {
@@ -19,10 +19,10 @@ class DetailStoryActivity : AppCompatActivity() {
 
         val storyData =
             if (Build.VERSION.SDK_INT >= 33) {
-                intent.getParcelableExtra<ListStoryItem>(EXTRA_STORY, ListStoryItem::class.java)
+                intent.getParcelableExtra<StoryItem>(EXTRA_STORY, StoryItem::class.java)
             } else {
                 @Suppress("DEPRECATION")
-                intent.getParcelableExtra<ListStoryItem>(EXTRA_STORY)
+                intent.getParcelableExtra<StoryItem>(EXTRA_STORY)
             }
 
         storyData?.let {

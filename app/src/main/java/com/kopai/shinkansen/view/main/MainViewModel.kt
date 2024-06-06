@@ -4,9 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.kopai.shinkansen.data.ResultState
-import com.kopai.shinkansen.data.pref.UserModel
-import com.kopai.shinkansen.data.remote.response.StoriesResponse
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.kopai.shinkansen.data.local.pref.UserPrefModel
+import com.kopai.shinkansen.data.remote.response.StoryItem
 import com.kopai.shinkansen.data.repository.StoriesRepository
 import com.kopai.shinkansen.data.repository.UserRepository
 import kotlinx.coroutines.launch
@@ -15,12 +16,11 @@ class MainViewModel(
     private val userRepository: UserRepository,
     private val storiesRepository: StoriesRepository,
 ) : ViewModel() {
-    fun getSession(): LiveData<UserModel> {
-        return userRepository.getSession().asLiveData()
-    }
+    val stories: LiveData<PagingData<StoryItem>> =
+        storiesRepository.getStoriesPaging().cachedIn(viewModelScope)
 
-    fun getStories(): LiveData<ResultState<StoriesResponse>> {
-        return storiesRepository.getStories()
+    fun getSession(): LiveData<UserPrefModel> {
+        return userRepository.getSession().asLiveData()
     }
 
     fun logout() {

@@ -10,6 +10,7 @@ import com.kopai.shinkansen.view.addstory.AddStoryViewModel
 import com.kopai.shinkansen.view.login.LoginViewModel
 import com.kopai.shinkansen.view.main.MainViewModel
 import com.kopai.shinkansen.view.signup.SignupViewModel
+import com.kopai.shinkansen.view.storymaps.StoryMapsViewModel
 
 class ViewModelFactory(
     private val userRepository: UserRepository,
@@ -33,6 +34,10 @@ class ViewModelFactory(
 
             modelClass.isAssignableFrom(AddStoryViewModel::class.java) -> {
                 AddStoryViewModel(storiesRepository) as T
+            }
+
+            modelClass.isAssignableFrom(StoryMapsViewModel::class.java) -> {
+                StoryMapsViewModel(storiesRepository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

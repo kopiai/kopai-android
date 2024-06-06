@@ -146,7 +146,7 @@
         app:startIconDrawable="@drawable/ic_baseline_lock_24"
         tools:alpha="100">
 
-        <com.dicoding.picodiploma.loginwithanimation.view.custom.PasswordEditText
+        <com.kopai.shinkansen.view.custom.PasswordEditText
             android:id="@+id/ed_register_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

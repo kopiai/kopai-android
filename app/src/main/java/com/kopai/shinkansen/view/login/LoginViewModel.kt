@@ -2,7 +2,7 @@ package com.kopai.shinkansen.view.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kopai.shinkansen.data.pref.UserModel
+import com.kopai.shinkansen.data.local.pref.UserPrefModel
 import com.kopai.shinkansen.data.repository.StoriesRepository
 import com.kopai.shinkansen.data.repository.UserRepository
 import kotlinx.coroutines.launch
@@ -12,7 +12,7 @@ class LoginViewModel(
     private val storiesRepository: StoriesRepository
 ) :
     ViewModel() {
-    fun saveSession(user: UserModel) {
+    fun saveSession(user: UserPrefModel) {
         viewModelScope.launch {
             repository.saveSession(user)
         }

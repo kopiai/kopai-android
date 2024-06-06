@@ -35,9 +35,11 @@ class AddStoryActivity : AppCompatActivity() {
     }
 
     private fun setupButtons() {
-        binding.btnAddCamera.setOnClickListener { startCamera() }
-        binding.btnAddGallery.setOnClickListener { startGallery() }
-        binding.btnUpload.setOnClickListener { uploadStory() }
+        binding.apply {
+            btnAddGallery.setOnClickListener { startGallery() }
+            btnAddCamera.setOnClickListener { startCamera() }
+            btnUpload.setOnClickListener { uploadStory() }
+        }
     }
 
     private fun uploadStory() {
@@ -55,6 +57,7 @@ class AddStoryActivity : AppCompatActivity() {
                         is ResultState.Success -> {
                             showToast(result.data.message ?: "Success")
                             showLoading(false)
+                            setResult(RESULT_OK)
                             finish()
                         }
 

@@ -1,17 +1,17 @@
 package com.kopai.shinkansen.data.repository
 
-import com.kopai.shinkansen.data.pref.UserModel
-import com.kopai.shinkansen.data.pref.UserPreference
+import com.kopai.shinkansen.data.local.pref.UserPrefModel
+import com.kopai.shinkansen.data.local.pref.UserPreference
 import kotlinx.coroutines.flow.Flow
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,
 ) {
-    suspend fun saveSession(user: UserModel) {
+    suspend fun saveSession(user: UserPrefModel) {
         userPreference.saveSession(user)
     }
 
-    fun getSession(): Flow<UserModel> {
+    fun getSession(): Flow<UserPrefModel> {
         return userPreference.getSession()
     }
 

@@ -6,17 +6,37 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.kopai.shinkansen.data.remote.response.ListStoryItem
+import com.kopai.shinkansen.data.remote.response.StoryItem
 import com.kopai.shinkansen.databinding.ItemStoryBinding
-import com.kopai.shinkansen.view.DetailStoryActivity
+import com.kopai.shinkansen.view.detailstory.DetailStoryActivity
 
-class StoryAdapter : ListAdapter<ListStoryItem, StoryAdapter.StoryViewHolder>(DIFF_CALLBACK) {
-    inner class StoryViewHolder(private val binding: ItemStoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(story: ListStoryItem) {
+class StoryAdapter :
+    PagingDataAdapter<StoryItem, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): MyViewHolder {
+        val binding = ItemStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(
+        holder: MyViewHolder,
+        position: Int,
+    ) {
+        val data = getItem(position)
+        if (data != null) {
+            holder.bind(data)
+        }
+    }
+
+    class MyViewHolder(private val binding: ItemStoryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(story: StoryItem) {
             with(binding) {
                 Glide.with(itemView.context)
                     .load(story.photoUrl)
@@ -32,45 +52,30 @@ class StoryAdapter : ListAdapter<ListStoryItem, StoryAdapter.StoryViewHolder>(DI
 
                     val optionsCompat: ActivityOptionsCompat =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(
-                            itemView.context as Activity,
+                            it.context as Activity,
                             Pair(ivItemPhoto, "detail_photo"),
                             Pair(tvItemName, "detail_name"),
                             Pair(tvItemDescription, "detail_description"),
                         )
-                    itemView.context.startActivity(moveIntent, optionsCompat.toBundle())
+                    it.context.startActivity(moveIntent, optionsCompat.toBundle())
                 }
             }
         }
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int,
-    ): StoryViewHolder {
-        val binding = ItemStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return StoryViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(
-        holder: StoryViewHolder,
-        position: Int,
-    ) {
-        holder.bind(getItem(position))
-    }
-
     companion object {
-        val DIFF_CALLBACK: DiffUtil.ItemCallback<ListStoryItem> =
-            object : DiffUtil.ItemCallback<ListStoryItem>() {
+        val DIFF_CALLBACK =
+            object : DiffUtil.ItemCallback<StoryItem>() {
                 override fun areItemsTheSame(
-                    oldItem: ListStoryItem,
-                    newItem: ListStoryItem,
+                    oldItem: StoryItem,
+                    newItem: StoryItem,
                 ): Boolean {
-                    return oldItem.id == newItem.id
+                    return oldItem == newItem
                 }
 
                 override fun areContentsTheSame(
-                    oldItem: ListStoryItem,
-                    newItem: ListStoryItem,
+                    oldItem: StoryItem,
+                    newItem: StoryItem,
                 ): Boolean {
                     return oldItem.id == newItem.id
                 }
