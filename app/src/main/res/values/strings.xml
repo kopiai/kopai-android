@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingTranslation" >
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">DicodingStory</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
@@ -56,4 +54,25 @@
     <string name="navigation_beans">Beans</string>
     <string name="navigation_cart">Cart</string>
     <string name="navigation_profile">Profile</string>
+    <string name="detail">Detail</string>
+    <string name="favorite">Favorite</string>
+    <string name="rate_ph">4.8</string>
+    <string name="rate_count_ph">(230)</string>
+    <string name="delivery">Delivery</string>
+    <string name="size">Size</string>
+    <string name="size_100g">100g</string>
+    <string name="price">Price</string>
+    <string name="price_1">Rp 39.999</string>
+    <string name="buy">BUY</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="shipping">Shipping</string>
+    <string name="payment">Payment</string>
+    <string name="overview">Overview</string>
+    <string name="enter_shipping_details">Enter Shipping Details</string>
+    <string name="full_name">Full Name</string>
+    <string name="enter_full_name">Enter Full Name*</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="_62">+62</string>
+    <string name="confirm">Confirm</string>
+    <string name="select_payment_method">Select Payment Method</string>
 </resources>

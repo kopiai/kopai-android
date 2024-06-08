@@ -11,17 +11,18 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kopai.shinkansen.R
 import com.kopai.shinkansen.data.ResultState
 import com.kopai.shinkansen.databinding.ActivityMainBinding
+import com.kopai.shinkansen.util.SpacesItemDecoration
 import com.kopai.shinkansen.view.ViewModelFactory
 import com.kopai.shinkansen.view.adapter.BannerAdapter
 import com.kopai.shinkansen.view.adapter.LoadingStateAdapter
 import com.kopai.shinkansen.view.adapter.StoryAdapter
-import com.kopai.shinkansen.view.addstory.AddStoryActivity
+import com.kopai.shinkansen.view.checkout.CheckoutActivity
 import com.kopai.shinkansen.view.storymaps.StoryMapsActivity
-import com.kopai.shinkansen.view.welcome.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel> {
@@ -46,14 +47,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.getSession().observe(this) { user ->
-            if (!user.isLogin) {
-                startActivity(Intent(this, WelcomeActivity::class.java))
-                finish()
-            }
-        }
-        binding.fabMain.setOnClickListener {
-            startForResult.launch(Intent(this, AddStoryActivity::class.java))
+//        viewModel.getSession().observe(this) { user ->
+//            if (!user.isLogin) {
+//                startActivity(Intent(this, WelcomeActivity::class.java))
+//                finish()
+//            }
+//        }
+
+        binding.btnMainPreferences.setOnClickListener {
+            startForResult.launch(Intent(this, CheckoutActivity::class.java))
         }
 
         fetchBanner()
@@ -108,6 +110,8 @@ class MainActivity : AppCompatActivity() {
                             storyAdapter.retry()
                         },
                 )
+            layoutManager = GridLayoutManager(this@MainActivity, 2)
+            addItemDecoration(SpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.item_offset)))
         }
         viewModel.storiesPaging.observe(this) {
             storyAdapter.submitData(lifecycle, it)

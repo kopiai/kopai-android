@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.databinding.ActivityWelcomeBinding
 import com.kopai.shinkansen.view.authentication.login.LoginActivity
 import com.kopai.shinkansen.view.authentication.register.RegisterActivity
+import com.kopai.shinkansen.view.main.MainActivity
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding
@@ -33,7 +34,7 @@ class WelcomeActivity : AppCompatActivity() {
         } else {
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
             )
         }
         supportActionBar?.hide()
@@ -46,6 +47,10 @@ class WelcomeActivity : AppCompatActivity() {
 
         binding.signupButton.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
+        binding.homeButton.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
@@ -61,9 +66,10 @@ class WelcomeActivity : AppCompatActivity() {
         val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(100)
         val desc = ObjectAnimator.ofFloat(binding.descTextView, View.ALPHA, 1f).setDuration(100)
 
-        val together = AnimatorSet().apply {
-            playTogether(login, signup)
-        }
+        val together =
+            AnimatorSet().apply {
+                playTogether(login, signup)
+            }
 
         AnimatorSet().apply {
             playSequentially(title, desc, together)

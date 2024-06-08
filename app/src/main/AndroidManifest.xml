@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KopAI">
         <activity
+            android:name=".view.checkout.CheckoutInvoiceActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.profile.editprofile.EditProfileActivity"
             android:exported="false" />
         <activity
@@ -43,11 +46,9 @@
         <activity
             android:name=".view.authentication.register.RegisterCompleteActivity"
             android:exported="false" />
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
-
+        <activity
+            android:name=".view.checkout.CheckoutActivity"
+            android:exported="false" />
         <activity
             android:name=".view.storymaps.StoryMapsActivity"
             android:exported="false"
@@ -57,7 +58,7 @@
             android:name=".view.addstory.AddStoryActivity"
             android:exported="false" />
         <activity
-            android:name=".view.detailstory.DetailStoryActivity"
+            android:name=".view.detailproduct.DetailProductActivity"
             android:exported="false" />
         <activity
             android:name=".view.welcome.WelcomeActivity"
@@ -84,6 +85,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

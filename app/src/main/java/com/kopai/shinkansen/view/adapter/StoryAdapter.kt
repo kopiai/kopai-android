@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kopai.shinkansen.data.remote.response.StoryItem
 import com.kopai.shinkansen.databinding.ItemStoryBinding
-import com.kopai.shinkansen.view.detailstory.DetailStoryActivity
+import com.kopai.shinkansen.view.detailproduct.DetailProductActivity
 
 class StoryAdapter :
     PagingDataAdapter<StoryItem, StoryAdapter.ViewHolder>(DIFF_CALLBACK) {
@@ -46,8 +46,8 @@ class StoryAdapter :
 
                 itemView.setOnClickListener {
                     val moveIntent =
-                        Intent(itemView.context, DetailStoryActivity::class.java).run {
-                            putExtra(DetailStoryActivity.EXTRA_STORY, story)
+                        Intent(itemView.context, DetailProductActivity::class.java).run {
+                            putExtra(DetailProductActivity.EXTRA_STORY, story)
                         }
 
                     val optionsCompat: ActivityOptionsCompat =
