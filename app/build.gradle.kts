@@ -48,6 +48,7 @@ android {
     buildFeatures {
         buildConfig = true
         viewBinding = true
+        dataBinding = true
         mlModelBinding = true
     }
     testOptions {
@@ -68,6 +69,10 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     // Android KTX
     implementation("androidx.fragment:fragment-ktx:1.6.2")

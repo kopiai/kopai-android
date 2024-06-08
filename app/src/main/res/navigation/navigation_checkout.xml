@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_checkout"
+    app:startDestination="@+id/navigation_checkout_shipping">
+
+    <fragment
+        android:id="@+id/navigation_checkout_shipping"
+        android:name="com.kopai.shinkansen.view.checkout.steps.CheckoutShippingFragment"
+        android:label="@string/shipping"
+        tools:layout="@layout/fragment_checkout_shipping" >
+        <action
+            android:id="@+id/action_navigation_checkout_shipping_to_navigation_checkout_payment"
+            app:destination="@id/navigation_checkout_payment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_checkout_payment"
+        android:name="com.kopai.shinkansen.view.checkout.steps.CheckoutPaymentFragment"
+        android:label="@string/payment"
+        tools:layout="@layout/fragment_checkout_payment" >
+        <action
+            android:id="@+id/action_navigation_checkout_payment_to_navigation_checkout_overview"
+            app:destination="@id/navigation_checkout_overview" />
+        <action
+            android:id="@+id/action_navigation_checkout_payment_to_navigation_checkout_shipping"
+            app:destination="@id/navigation_checkout_shipping" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_checkout_overview"
+        android:name="com.kopai.shinkansen.view.checkout.steps.CheckoutOverviewFragment"
+        android:label="@string/overview"
+        tools:layout="@layout/fragment_checkout_overview" >
+        <action
+            android:id="@+id/action_navigation_checkout_overview_to_navigation_checkout_shipping"
+            app:destination="@id/navigation_checkout_shipping" />
+        <action
+            android:id="@+id/action_navigation_checkout_overview_to_navigation_checkout_payment"
+            app:destination="@id/navigation_checkout_payment" />
+    </fragment>
+</navigation>
