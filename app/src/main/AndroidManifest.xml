@@ -13,6 +13,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KopAI">
+        <activity
+            android:name=".view.profile.editprofile.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.authentication.preferences.PreferencesSixActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.authentication.preferences.PreferencesFiveActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.authentication.preferences.PreferencesFourActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.authentication.preferences.PreferencesThreeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.authentication.preferences.PreferencesTwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.authentication.preferences.PreferencesOneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.authentication.recovery.RecoveryNotifActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.authentication.recovery.RecoveryAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.authentication.register.RegisterCompleteActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -22,7 +52,7 @@
             android:name=".view.storymaps.StoryMapsActivity"
             android:exported="false"
             android:label="@string/title_activity_story_maps"
-            android:theme="@style/Theme.KopAI.NoBar"/>
+            android:theme="@style/Theme.KopAI.NoBar" />
         <activity
             android:name=".view.addstory.AddStoryActivity"
             android:exported="false" />
@@ -32,18 +62,18 @@
         <activity
             android:name=".view.welcome.WelcomeActivity"
             android:exported="false"
-            android:theme="@style/Theme.KopAI.NoBar"/>
+            android:theme="@style/Theme.KopAI.NoBar" />
         <activity
-            android:name=".view.register.RegisterActivity"
+            android:name=".view.authentication.register.RegisterActivity"
             android:exported="false"
-            android:theme="@style/Theme.KopAI.NoBar"/>
+            android:theme="@style/Theme.KopAI.NoBar" />
         <activity
-            android:name=".view.login.LoginActivity"
+            android:name=".view.authentication.login.LoginActivity"
             android:exported="false"
-            android:theme="@style/Theme.KopAI.NoBar"/>
+            android:theme="@style/Theme.KopAI.NoBar" />
         <activity
             android:name=".view.main.MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.splash.SplashActivity"
             android:exported="true"

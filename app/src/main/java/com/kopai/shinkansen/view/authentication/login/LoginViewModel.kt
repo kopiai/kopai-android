@@ -1,4 +1,4 @@
-package com.kopai.shinkansen.view.login
+package com.kopai.shinkansen.view.authentication.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

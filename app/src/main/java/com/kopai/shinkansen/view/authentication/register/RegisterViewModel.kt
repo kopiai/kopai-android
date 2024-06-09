@@ -1,4 +1,4 @@
-package com.kopai.shinkansen.view.register
+package com.kopai.shinkansen.view.authentication.register
 
 import androidx.lifecycle.ViewModel
 import com.kopai.shinkansen.data.repository.StoriesRepository

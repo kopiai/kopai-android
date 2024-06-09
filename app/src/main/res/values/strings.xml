@@ -14,7 +14,7 @@
     <string name="message_main_page">Ayo sharing mengkopi.</string>
     <string name="greeting">Halo %1$s,</string>
     <string name="story_maps">Story Maps</string>
-    <string name="logout">Keluar</string>
+    <string name="logout">Logout</string>
     <string name="password_length_error">Password tidak boleh kurang dari 8 karakter</string>
     <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
     <string name="title_activity_story_maps">StoryMapsActivity</string>
@@ -32,4 +32,19 @@
     <string name="text_auth_question_register">Already have account?</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="date">Date</string>
+    <string name="email_sent">Email \nSent</string>
+    <string name="password_have_reset">Password have reset \nPlease login...</string>
+    <string name="registration_compeleted">Registration \nCompeleted</string>
+    <string name="thanka_for_register">Thanka for registration \nPlease login...</string>
+    <string name="first_time_in_kopai">First Time \nIn KopAI?</string>
+    <string name="we_ll_give_you_a_preferences">We\'ll give you a preferences\nto start!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit">Edit</string>
+    <string name="username">Ferdi Ananta</string>
+    <string name="example_email">example@gmail.com</string>
+    <string name="example_date">09/10/2024</string>
+    <string name="preferences">Preferences</string>
 </resources>
