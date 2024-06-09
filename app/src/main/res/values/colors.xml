@@ -9,5 +9,7 @@
     <color name="secondary">#ECB176</color>
     <color name="secondaryVariant">#FEDB81</color>
     <color name="secondaryLight">#65584A</color>
+    <color name="primaryDark">#333333</color>
+    <color name="accent">#595959</color>
 
 </resources>

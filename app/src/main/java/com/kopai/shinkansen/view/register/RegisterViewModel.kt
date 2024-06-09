@@ -1,9 +1,9 @@
-package com.kopai.shinkansen.view.signup
+package com.kopai.shinkansen.view.register
 
 import androidx.lifecycle.ViewModel
 import com.kopai.shinkansen.data.repository.StoriesRepository
 
-class SignupViewModel(
+class RegisterViewModel(
     private val storiesRepository: StoriesRepository
 ) :
     ViewModel() {

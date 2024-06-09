@@ -1,8 +1,11 @@
 package com.kopai.shinkansen.view.custom
 
 import android.content.Context
+import android.graphics.Canvas
 import android.util.AttributeSet
+import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.ContextCompat
 import com.kopai.shinkansen.R
 
 class PasswordEditText
@@ -23,4 +26,17 @@ class PasswordEditText
                 error = null
             }
         }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+
+        hint = "Password"
+        context.apply {
+            background = ContextCompat.getDrawable(this, R.drawable.custom_form_input)
+            setTextColor(ContextCompat.getColor(this, R.color.primary))
+            setHintTextColor(ContextCompat.getColor(this, R.color.secondary))
+        }
+        maxLines = 1
+        textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+    }
     }
