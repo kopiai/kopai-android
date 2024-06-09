@@ -10,8 +10,8 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.databinding.ActivityWelcomeBinding
-import com.kopai.shinkansen.view.login.LoginActivity
-import com.kopai.shinkansen.view.register.RegisterActivity
+import com.kopai.shinkansen.view.authentication.login.LoginActivity
+import com.kopai.shinkansen.view.authentication.register.RegisterActivity
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding

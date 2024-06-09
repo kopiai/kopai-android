@@ -6,14 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".view.login.LoginActivity">
+    tools:context=".view.authentication.login.LoginActivity">
 
     <ImageView
         android:id="@+id/iv_logo"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_alignParentEnd="true"
-        android:background="@color/white"
         android:scaleType="centerInside"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +44,7 @@
             tools:alpha="100" />
 
         <com.kopai.shinkansen.view.custom.EmailEditText
-            android:id="@+id/ed_register_email"
+            android:id="@+id/ed_login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -86,7 +85,7 @@
             tools:alpha="100" />
 
         <com.kopai.shinkansen.view.custom.PasswordEditText
-            android:id="@+id/ed_register_password"
+            android:id="@+id/ed_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -182,7 +181,7 @@
         android:id="@+id/container_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:gravity="center_horizontal"
         android:transitionName="misc"
         app:layout_constraintEnd_toEndOf="parent"
@@ -191,21 +190,12 @@
 
         <ImageView
             android:id="@+id/iv_login_gogle"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:background="@color/white"
             android:scaleType="centerInside"
-            android:src="@drawable/logo"/>
-
-        <ImageView
-            android:id="@+id/iv_login_facebook"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_alignParentEnd="true"
-            android:background="@color/white"
-            android:scaleType="centerInside"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/google"/>
     </LinearLayout>
 
     <ProgressBar

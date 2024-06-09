@@ -6,7 +6,7 @@
 
     <color name="primary">#6F4E37</color>
     <color name="primaryVariant">#A67B5B</color>
-    <color name="secondary">#ECB176</color>
+    <color name="secondary">#A67B5B</color>
     <color name="secondaryVariant">#FEDB81</color>
     <color name="secondaryLight">#65584A</color>
     <color name="primaryDark">#333333</color>
