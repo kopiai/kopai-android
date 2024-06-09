@@ -24,20 +24,18 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        val baseUrl = properties.getProperty("BASE_URL") ?: ""
-
-        buildConfigField(
-            type = "String",
-            name = "BASE_URL",
-            value = baseUrl,
-        )
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+
+            buildConfigField("String", "API_URL", "\"https://story-api.dicoding.dev/v1/\"")
+        }
+
+        debug {
+            buildConfigField("String", "API_URL", "\"https://story-api.dicoding.dev/v1/\"")
         }
     }
     compileOptions {
@@ -71,6 +69,9 @@ dependencies {
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.paging.runtime.ktx)
 
+    // Android KTX
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -81,18 +82,25 @@ dependencies {
     androidTestImplementation(libs.androidx.core.testing) // InstantTaskExecutorRule
     androidTestImplementation(libs.kotlinx.coroutines.test) // TestDispatcher
 
+    // TFLITE
     implementation(libs.tensorflow.lite.support)
     implementation(libs.tensorflow.lite.metadata)
     implementation(libs.tensorflow.lite.task.vision)
 
+    // ROOM
     ksp(libs.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.paging)
 
+    // Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
 
     implementation(libs.glide)
     implementation(libs.circleimageview)
+
+    // Lottie
+    implementation("com.airbnb.android:lottie:3.7.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }

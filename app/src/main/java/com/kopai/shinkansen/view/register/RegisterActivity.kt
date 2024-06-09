@@ -1,4 +1,4 @@
-package com.kopai.shinkansen.view.signup
+package com.kopai.shinkansen.view.register
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -12,19 +12,19 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.data.ResultState
-import com.kopai.shinkansen.databinding.ActivitySignupBinding
+import com.kopai.shinkansen.databinding.ActivityRegisterBinding
 import com.kopai.shinkansen.view.ViewModelFactory
 
-class SignupActivity : AppCompatActivity() {
-    private val viewModel by viewModels<SignupViewModel> {
+class RegisterActivity : AppCompatActivity() {
+    private val viewModel by viewModels<RegisterViewModel> {
         ViewModelFactory.getInstance(this)
     }
 
-    private lateinit var binding: ActivitySignupBinding
+    private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySignupBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupView()

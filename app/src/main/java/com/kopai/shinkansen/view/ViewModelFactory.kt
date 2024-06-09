@@ -9,7 +9,7 @@ import com.kopai.shinkansen.di.Injection
 import com.kopai.shinkansen.view.addstory.AddStoryViewModel
 import com.kopai.shinkansen.view.login.LoginViewModel
 import com.kopai.shinkansen.view.main.MainViewModel
-import com.kopai.shinkansen.view.signup.SignupViewModel
+import com.kopai.shinkansen.view.register.RegisterViewModel
 import com.kopai.shinkansen.view.storymaps.StoryMapsViewModel
 
 class ViewModelFactory(
@@ -28,8 +28,8 @@ class ViewModelFactory(
                 LoginViewModel(userRepository, storiesRepository) as T
             }
 
-            modelClass.isAssignableFrom(SignupViewModel::class.java) -> {
-                SignupViewModel(storiesRepository) as T
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
+                RegisterViewModel(storiesRepository) as T
             }
 
             modelClass.isAssignableFrom(AddStoryViewModel::class.java) -> {

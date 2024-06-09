@@ -11,7 +11,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.databinding.ActivityWelcomeBinding
 import com.kopai.shinkansen.view.login.LoginActivity
-import com.kopai.shinkansen.view.signup.SignupActivity
+import com.kopai.shinkansen.view.register.RegisterActivity
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding
@@ -45,7 +45,7 @@ class WelcomeActivity : AppCompatActivity() {
         }
 
         binding.signupButton.setOnClickListener {
-            startActivity(Intent(this, SignupActivity::class.java))
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 

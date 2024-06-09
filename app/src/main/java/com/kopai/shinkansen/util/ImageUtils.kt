@@ -1,4 +1,4 @@
-package com.kopai.shinkansen.utils
+package com.kopai.shinkansen.util
 
 import android.content.ContentValues
 import android.content.Context

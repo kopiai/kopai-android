@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">DicodingStory</string>
-    <string name="register">Register</string>
-    <string name="login">Login</string>
+    <string name="register">Daftar</string>
+    <string name="login">Masuk</string>
     <string name="title_main">KopAI</string>
     <string name="message_welcome_page">Racik Kopi Impianmu</string>
-    <string name="title_welcome_page">Welcme to KopAI!</string>
+    <string name="title_welcome_page">Selamat datang di KopAI!</string>
     <string name="title_signup_page">Lengkapi data dirimu di bawah ini ya</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -27,9 +27,4 @@
     <string name="continue_login">Lanjut</string>
     <string name="image_classifier_failed_to_initialize">Image classifier failed to initialize.</string>
     <string name="UI_validation_invalid_email">Email format in invalid</string>
-    <string name="text_auth_question_login">Don\'t have account?</string>
-    <string name="login_with">Login with</string>
-    <string name="text_auth_question_register">Already have account?</string>
-    <string name="forgot_password">Forgot password?</string>
-    <string name="date">Date</string>
 </resources>
