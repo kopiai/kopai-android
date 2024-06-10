@@ -15,17 +15,17 @@ import com.kopai.shinkansen.databinding.ItemStoryBinding
 import com.kopai.shinkansen.view.detailstory.DetailStoryActivity
 
 class StoryAdapter :
-    PagingDataAdapter<StoryItem, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<StoryItem, StoryAdapter.ViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ): MyViewHolder {
+    ): ViewHolder {
         val binding = ItemStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(
-        holder: MyViewHolder,
+        holder: ViewHolder,
         position: Int,
     ) {
         val data = getItem(position)
@@ -34,7 +34,7 @@ class StoryAdapter :
         }
     }
 
-    class MyViewHolder(private val binding: ItemStoryBinding) :
+    class ViewHolder(private val binding: ItemStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(story: StoryItem) {
             with(binding) {

@@ -3,15 +3,20 @@ package com.kopai.shinkansen.view.main
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kopai.shinkansen.R
+import com.kopai.shinkansen.data.ResultState
 import com.kopai.shinkansen.databinding.ActivityMainBinding
 import com.kopai.shinkansen.view.ViewModelFactory
+import com.kopai.shinkansen.view.adapter.BannerAdapter
 import com.kopai.shinkansen.view.adapter.LoadingStateAdapter
 import com.kopai.shinkansen.view.adapter.StoryAdapter
 import com.kopai.shinkansen.view.addstory.AddStoryActivity
@@ -25,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val storyAdapter by lazy { StoryAdapter() }
+    private val bannerAdapter by lazy { BannerAdapter() }
 
     val startForResult =
         registerForActivityResult(
@@ -39,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbarMain)
 
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
@@ -51,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             startForResult.launch(Intent(this, AddStoryActivity::class.java))
         }
 
+        fetchBanner()
         fetchStories()
     }
 
@@ -72,15 +78,38 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
 
+    private fun fetchBanner() {
+        binding.rvMainBanner.apply {
+            adapter = bannerAdapter
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+        }
+
+        viewModel.getStories().observe(this) {
+            when (it) {
+                is ResultState.Error -> {
+                    Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
+                }
+                ResultState.Loading -> {
+                    Log.d("MainActivity", "Loading fetch banner")
+                }
+                is ResultState.Success -> {
+                    bannerAdapter.submitList(it.data.listStory)
+                }
+            }
+        }
+    }
+
     private fun fetchStories() {
-        binding.rvMainStories.adapter =
-            storyAdapter.withLoadStateFooter(
-                footer =
-                    LoadingStateAdapter {
-                        storyAdapter.retry()
-                    },
-            )
-        viewModel.stories.observe(this) {
+        binding.rvMainStories.apply {
+            adapter =
+                storyAdapter.withLoadStateFooter(
+                    footer =
+                        LoadingStateAdapter {
+                            storyAdapter.retry()
+                        },
+                )
+        }
+        viewModel.storiesPaging.observe(this) {
             storyAdapter.submitData(lifecycle, it)
         }
     }
