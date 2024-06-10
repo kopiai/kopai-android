@@ -5,14 +5,17 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primaryVariant</item>
         <item name="colorSecondary">@color/secondary</item>>
-        <item name="colorSecondaryVariant">@color/secondaryVariant</item>>
-    </style>
+        <item name="colorSecondaryVariant">@color/secondaryVariant</item>
+        <item name="colorAccent">@color/secondaryLight</item>
 
-    <style name="Theme.KopAI" parent="Base.Theme.KopAI" />
+        <item name="backgroundColor">@color/background</item>
+    </style>
 
     <style name="SplashTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimaryDark">@color/white</item>
     </style>
+
+    <style name="Theme.KopAI" parent="Base.Theme.KopAI" />
 
     <style name="Theme.KopAI.NoBar" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primaryDark</item>
