@@ -31,11 +31,11 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
 
-            buildConfigField("String", "API_URL", "\"https://story-api.dicoding.dev/v1/\"")
+            buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\"")
         }
 
         debug {
-            buildConfigField("String", "API_URL", "\"https://story-api.dicoding.dev/v1/\"")
+            buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\"")
         }
     }
     compileOptions {

@@ -119,6 +119,10 @@ class StoriesRepository private constructor(
         }
     }
 
+    private fun generateBearerToken(token: String): String {
+        return "Bearer $token"
+    }
+
     companion object {
         const val TAG = "StoriesRepository"
 

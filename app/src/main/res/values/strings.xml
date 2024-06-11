@@ -47,4 +47,7 @@
     <string name="example_email">example@gmail.com</string>
     <string name="example_date">09/10/2024</string>
     <string name="preferences">Preferences</string>
+    <string name="description">Description</string>
+    <string name="UI_validation_password_rules">Password must contain at least 8 characters</string>
+    <string name="UI_validation_empty_email_password">Email and Password must be filled</string>
 </resources>
