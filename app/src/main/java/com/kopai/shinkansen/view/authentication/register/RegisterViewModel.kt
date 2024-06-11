@@ -2,12 +2,19 @@ package com.kopai.shinkansen.view.authentication.register
 
 import androidx.lifecycle.ViewModel
 import com.kopai.shinkansen.data.repository.StoriesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class RegisterViewModel(
-    private val storiesRepository: StoriesRepository
-) :
+@HiltViewModel
+class RegisterViewModel
+    @Inject
+    constructor(
+        private val storiesRepository: StoriesRepository,
+    ) :
     ViewModel() {
-    fun register(name: String, email: String, password: String) =
-        storiesRepository.register(name, email, password)
-
-}
+        fun register(
+            name: String,
+            email: String,
+            password: String,
+        ) = storiesRepository.register(name, email, password)
+    }

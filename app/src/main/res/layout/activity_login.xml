@@ -43,7 +43,7 @@
             android:transitionName="auth"
             tools:alpha="100" />
 
-        <com.kopai.shinkansen.view.custom.EmailEditText
+        <com.kopai.shinkansen.view.shared.EmailEditText
             android:id="@+id/ed_login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
             android:transitionName="auth"
             tools:alpha="100" />
 
-        <com.kopai.shinkansen.view.custom.PasswordEditText
+        <com.kopai.shinkansen.view.shared.PasswordEditText
             android:id="@+id/ed_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

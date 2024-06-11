@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.R
 import com.kopai.shinkansen.data.ResultState
@@ -14,12 +13,10 @@ import com.kopai.shinkansen.databinding.ActivityAddStoryBinding
 import com.kopai.shinkansen.util.getImageUri
 import com.kopai.shinkansen.util.reduceFileImage
 import com.kopai.shinkansen.util.uriToFile
-import com.kopai.shinkansen.view.ViewModelFactory
+import javax.inject.Inject
 
 class AddStoryActivity : AppCompatActivity() {
-    private val viewModel by viewModels<AddStoryViewModel> {
-        ViewModelFactory.getInstance(this)
-    }
+    @Inject lateinit var viewModel: AddStoryViewModel
 
     private lateinit var binding: ActivityAddStoryBinding
 

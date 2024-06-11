@@ -38,7 +38,7 @@
                 android:transitionName="auth"
                 tools:alpha="100" />
 
-            <com.kopai.shinkansen.view.custom.NameEditText
+            <com.kopai.shinkansen.view.shared.NameEditText
                 android:id="@+id/ed_shipping_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                 android:transitionName="auth"
                 tools:alpha="100" />
 
-            <com.kopai.shinkansen.view.custom.NameEditText
+            <com.kopai.shinkansen.view.shared.NameEditText
                 android:id="@+id/ed_shipping_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
                 android:transitionName="auth"
                 tools:alpha="100" />
 
-            <com.kopai.shinkansen.view.custom.NameEditText
+            <com.kopai.shinkansen.view.shared.NameEditText
                 android:id="@+id/ed_shipping_province"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -152,7 +152,7 @@
                 android:transitionName="auth"
                 tools:alpha="100" />
 
-            <com.kopai.shinkansen.view.custom.NameEditText
+            <com.kopai.shinkansen.view.shared.NameEditText
                 android:id="@+id/ed_shipping_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
                 android:transitionName="auth"
                 tools:alpha="100" />
 
-            <com.kopai.shinkansen.view.custom.NameEditText
+            <com.kopai.shinkansen.view.shared.NameEditText
                 android:id="@+id/ed_shipping_street"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -228,7 +228,7 @@
                 android:transitionName="auth"
                 tools:alpha="100" />
 
-            <com.kopai.shinkansen.view.custom.NameEditText
+            <com.kopai.shinkansen.view.shared.NameEditText
                 android:id="@+id/ed_shipping_postal_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,18 +1,17 @@
 package com.kopai.shinkansen.view.splash
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.activity.viewModels
-import com.kopai.shinkansen.R
+import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.databinding.ActivitySplashBinding
 import com.kopai.shinkansen.view.welcome.WelcomeActivity
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Timer
 import kotlin.concurrent.schedule
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivitySplashBinding
 
 //    private val settingViewModel by viewModels<SettingViewModel> {
@@ -26,7 +25,7 @@ class SplashActivity : AppCompatActivity() {
         @Suppress("DEPRECATION")
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
         )
 
         Timer().schedule(2000) {

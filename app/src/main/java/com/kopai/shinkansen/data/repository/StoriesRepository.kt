@@ -24,7 +24,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
 import java.io.File
 
-class StoriesRepository private constructor(
+class StoriesRepository constructor(
     private val storiesDatabase: StoriesDatabase,
     private val apiService: ApiService,
 ) {
@@ -121,21 +121,5 @@ class StoriesRepository private constructor(
 
     companion object {
         const val TAG = "StoriesRepository"
-
-        @Volatile
-        private var instance: StoriesRepository? = null
-
-        fun getInstance(
-            storiesDatabase: StoriesDatabase,
-            apiService: ApiService,
-        ): StoriesRepository =
-            instance ?: synchronized(this) {
-                instance ?: StoriesRepository(storiesDatabase, apiService)
-            }.also { instance = it }
-
-        @JvmStatic
-        fun clearInstance() {
-            instance = null
-        }
     }
 }

@@ -12,15 +12,17 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.R
 import com.kopai.shinkansen.data.ResultState
-import com.kopai.shinkansen.data.local.pref.UserPrefModel
 import com.kopai.shinkansen.databinding.ActivityLoginBinding
-import com.kopai.shinkansen.view.ViewModelFactory
 import com.kopai.shinkansen.view.main.MainActivity
+import com.kopai.shinkansen.view.shared.TokenViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
-    private val viewModel by viewModels<LoginViewModel> {
-        ViewModelFactory.getInstance(this)
-    }
+    private val loginViewModel: LoginViewModel by viewModels()
+
+    private val tokenViewModel: TokenViewModel by viewModels()
+
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.edLoginEmail.text.toString()
             val password = binding.edLoginPassword.text.toString()
 
-            viewModel.login(email, password).observe(this) {
+            loginViewModel.login(email, password).observe(this) {
                 when (it) {
                     is ResultState.Error -> {
                         binding.pBar.visibility = View.GONE
@@ -76,8 +78,7 @@ class LoginActivity : AppCompatActivity() {
         email: String,
         token: String,
     ) {
-        viewModel.saveSession(UserPrefModel(email, token))
-        ViewModelFactory.clearInstance()
+        tokenViewModel.saveToken(email, token)
         AlertDialog.Builder(this).apply {
             setMessage(getString(R.string.login_success))
             setPositiveButton(getString(R.string.continue_login)) { _, _ ->

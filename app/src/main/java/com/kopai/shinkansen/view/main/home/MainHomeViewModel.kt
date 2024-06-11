@@ -1,4 +1,4 @@
-package com.kopai.shinkansen.view.main
+package com.kopai.shinkansen.view.main.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel
+class MainHomeViewModel
     @Inject
     constructor(
         private val userRepository: UserRepository,
