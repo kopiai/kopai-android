@@ -43,7 +43,7 @@
             android:transitionName="auth"
             tools:alpha="100" />
 
-        <com.kopai.shinkansen.view.custom.NameEditText
+        <com.kopai.shinkansen.view.shared.NameEditText
             android:id="@+id/ed_register_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
             android:transitionName="auth"
             tools:alpha="100" />
 
-        <com.kopai.shinkansen.view.custom.EmailEditText
+        <com.kopai.shinkansen.view.shared.EmailEditText
             android:id="@+id/ed_register_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
             android:transitionName="auth"
             tools:alpha="100" />
 
-        <com.kopai.shinkansen.view.custom.PasswordEditText
+        <com.kopai.shinkansen.view.shared.PasswordEditText
             android:id="@+id/ed_register_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -167,7 +167,7 @@
             android:transitionName="auth"
             tools:alpha="100" />
 
-        <com.kopai.shinkansen.view.custom.EmailEditText
+        <com.kopai.shinkansen.view.shared.EmailEditText
             android:id="@+id/ed_register_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

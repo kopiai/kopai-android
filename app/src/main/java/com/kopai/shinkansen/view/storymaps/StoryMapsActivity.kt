@@ -4,7 +4,6 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -18,12 +17,10 @@ import com.kopai.shinkansen.R
 import com.kopai.shinkansen.data.ResultState
 import com.kopai.shinkansen.data.remote.response.StoryItem
 import com.kopai.shinkansen.databinding.ActivityStoryMapsBinding
-import com.kopai.shinkansen.view.ViewModelFactory
+import javax.inject.Inject
 
 class StoryMapsActivity : AppCompatActivity(), OnMapReadyCallback {
-    private val viewModel by viewModels<StoryMapsViewModel> {
-        ViewModelFactory.getInstance(this)
-    }
+    @Inject lateinit var viewModel: StoryMapsViewModel
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityStoryMapsBinding

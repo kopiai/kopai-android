@@ -64,7 +64,7 @@
             android:transitionName="auth"
             tools:alpha="100" />
 
-        <com.kopai.shinkansen.view.custom.EmailEditText
+        <com.kopai.shinkansen.view.shared.EmailEditText
             android:id="@+id/ed_recovery_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

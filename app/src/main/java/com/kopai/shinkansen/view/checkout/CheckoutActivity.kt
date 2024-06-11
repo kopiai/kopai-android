@@ -36,7 +36,7 @@ class CheckoutActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navController = findNavController(R.id.nhf_checkout)
 
         with(binding) {
             lCheckoutSteps.lCheckoutStepShipping.setOnClickListener {

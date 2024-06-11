@@ -6,6 +6,8 @@ plugins {
     id("com.google.devtools.ksp")
     id("kotlin-parcelize")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 val keystoreFile = project.rootProject.file("local.properties")
@@ -106,6 +108,13 @@ dependencies {
     implementation(libs.circleimageview)
 
     // Lottie
-    implementation("com.airbnb.android:lottie:3.7.0")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation(libs.lottie)
+    implementation(libs.androidx.swiperefreshlayout)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+}
+
+kapt {
+    correctErrorTypes = true
 }

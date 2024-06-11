@@ -1,150 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".view.main.MainActivity">
+    android:background="@color/background">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/abl_main"
+    <fragment
+        android:id="@+id/nhf_main"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:theme="@style/Theme.Design.NoActionBar">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/ctl_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <View
-                    android:id="@+id/v_main_header_bg"
-                    android:layout_width="match_parent"
-                    android:layout_height="280dp"
-                    android:background="@drawable/main_header_bg"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_main_location_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="24dp"
-                    android:paddingTop="24dp"
-                    android:paddingEnd="0dp"
-                    android:text="@string/location"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="@+id/v_main_header_bg"
-                    app:layout_constraintTop_toTopOf="@+id/v_main_header_bg" />
-
-                <LinearLayout
-                    android:id="@+id/ll_main_location_user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="@+id/tv_main_location_title"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_main_location_title">
-
-                    <TextView
-                        android:id="@+id/tv_main_location_user"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="24dp"
-                        android:paddingTop="8dp"
-                        android:paddingEnd="0dp"
-                        android:text="@string/location_user"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_main_search_coffee"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="@+id/ll_main_location_user"
-                    app:layout_constraintTop_toBottomOf="@+id/ll_main_location_user">
-
-                    <androidx.appcompat.widget.SearchView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_weight="0.85"
-                        android:background="@drawable/main_search_bg"
-                        android:padding="4dp" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_main_preferences"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="24dp"
-                        android:layout_weight=".15"
-                        android:backgroundTint="@color/secondary"
-                        android:padding="16dp"
-                        app:cornerRadius="12dp"
-                        app:icon="@drawable/ic_baseline_lock_24" />
-
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_main_banner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="32dp"
-                    android:clipToPadding="true"
-                    android:orientation="horizontal"
-                    android:scrollbars="horizontal"
-                    app:layout_constraintStart_toStartOf="@id/ll_main_search_coffee"
-                    app:layout_constraintTop_toBottomOf="@id/ll_main_search_coffee"
-                    tools:listitem="@layout/item_banner" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_main_stories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginHorizontal="16dp"
-        android:duplicateParentState="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_story" />
-
-    <ProgressBar
-        android:id="@+id/pb_main"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone" />
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navigation_main" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/main_navigation"
+        android:id="@+id/bnv_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:elevation="16dp"
+        android:background="@drawable/bottom_nav_background"
+        app:itemActiveIndicatorStyle="@style/Theme.BottomNavigationView.ActiveIndicator"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/main_navigation" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

@@ -13,4 +13,5 @@
     <color name="accent">#595959</color>
 
     <color name="background">#F9F9F9</color>
+    <color name="bottomNav">#FAFCFF</color>
 </resources>
