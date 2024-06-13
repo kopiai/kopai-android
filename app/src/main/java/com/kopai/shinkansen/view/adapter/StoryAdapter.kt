@@ -12,20 +12,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kopai.shinkansen.data.remote.response.StoryItem
 import com.kopai.shinkansen.databinding.ItemStoryBinding
-import com.kopai.shinkansen.view.detailstory.DetailStoryActivity
+import com.kopai.shinkansen.view.detailproduct.DetailProductActivity
 
 class StoryAdapter :
-    PagingDataAdapter<StoryItem, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<StoryItem, StoryAdapter.ViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ): MyViewHolder {
+    ): ViewHolder {
         val binding = ItemStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(
-        holder: MyViewHolder,
+        holder: ViewHolder,
         position: Int,
     ) {
         val data = getItem(position)
@@ -34,7 +34,7 @@ class StoryAdapter :
         }
     }
 
-    class MyViewHolder(private val binding: ItemStoryBinding) :
+    class ViewHolder(private val binding: ItemStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(story: StoryItem) {
             with(binding) {
@@ -46,8 +46,8 @@ class StoryAdapter :
 
                 itemView.setOnClickListener {
                     val moveIntent =
-                        Intent(itemView.context, DetailStoryActivity::class.java).run {
-                            putExtra(DetailStoryActivity.EXTRA_STORY, story)
+                        Intent(itemView.context, DetailProductActivity::class.java).run {
+                            putExtra(DetailProductActivity.EXTRA_STORY, story)
                         }
 
                     val optionsCompat: ActivityOptionsCompat =

@@ -16,8 +16,10 @@ class MainViewModel(
     private val userRepository: UserRepository,
     private val storiesRepository: StoriesRepository,
 ) : ViewModel() {
-    val stories: LiveData<PagingData<StoryItem>> =
+    val storiesPaging: LiveData<PagingData<StoryItem>> =
         storiesRepository.getStoriesPaging().cachedIn(viewModelScope)
+
+    fun getStories() = storiesRepository.getStoriesWithLocation()
 
     fun getSession(): LiveData<UserPrefModel> {
         return userRepository.getSession().asLiveData()

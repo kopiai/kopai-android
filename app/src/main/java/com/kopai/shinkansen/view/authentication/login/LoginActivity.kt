@@ -1,7 +1,5 @@
 package com.kopai.shinkansen.view.authentication.login
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -19,6 +17,7 @@ import com.kopai.shinkansen.databinding.ActivityLoginBinding
 import com.kopai.shinkansen.util.Constant
 import com.kopai.shinkansen.util.Helper
 import com.kopai.shinkansen.view.ViewModelFactory
+import com.kopai.shinkansen.view.authentication.recovery.RecoveryAccountActivity
 import com.kopai.shinkansen.view.authentication.register.RegisterActivity
 import com.kopai.shinkansen.view.main.MainActivity
 
@@ -63,18 +62,21 @@ class LoginActivity : AppCompatActivity() {
                         getString(R.string.UI_validation_empty_email_password)
                     )
                 }
+
                 !email.matches(Constant.emailPattern) -> {
                     Helper.showDialogInfo(
                         this,
                         getString(R.string.UI_validation_invalid_email)
                     )
                 }
+
                 password.length <= 6 -> {
                     Helper.showDialogInfo(
                         this,
                         getString(R.string.UI_validation_password_rules)
                     )
                 }
+
                 else -> {
                     viewModel.login(email, password).observe(this) {
                         when (it) {
@@ -83,10 +85,12 @@ class LoginActivity : AppCompatActivity() {
                                 loginButton.isEnabled = true
                                 Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
                             }
+
                             ResultState.Loading -> {
                                 binding.pBar.visibility = View.VISIBLE
                                 loginButton.isEnabled = false
                             }
+
                             is ResultState.Success -> {
                                 binding.pBar.visibility = View.GONE
                                 loginButton.isEnabled = true
@@ -96,10 +100,14 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
 
-        binding.tvRegister.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+            binding.tvRegister.setOnClickListener {
+                startActivity(Intent(this, RegisterActivity::class.java))
+            }
+
+            binding.tvForgotPassword.setOnClickListener {
+                startActivity(Intent(this, RecoveryAccountActivity::class.java))
+            }
         }
     }
 
@@ -109,21 +117,26 @@ class LoginActivity : AppCompatActivity() {
     ) {
         viewModel.saveSession(UserPrefModel(email, token))
         ViewModelFactory.clearInstance()
-        AlertDialog.Builder(this).apply {
-            setMessage(getString(R.string.login_success))
-            setPositiveButton(getString(R.string.continue_login)) { _, _ ->
-                val intent = Intent(context, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-                finish()
-            }
-            create()
-            show()
-        }
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish()
+//        AlertDialog.Builder(this).apply {
+//            setMessage(getString(R.string.login_success))
+//            setPositiveButton(getString(R.string.continue_login)) { _, _ ->
+//                val intent = Intent(context, MainActivity::class.java)
+//                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//                startActivity(intent)
+//                finish()
+//            }
+//            create()
+//            show()
+//        }
     }
 
 //    private fun playAnimation() {
 //        ObjectAnimator.ofFloat(binding.ivLogo, View.TRANSLATION_X, -30f, 30f).apply {
+//        ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
 //            duration = 6000
 //            repeatCount = ObjectAnimator.INFINITE
 //            repeatMode = ObjectAnimator.REVERSE

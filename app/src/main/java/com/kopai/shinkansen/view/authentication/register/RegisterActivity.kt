@@ -54,23 +54,27 @@ class RegisterActivity : AppCompatActivity() {
             viewModel.register(name, email, password).observe(this) {
                 when (it) {
                     is ResultState.Error -> {
-//                        binding.btnRegister.visibility = View.GONE
+                        binding.btnRegister.visibility = View.GONE
                         registerButton.isEnabled = true
                         Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
                     }
 
                     ResultState.Loading -> {
-//                        binding.cpiSignup.visibility = View.VISIBLE
+                        binding.pBar.visibility = View.VISIBLE
                         registerButton.isEnabled = false
                     }
 
                     is ResultState.Success -> {
-//                        binding.cpiSignup.visibility = View.GONE
+                        binding.pBar.visibility = View.GONE
                         registerButton.isEnabled = true
-                        handleSuccessRegister(email)
+                        finish()
+//                        handleSuccessRegister(email)
                     }
                 }
             }
+        }
+        binding.tvLogin.setOnClickListener {
+            finish()
         }
     }
 

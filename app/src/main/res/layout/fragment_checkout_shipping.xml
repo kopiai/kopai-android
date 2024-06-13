@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/enter_shipping_details"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/l_shipping_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="start"
+            android:orientation="vertical"
+            android:transitionName="misc">
+
+            <TextView
+                android:id="@+id/tv_shipping_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:alpha="0"
+                android:text="@string/name"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:transitionName="auth"
+                tools:alpha="100" />
+
+            <com.kopai.shinkansen.view.custom.NameEditText
+                android:id="@+id/ed_shipping_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:alpha="0"
+                android:background="@drawable/custom_form_input"
+                android:hint="@string/name"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="15dp"
+                android:transitionName="email"
+                tools:alpha="100" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l_shipping_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="start"
+            android:orientation="vertical"
+            android:transitionName="misc">
+
+            <TextView
+                android:id="@+id/tv_shipping_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:alpha="0"
+                android:text="@string/phone_number"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:transitionName="auth"
+                tools:alpha="100" />
+
+            <com.kopai.shinkansen.view.custom.NameEditText
+                android:id="@+id/ed_shipping_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:alpha="0"
+                android:background="@drawable/custom_form_input"
+                android:hint="@string/_62"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="15dp"
+                android:transitionName="email"
+                tools:alpha="100" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l_shipping_province"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="start"
+            android:orientation="vertical"
+            android:transitionName="misc">
+
+            <TextView
+                android:id="@+id/tv_shipping_province"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:alpha="0"
+                android:text="@string/phone_number"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:transitionName="auth"
+                tools:alpha="100" />
+
+            <com.kopai.shinkansen.view.custom.NameEditText
+                android:id="@+id/ed_shipping_province"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:alpha="0"
+                android:background="@drawable/custom_form_input"
+                android:hint="@string/_62"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="15dp"
+                android:transitionName="email"
+                tools:alpha="100" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l_shipping_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="start"
+            android:orientation="vertical"
+            android:transitionName="misc">
+
+            <TextView
+                android:id="@+id/tv_shipping_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:alpha="0"
+                android:text="@string/phone_number"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:transitionName="auth"
+                tools:alpha="100" />
+
+            <com.kopai.shinkansen.view.custom.NameEditText
+                android:id="@+id/ed_shipping_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:alpha="0"
+                android:background="@drawable/custom_form_input"
+                android:hint="@string/_62"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="15dp"
+                android:transitionName="email"
+                tools:alpha="100" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l_shipping_street"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="start"
+            android:orientation="vertical"
+            android:transitionName="misc">
+
+            <TextView
+                android:id="@+id/tv_shipping_street"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:alpha="0"
+                android:text="@string/phone_number"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:transitionName="auth"
+                tools:alpha="100" />
+
+            <com.kopai.shinkansen.view.custom.NameEditText
+                android:id="@+id/ed_shipping_street"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:alpha="0"
+                android:background="@drawable/custom_form_input"
+                android:hint="@string/_62"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="15dp"
+                android:transitionName="email"
+                tools:alpha="100" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l_shipping_postal_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="start"
+            android:orientation="vertical"
+            android:transitionName="misc">
+
+            <TextView
+                android:id="@+id/tv_shipping_postal_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:alpha="0"
+                android:text="@string/phone_number"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:transitionName="auth"
+                tools:alpha="100" />
+
+            <com.kopai.shinkansen.view.custom.NameEditText
+                android:id="@+id/ed_shipping_postal_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:alpha="0"
+                android:background="@drawable/custom_form_input"
+                android:hint="@string/_62"
+                android:inputType="text"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="15dp"
+                android:transitionName="email"
+                tools:alpha="100" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_shipping_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+</FrameLayout>

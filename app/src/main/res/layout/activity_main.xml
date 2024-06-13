@@ -4,18 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".view.main.MainActivity">
 
-
-    <androidx.core.widget.NestedScrollView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/abl_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:fitsSystemWindows="true"
+        android:theme="@style/Theme.Design.NoActionBar">
 
-        <LinearLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/ctl_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -36,7 +43,8 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="24dp"
                     android:paddingTop="24dp"
-                    android:text="Location"
+                    android:paddingEnd="0dp"
+                    android:text="@string/location"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/v_main_header_bg"
                     app:layout_constraintTop_toTopOf="@+id/v_main_header_bg" />
@@ -55,7 +63,8 @@
                         android:layout_height="wrap_content"
                         android:paddingStart="24dp"
                         android:paddingTop="8dp"
-                        android:text="Bandung, Jawa Barat"
+                        android:paddingEnd="0dp"
+                        android:text="@string/location_user"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -76,47 +85,51 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginEnd="16dp"
                         android:layout_weight="0.85"
-                        android:background="@drawable/main_search_bg" />
+                        android:background="@drawable/main_search_bg"
+                        android:padding="4dp" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_main_preferences"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
                         android:layout_weight=".15"
+                        android:backgroundTint="@color/secondary"
                         android:padding="16dp"
+                        app:cornerRadius="12dp"
                         app:icon="@drawable/ic_baseline_lock_24" />
 
                 </LinearLayout>
 
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="280dp"
-                    android:layout_marginTop="24dp"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    app:layout_constraintTop_toBottomOf="@id/ll_main_search_coffee">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_main_banner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/item_story" />
-                </HorizontalScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_main_banner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="32dp"
+                    android:clipToPadding="true"
+                    android:orientation="horizontal"
+                    android:scrollbars="horizontal"
+                    app:layout_constraintStart_toStartOf="@id/ll_main_search_coffee"
+                    app:layout_constraintTop_toBottomOf="@id/ll_main_search_coffee"
+                    tools:listitem="@layout/item_banner" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_main_stories"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_story" />
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_main_stories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginHorizontal="16dp"
+        android:duplicateParentState="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_story" />
 
     <ProgressBar
         android:id="@+id/pb_main"
@@ -126,12 +139,12 @@
         android:layout_gravity="center"
         android:visibility="gone" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_main"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/main_navigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
-        android:src="@drawable/baseline_add_24" />
+        android:layout_gravity="bottom"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/main_navigation" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

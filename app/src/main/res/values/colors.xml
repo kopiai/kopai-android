@@ -12,4 +12,5 @@
     <color name="primaryDark">#333333</color>
     <color name="accent">#595959</color>
 
+    <color name="background">#F9F9F9</color>
 </resources>
