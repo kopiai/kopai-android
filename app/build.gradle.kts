@@ -107,6 +107,12 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.circleimageview)
 
+    // camera X
+    val cameraxVersion = "1.2.3"
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+    implementation("androidx.camera:camera-view:$cameraxVersion")
+
     // Lottie
     implementation(libs.lottie)
     implementation(libs.androidx.swiperefreshlayout)

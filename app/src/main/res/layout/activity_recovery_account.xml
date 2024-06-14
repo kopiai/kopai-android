@@ -57,12 +57,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-
             android:text="@string/email"
             android:textColor="@color/primary"
             android:textSize="18sp"
-            android:transitionName="auth"
-             />
+            android:transitionName="auth"/>
 
         <com.kopai.shinkansen.view.shared.EmailEditText
             android:id="@+id/ed_recovery_email"
@@ -71,31 +69,27 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="32dp"
-
             android:background="@drawable/custom_form_input"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:paddingHorizontal="20dp"
             android:paddingVertical="15dp"
-            android:transitionName="email"
-             />
+            android:transitionName="email"/>
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="330dp"
-
-        android:text="@string/login"
+        android:text="@string/send"
         android:textAllCaps="false"
         android:textSize="16sp"
         android:transitionName="action"
         app:backgroundTint="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/container_email"
-         />
+        app:layout_constraintTop_toTopOf="@+id/container_email"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,6 +48,11 @@
     <string name="example_email">example@gmail.com</string>
     <string name="example_date">09/10/2024</string>
     <string name="preferences">Preferences</string>
+
+    <string name="description">Description</string>
+    <string name="UI_validation_password_rules">Password must contain at least 8 characters</string>
+    <string name="UI_validation_empty_email_password">Email and Password must be filled</string>
+
     <string name="location">Location</string>
     <string name="location_user">Bandung, Jawa Barat</string>
     <string name="navigation_home">Home</string>
@@ -78,4 +83,25 @@
     <string name="products">Products</string>
     <string name="recommendation">RECOMMENDATION</string>
     <string name="more_products">More Products</string>
+    <string name="gender">Gender</string>
+    <string name="example_gender">Male</string>
+    <string name="phone">Phone</string>
+    <string name="example_phone">0812345678</string>
+    <string name="address">Address</string>
+    <string name="setting">Setting</string>
+    <string name="change_password">Change Password</string>
+    <string name="button_back">button back</string>
+    <string name="birth">Birthday</string>
+    <string name="example_address">Jl. Kopi Bermatabat 12</string>
+    <string name="new_password">New Password</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="switch_camera">switch camera</string>
+    <string name="shutter_camera">shutter camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="send">Send</string>
+
+    <string-array name="gender_menu">
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
+    </string-array>
 </resources>

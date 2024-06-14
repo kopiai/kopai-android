@@ -47,6 +47,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         binding.signupButton.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+
         }
 
         binding.homeButton.setOnClickListener {

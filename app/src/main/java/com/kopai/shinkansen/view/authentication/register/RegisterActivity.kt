@@ -1,20 +1,27 @@
 package com.kopai.shinkansen.view.authentication.register
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.data.ResultState
 import com.kopai.shinkansen.databinding.ActivityRegisterBinding
+import com.kopai.shinkansen.view.authentication.login.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
-    @Inject lateinit var viewModel: RegisterViewModel
 
     private lateinit var binding: ActivityRegisterBinding
+
+    private val registerViewModel: RegisterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,39 +52,45 @@ class RegisterActivity : AppCompatActivity() {
             val email = binding.edRegisterEmail.text.toString()
             val password = binding.edRegisterPassword.text.toString()
 
-            viewModel.register(name, email, password).observe(this) {
+            registerViewModel.register(name, email, password).observe(this) {
                 when (it) {
                     is ResultState.Error -> {
-//                        binding.btnRegister.visibility = View.GONE
+                        binding.btnRegister.visibility = View.GONE
                         registerButton.isEnabled = true
                         Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
                     }
 
                     ResultState.Loading -> {
-//                        binding.cpiSignup.visibility = View.VISIBLE
+                        binding.pBar.visibility = View.VISIBLE
                         registerButton.isEnabled = false
                     }
 
                     is ResultState.Success -> {
-//                        binding.cpiSignup.visibility = View.GONE
+                        binding.pBar.visibility = View.GONE
                         registerButton.isEnabled = true
                         handleSuccessRegister(email)
                     }
                 }
             }
         }
+
+        binding.tvLogin.setOnClickListener {
+            finish()
+        }
     }
 
     private fun handleSuccessRegister(email: String) {
-        AlertDialog.Builder(this).apply {
-            setTitle("Yeah!")
-            setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
-            setPositiveButton("Lanjut") { _, _ ->
-                finish()
-            }
-            create()
-            show()
-        }
+        startActivity(Intent(this, RegisterCompleteActivity::class.java))
+        finish()
+//        AlertDialog.Builder(this).apply {
+//            setTitle("Yeah!")
+//            setMessage("Akun dengan $email berhasil dibuat.")
+//            setPositiveButton("Lanjut") { _, _ ->
+//                finish()
+//            }
+//            create()
+//            show()
+//        }
     }
 
 //    private fun playAnimation() {

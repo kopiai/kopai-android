@@ -5,8 +5,8 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.kopai.shinkansen.data.local.entity.RemoteKeysEntity
 import com.kopai.shinkansen.data.local.room.ProductsDatabase
-import com.kopai.shinkansen.data.local.room.RemoteKeysEntity
 import com.kopai.shinkansen.data.remote.response.ProductItem
 import com.kopai.shinkansen.data.remote.retrofit.ApiService
 

@@ -3,8 +3,15 @@ package com.kopai.shinkansen.view.splash
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.activity.viewModels
+import com.kopai.shinkansen.data.local.pref.UserPreference
+import com.kopai.shinkansen.data.local.pref.dataStore
 import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.databinding.ActivitySplashBinding
+import com.kopai.shinkansen.view.authentication.login.LoginActivity
+import com.kopai.shinkansen.view.authentication.register.RegisterActivity
+import com.kopai.shinkansen.view.main.MainActivity
+import com.kopai.shinkansen.view.shared.TokenViewModel
 import com.kopai.shinkansen.view.welcome.WelcomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Timer
@@ -14,9 +21,8 @@ import kotlin.concurrent.schedule
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
 
-//    private val settingViewModel by viewModels<SettingViewModel> {
-//        SettingViewModel.Factory(SettingPreferences.getInstance((dataStore)))
-//    }
+    private val tokenViewModel: TokenViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
@@ -28,20 +34,20 @@ class SplashActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
         )
 
-        Timer().schedule(2000) {
-            startActivity(Intent(this@SplashActivity, WelcomeActivity::class.java))
-            finish()
-        }
+//        Timer().schedule(2000) {
+//            startActivity(Intent(this@SplashActivity, WelcomeActivity::class.java))
+//            finish()
+//        }
 
-//        settingViewModel.getUserPreferences(Constant.UserPreferences.UserToken.name)
-//            .observe(this) { token ->
-//                if (token == Constant.preferenceDefaultValue) Timer().schedule(2000) {
-//                    startActivity(Intent(this@SplashActivity, AuthActivity::class.java))
-//                    finish()
-//                } else Timer().schedule(2000) {
-//                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-//                    finish()
-//                }
-//            }
+        tokenViewModel.token
+            .observe(this) { userPrefModel ->
+                if (userPrefModel!!.token.isNotEmpty()) Timer().schedule(2000) {
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    finish()
+                } else Timer().schedule(2000) {
+                    startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                    finish()
+                }
+            }
     }
 }

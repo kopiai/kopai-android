@@ -31,12 +31,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_yes"
+        android:id="@+id/btn_goto_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="400dp"
-
         android:text="Go to Home"
         android:textAllCaps="false"
         android:textSize="16sp"
@@ -44,7 +43,6 @@
         android:background="@drawable/custom_form_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_regis_completed"
-         />
+        app:layout_constraintTop_toTopOf="@+id/tv_regis_completed"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
