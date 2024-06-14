@@ -18,6 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <LinearLayout
         android:id="@+id/container_email"
         android:layout_width="match_parent"
@@ -35,28 +36,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:alpha="0"
             android:text="@string/email"
             android:textColor="@color/primary"
             android:textSize="18sp"
-            android:transitionName="auth"
-            tools:alpha="100" />
+            android:transitionName="auth"/>
 
-        <com.kopai.shinkansen.view.custom.EmailEditText
+        <com.kopai.shinkansen.view.shared.EmailEditText
             android:id="@+id/ed_login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="32dp"
-            android:alpha="0"
             android:background="@drawable/custom_form_input"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:paddingHorizontal="20dp"
             android:paddingVertical="15dp"
-            android:transitionName="email"
-            tools:alpha="100" />
+            android:transitionName="email" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,28 +73,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:alpha="0"
             android:text="@string/password"
             android:textColor="@color/primary"
             android:textSize="18sp"
-            android:transitionName="auth"
-            tools:alpha="100" />
+            android:transitionName="auth"/>
 
-        <com.kopai.shinkansen.view.custom.PasswordEditText
+        <com.kopai.shinkansen.view.shared.PasswordEditText
             android:id="@+id/ed_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="32dp"
-            android:alpha="0"
+            android:visibility="visible"
             android:background="@drawable/custom_form_input"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:paddingHorizontal="20dp"
             android:paddingVertical="15dp"
-            android:transitionName="email"
-            tools:alpha="100" />
+            android:transitionName="email"/>
     </LinearLayout>
 
     <TextView
@@ -106,12 +100,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:alpha="0"
         android:text="@string/forgot_password"
         android:textColor="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_password"
-        tools:alpha="100" />
+        app:layout_constraintTop_toBottomOf="@+id/container_password"/>
 
     <Button
         android:id="@+id/btn_login"
@@ -120,12 +112,11 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="15dp"
         android:text="@string/login"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         android:textSize="16sp"
         android:transitionName="action"
         app:backgroundTint="@color/primary"
-        android:alpha="0"
-        tools:alpha="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_forgot_password" />
@@ -146,9 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_auth_question_login"
-            android:textColor="@color/primary"
-            android:alpha="0"
-            tools:alpha="100"/>
+            android:textColor="@color/primary"/>
 
         <TextView
             android:id="@+id/tv_register"
@@ -157,9 +146,7 @@
             android:padding="10dp"
             android:text="@string/register"
             android:textColor="@color/secondary"
-            android:textStyle="bold"
-            android:alpha="0"
-            tools:alpha="100"/>
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <TextView
@@ -170,8 +157,6 @@
         android:text="@string/login_with"
         android:textColor="@color/primary"
         android:textStyle="bold"
-        android:alpha="0"
-        tools:alpha="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container_misc"/>
@@ -192,13 +177,13 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
-            android:background="@color/white"
             android:scaleType="centerInside"
             android:src="@drawable/google"/>
     </LinearLayout>
 
     <ProgressBar
         android:id="@+id/pBar"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/primary"

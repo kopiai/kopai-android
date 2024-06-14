@@ -1,24 +1,19 @@
 package com.kopai.shinkansen.view.authentication.register
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.data.ResultState
 import com.kopai.shinkansen.databinding.ActivityRegisterBinding
-import com.kopai.shinkansen.view.ViewModelFactory
+import javax.inject.Inject
 
 class RegisterActivity : AppCompatActivity() {
-    private val viewModel by viewModels<RegisterViewModel> {
-        ViewModelFactory.getInstance(this)
-    }
+    @Inject lateinit var viewModel: RegisterViewModel
 
     private lateinit var binding: ActivityRegisterBinding
 
@@ -67,12 +62,12 @@ class RegisterActivity : AppCompatActivity() {
                     is ResultState.Success -> {
                         binding.pBar.visibility = View.GONE
                         registerButton.isEnabled = true
-                        finish()
-//                        handleSuccessRegister(email)
+                        handleSuccessRegister(email)
                     }
                 }
             }
         }
+
         binding.tvLogin.setOnClickListener {
             finish()
         }
@@ -81,7 +76,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun handleSuccessRegister(email: String) {
         AlertDialog.Builder(this).apply {
             setTitle("Yeah!")
-            setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
+            setMessage("Akun dengan $email berhasil dibuat.")
             setPositiveButton("Lanjut") { _, _ ->
                 finish()
             }

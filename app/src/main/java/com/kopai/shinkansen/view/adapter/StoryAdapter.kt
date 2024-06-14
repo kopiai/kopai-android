@@ -1,6 +1,7 @@
 package com.kopai.shinkansen.view.adapter
 
 import android.app.Activity
+import android.content.ContextWrapper
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -52,7 +53,7 @@ class StoryAdapter :
 
                     val optionsCompat: ActivityOptionsCompat =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(
-                            it.context as Activity,
+                            (it.context as ContextWrapper).baseContext as Activity,
                             Pair(ivItemPhoto, "detail_photo"),
                             Pair(tvItemName, "detail_name"),
                             Pair(tvItemDescription, "detail_description"),

@@ -10,24 +10,29 @@ import com.kopai.shinkansen.data.local.pref.UserPrefModel
 import com.kopai.shinkansen.data.remote.response.StoryItem
 import com.kopai.shinkansen.data.repository.StoriesRepository
 import com.kopai.shinkansen.data.repository.UserRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(
-    private val userRepository: UserRepository,
-    private val storiesRepository: StoriesRepository,
-) : ViewModel() {
-    val storiesPaging: LiveData<PagingData<StoryItem>> =
-        storiesRepository.getStoriesPaging().cachedIn(viewModelScope)
+@HiltViewModel
+class MainViewModel
+    @Inject
+    constructor(
+        private val userRepository: UserRepository,
+        private val storiesRepository: StoriesRepository,
+    ) : ViewModel() {
+        val storiesPaging: LiveData<PagingData<StoryItem>> =
+            storiesRepository.getStoriesPaging().cachedIn(viewModelScope)
 
-    fun getStories() = storiesRepository.getStoriesWithLocation()
+        fun getStories() = storiesRepository.getStoriesWithLocation()
 
-    fun getSession(): LiveData<UserPrefModel> {
-        return userRepository.getSession().asLiveData()
-    }
+        fun getSession(): LiveData<UserPrefModel> {
+            return userRepository.getSession().asLiveData()
+        }
 
-    fun logout() {
-        viewModelScope.launch {
-            userRepository.logout()
+        fun logout() {
+            viewModelScope.launch {
+                userRepository.logout()
+            }
         }
     }
-}

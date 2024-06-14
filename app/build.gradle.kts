@@ -6,6 +6,8 @@ plugins {
     id("com.google.devtools.ksp")
     id("kotlin-parcelize")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 val keystoreFile = project.rootProject.file("local.properties")
@@ -104,13 +106,20 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.circleimageview)
 
-    // Lottie
-    implementation("com.airbnb.android:lottie:3.7.0")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-
     // camera X
     val cameraxVersion = "1.2.3"
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
     implementation("androidx.camera:camera-view:$cameraxVersion")
+
+    // Lottie
+    implementation(libs.lottie)
+    implementation(libs.androidx.swiperefreshlayout)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+}
+
+kapt {
+    correctErrorTypes = true
 }

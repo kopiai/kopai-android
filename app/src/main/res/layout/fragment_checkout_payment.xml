@@ -31,28 +31,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:alpha="0"
                 android:text="@string/name"
                 android:textColor="@color/primary"
                 android:textSize="18sp"
-                android:transitionName="auth"
-                tools:alpha="100" />
+                android:transitionName="auth"/>
 
-            <com.kopai.shinkansen.view.custom.NameEditText
+            <com.kopai.shinkansen.view.shared.NameEditText
                 android:id="@+id/ed_shipping_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="32dp"
-                android:alpha="0"
                 android:background="@drawable/custom_form_input"
                 android:hint="@string/name"
                 android:inputType="text"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="15dp"
-                android:transitionName="email"
-                tools:alpha="100" />
+                android:transitionName="email"/>
         </LinearLayout>
 
         <LinearLayout
@@ -69,28 +65,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:alpha="0"
                 android:text="@string/phone_number"
                 android:textColor="@color/primary"
                 android:textSize="18sp"
-                android:transitionName="auth"
-                tools:alpha="100" />
+                android:transitionName="auth"/>
 
-            <com.kopai.shinkansen.view.custom.NameEditText
+            <com.kopai.shinkansen.view.shared.NameEditText
                 android:id="@+id/ed_shipping_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="32dp"
-                android:alpha="0"
                 android:background="@drawable/custom_form_input"
                 android:hint="@string/_62"
                 android:inputType="text"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="15dp"
-                android:transitionName="email"
-                tools:alpha="100" />
+                android:transitionName="email"/>
         </LinearLayout>
 
         <LinearLayout
@@ -107,28 +99,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:alpha="0"
                 android:text="@string/phone_number"
                 android:textColor="@color/primary"
                 android:textSize="18sp"
-                android:transitionName="auth"
-                tools:alpha="100" />
+                android:transitionName="auth"/>
 
-            <com.kopai.shinkansen.view.custom.NameEditText
+            <com.kopai.shinkansen.view.shared.NameEditText
                 android:id="@+id/ed_shipping_province"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="32dp"
-                android:alpha="0"
                 android:background="@drawable/custom_form_input"
                 android:hint="@string/_62"
                 android:inputType="text"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="15dp"
-                android:transitionName="email"
-                tools:alpha="100" />
+                android:transitionName="email"/>
         </LinearLayout>
 
         <LinearLayout
@@ -145,28 +133,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:alpha="0"
                 android:text="@string/phone_number"
                 android:textColor="@color/primary"
                 android:textSize="18sp"
-                android:transitionName="auth"
-                tools:alpha="100" />
+                android:transitionName="auth"/>
 
-            <com.kopai.shinkansen.view.custom.NameEditText
+            <com.kopai.shinkansen.view.shared.NameEditText
                 android:id="@+id/ed_shipping_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="32dp"
-                android:alpha="0"
                 android:background="@drawable/custom_form_input"
                 android:hint="@string/_62"
                 android:inputType="text"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="15dp"
-                android:transitionName="email"
-                tools:alpha="100" />
+                android:transitionName="email"/>
         </LinearLayout>
 
         <LinearLayout
@@ -183,28 +167,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:alpha="0"
                 android:text="@string/phone_number"
                 android:textColor="@color/primary"
                 android:textSize="18sp"
-                android:transitionName="auth"
-                tools:alpha="100" />
+                android:transitionName="auth"/>
 
-            <com.kopai.shinkansen.view.custom.NameEditText
+            <com.kopai.shinkansen.view.shared.NameEditText
                 android:id="@+id/ed_shipping_street"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="32dp"
-                android:alpha="0"
                 android:background="@drawable/custom_form_input"
                 android:hint="@string/_62"
                 android:inputType="text"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="15dp"
-                android:transitionName="email"
-                tools:alpha="100" />
+                android:transitionName="email"/>
         </LinearLayout>
 
         <LinearLayout
@@ -221,28 +201,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:alpha="0"
                 android:text="@string/phone_number"
                 android:textColor="@color/primary"
                 android:textSize="18sp"
-                android:transitionName="auth"
-                tools:alpha="100" />
+                android:transitionName="auth"/>
 
-            <com.kopai.shinkansen.view.custom.NameEditText
+            <com.kopai.shinkansen.view.shared.NameEditText
                 android:id="@+id/ed_shipping_postal_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="32dp"
-                android:alpha="0"
                 android:background="@drawable/custom_form_input"
                 android:hint="@string/_62"
                 android:inputType="text"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="15dp"
-                android:transitionName="email"
-                tools:alpha="100" />
+                android:transitionName="email"/>
         </LinearLayout>
     </LinearLayout>
 
