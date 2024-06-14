@@ -79,7 +79,8 @@
             android:theme="@style/Theme.KopAI.NoBar" />
         <activity
             android:name=".view.main.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.KopAI.NoBar"/>
         <activity
             android:name=".view.splash.SplashActivity"
             android:exported="true"

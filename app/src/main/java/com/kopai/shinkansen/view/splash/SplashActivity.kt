@@ -42,7 +42,7 @@ class SplashActivity : AppCompatActivity() {
         tokenViewModel.token
             .observe(this) { userPrefModel ->
                 if (userPrefModel!!.token.isNotEmpty()) Timer().schedule(2000) {
-                    startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                     finish()
                 } else Timer().schedule(2000) {
                     startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
