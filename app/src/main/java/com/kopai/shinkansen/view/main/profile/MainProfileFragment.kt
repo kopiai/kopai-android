@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.kopai.shinkansen.databinding.FragmentMainProfileBinding
 import com.kopai.shinkansen.view.authentication.login.LoginActivity
+import com.kopai.shinkansen.view.authentication.preferences.PreferencesViewModel
 import com.kopai.shinkansen.view.shared.TokenViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,6 +24,8 @@ class MainProfileFragment : Fragment() {
     private lateinit var binding: FragmentMainProfileBinding
 
     private val mainProfileViewModel: MainProfileViewModel by viewModels()
+
+    private val preferencesViewModel: PreferencesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

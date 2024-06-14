@@ -3,6 +3,7 @@ package com.kopai.shinkansen.view.authentication.login
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -15,6 +16,8 @@ import com.kopai.shinkansen.data.ResultState
 import com.kopai.shinkansen.databinding.ActivityLoginBinding
 import com.kopai.shinkansen.util.Constant
 import com.kopai.shinkansen.util.Helper
+import com.kopai.shinkansen.view.authentication.preferences.PreferencesOneActivity
+import com.kopai.shinkansen.view.authentication.preferences.PreferencesViewModel
 import com.kopai.shinkansen.view.authentication.recovery.RecoveryAccountActivity
 import com.kopai.shinkansen.view.authentication.register.RegisterActivity
 import com.kopai.shinkansen.view.main.MainActivity
@@ -26,6 +29,8 @@ class LoginActivity : AppCompatActivity() {
     private val loginViewModel: LoginViewModel by viewModels()
 
     private val tokenViewModel: TokenViewModel by viewModels()
+
+    private val preferencesViewModel: PreferencesViewModel by viewModels()
 
     private lateinit var binding: ActivityLoginBinding
 
@@ -96,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
                             is ResultState.Success -> {
                                 binding.pBar.visibility = View.GONE
                                 loginButton.isEnabled = true
-                                handleSuccessLogin(email, it.data.loginResult?.token ?: "")
+                                handleSuccessLogin(it.data.loginResult?.userId ?: "", email, it.data.loginResult?.token ?: "")
                             }
                         }
                     }
@@ -114,25 +119,38 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun handleSuccessLogin(
+        userId: String,
         email: String,
         token: String,
     ) {
-        tokenViewModel.saveToken(email, token)
+
+        tokenViewModel.saveToken(userId, email, token)
+
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
         finish()
-//        AlertDialog.Builder(this).apply {
-//            setMessage(getString(R.string.login_success))
-//            setPositiveButton(getString(R.string.continue_login)) { _, _ ->
-//                val intent = Intent(context, MainActivity::class.java)
-//                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//                startActivity(intent)
-//                finish()
+
+        // Setup if Api is ready
+//        preferencesViewModel.getPreferences(userId).observe(this) {preferencesResponse ->
+//                when (preferencesResponse) {
+//                    is ResultState.Error -> {
+//                        val intent = Intent(this, PreferencesOneActivity::class.java)
+//                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//                        startActivity(intent)
+//                        finish()
+//                    }
+//                    ResultState.Loading -> {
+//                        Log.d("MainActivity", "Loading fetch banner")
+//                    }
+//                    is ResultState.Success -> {
+//                        val intent = Intent(this, MainActivity::class.java)
+//                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//                        startActivity(intent)
+//                        finish()
+//                    }
+//                }
 //            }
-//            create()
-//            show()
-//        }
     }
 
 //    private fun playAnimation() {

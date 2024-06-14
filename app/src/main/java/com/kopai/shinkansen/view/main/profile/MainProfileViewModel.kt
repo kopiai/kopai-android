@@ -8,6 +8,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.kopai.shinkansen.data.local.pref.UserPrefModel
 import com.kopai.shinkansen.data.remote.response.StoryItem
+import com.kopai.shinkansen.data.repository.PreferencesRepository
 import com.kopai.shinkansen.data.repository.StoriesRepository
 import com.kopai.shinkansen.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

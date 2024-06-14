@@ -22,5 +22,7 @@ class PreferencesSixActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
+
+
     }
 }
