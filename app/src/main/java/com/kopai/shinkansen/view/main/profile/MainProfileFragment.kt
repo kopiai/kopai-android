@@ -1,21 +1,31 @@
 package com.kopai.shinkansen.view.main.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.kopai.shinkansen.databinding.FragmentMainProfileBinding
+import com.kopai.shinkansen.view.authentication.login.LoginActivity
+import com.kopai.shinkansen.view.authentication.preferences.PreferencesViewModel
+import com.kopai.shinkansen.view.shared.TokenViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainProfileFragment : Fragment() {
     companion object {
         fun newInstance() = MainProfileFragment()
     }
 
-    private var binding: FragmentMainProfileBinding? = null
+    private lateinit var binding: FragmentMainProfileBinding
 
-    private val viewModel: MainProfileViewModel by viewModels()
+    private val mainProfileViewModel: MainProfileViewModel by viewModels()
+
+    private val preferencesViewModel: PreferencesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,6 +33,15 @@ class MainProfileFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentMainProfileBinding.inflate(inflater, container, false)
-        return binding!!.root
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnLogout.setOnClickListener {
+            mainProfileViewModel.logout()
+            startActivity(Intent(requireActivity(), LoginActivity::class.java))
+        }
     }
 }

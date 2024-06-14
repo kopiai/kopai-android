@@ -1,4 +1,4 @@
-package com.kopai.shinkansen.data.local.room
+package com.kopai.shinkansen.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

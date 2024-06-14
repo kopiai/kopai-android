@@ -3,6 +3,7 @@ package com.kopai.shinkansen.view.authentication.login
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -13,6 +14,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.R
 import com.kopai.shinkansen.data.ResultState
 import com.kopai.shinkansen.databinding.ActivityLoginBinding
+import com.kopai.shinkansen.util.Constant
+import com.kopai.shinkansen.util.Helper
+import com.kopai.shinkansen.view.authentication.preferences.PreferencesOneActivity
+import com.kopai.shinkansen.view.authentication.preferences.PreferencesViewModel
+import com.kopai.shinkansen.view.authentication.recovery.RecoveryAccountActivity
+import com.kopai.shinkansen.view.authentication.register.RegisterActivity
 import com.kopai.shinkansen.view.main.MainActivity
 import com.kopai.shinkansen.view.shared.TokenViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +29,8 @@ class LoginActivity : AppCompatActivity() {
     private val loginViewModel: LoginViewModel by viewModels()
 
     private val tokenViewModel: TokenViewModel by viewModels()
+
+    private val preferencesViewModel: PreferencesViewModel by viewModels()
 
     private lateinit var binding: ActivityLoginBinding
 
@@ -53,46 +62,99 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.edLoginEmail.text.toString()
             val password = binding.edLoginPassword.text.toString()
 
-            loginViewModel.login(email, password).observe(this) {
-                when (it) {
-                    is ResultState.Error -> {
-                        binding.pBar.visibility = View.GONE
-                        loginButton.isEnabled = true
-                        Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
-                    }
-                    ResultState.Loading -> {
-                        binding.pBar.visibility = View.VISIBLE
-                        loginButton.isEnabled = false
-                    }
-                    is ResultState.Success -> {
-                        binding.pBar.visibility = View.GONE
-                        loginButton.isEnabled = true
-                        handleSuccessLogin(email, it.data.loginResult?.token ?: "")
+            when {
+                email.isEmpty() or password.isEmpty() -> {
+                    Helper.showDialogInfo(
+                        this,
+                        getString(R.string.UI_validation_empty_email_password)
+                    )
+                }
+
+                !email.matches(Constant.emailPattern) -> {
+                    Helper.showDialogInfo(
+                        this,
+                        getString(R.string.UI_validation_invalid_email)
+                    )
+                }
+
+                password.length <= 6 -> {
+                    Helper.showDialogInfo(
+                        this,
+                        getString(R.string.UI_validation_password_rules)
+                    )
+                }
+
+                else -> {
+                    loginViewModel.login(email, password).observe(this) {
+                        when (it) {
+                            is ResultState.Error -> {
+                                binding.pBar.visibility = View.GONE
+                                loginButton.isEnabled = true
+                                Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
+                            }
+
+                            ResultState.Loading -> {
+                                binding.pBar.visibility = View.VISIBLE
+                                loginButton.isEnabled = false
+                            }
+
+                            is ResultState.Success -> {
+                                binding.pBar.visibility = View.GONE
+                                loginButton.isEnabled = true
+                                handleSuccessLogin(it.data.loginResult?.userId ?: "", email, it.data.loginResult?.token ?: "")
+                            }
+                        }
                     }
                 }
+            }
+
+            binding.tvRegister.setOnClickListener {
+                startActivity(Intent(this, RegisterActivity::class.java))
+            }
+
+            binding.tvForgotPassword.setOnClickListener {
+                startActivity(Intent(this, RecoveryAccountActivity::class.java))
             }
         }
     }
 
     private fun handleSuccessLogin(
+        userId: String,
         email: String,
         token: String,
     ) {
-        tokenViewModel.saveToken(email, token)
-        AlertDialog.Builder(this).apply {
-            setMessage(getString(R.string.login_success))
-            setPositiveButton(getString(R.string.continue_login)) { _, _ ->
-                val intent = Intent(context, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-                finish()
-            }
-            create()
-            show()
-        }
+
+        tokenViewModel.saveToken(userId, email, token)
+
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish()
+
+        // Setup if Api is ready
+//        preferencesViewModel.getPreferences(userId).observe(this) {preferencesResponse ->
+//                when (preferencesResponse) {
+//                    is ResultState.Error -> {
+//                        val intent = Intent(this, PreferencesOneActivity::class.java)
+//                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//                        startActivity(intent)
+//                        finish()
+//                    }
+//                    ResultState.Loading -> {
+//                        Log.d("MainActivity", "Loading fetch banner")
+//                    }
+//                    is ResultState.Success -> {
+//                        val intent = Intent(this, MainActivity::class.java)
+//                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//                        startActivity(intent)
+//                        finish()
+//                    }
+//                }
+//            }
     }
 
 //    private fun playAnimation() {
+//        ObjectAnimator.ofFloat(binding.ivLogo, View.TRANSLATION_X, -30f, 30f).apply {
 //        ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
 //            duration = 6000
 //            repeatCount = ObjectAnimator.INFINITE

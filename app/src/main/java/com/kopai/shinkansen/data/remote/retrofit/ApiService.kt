@@ -2,18 +2,23 @@ package com.kopai.shinkansen.data.remote.retrofit
 
 import com.kopai.shinkansen.data.remote.response.ErrorMessageResponse
 import com.kopai.shinkansen.data.remote.response.LoginResponse
+import com.kopai.shinkansen.data.remote.response.PreferencesResponse
 import com.kopai.shinkansen.data.remote.response.StoriesResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
+
+//  Authentication
     @FormUrlEncoded
     @POST("register")
     suspend fun register(
@@ -29,6 +34,8 @@ interface ApiService {
         @Field("password") password: String,
     ): LoginResponse
 
+
+//   Stories
     @GET("stories")
     suspend fun getStories(
         @Query("page") page: Int?,
@@ -42,4 +49,28 @@ interface ApiService {
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
     ): ErrorMessageResponse
+
+
+//   Product
+
+
+//   Preferences
+
+    @Multipart
+    @POST("preferences")
+    suspend fun uploadPreferences(
+        @Part("user_id") userId: RequestBody,
+        @Part("preferences") preferences: RequestBody,
+    ): ErrorMessageResponse
+
+    @JvmSuppressWildcards
+    @GET("preferences/{user_id}")
+    suspend fun getPreferences(
+        @Path("user_id") userId: String,
+    ): PreferencesResponse
+
+//   Blend
+
+
+//   Order
 }

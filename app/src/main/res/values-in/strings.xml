@@ -27,4 +27,9 @@
     <string name="continue_login">Lanjut</string>
     <string name="image_classifier_failed_to_initialize">Image classifier failed to initialize.</string>
     <string name="UI_validation_invalid_email">Email format in invalid</string>
+
+    <string-array name="gender_menu">
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
+    </string-array>
 </resources>

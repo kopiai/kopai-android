@@ -30,16 +30,17 @@ class TokenViewModel
         }
 
         fun saveToken(
+            userId: String,
             email: String,
             token: String,
         ) {
             viewModelScope.launch(Dispatchers.IO) {
-                userPreference.saveSession(UserPrefModel(email, token))
+                userPreference.saveSession(UserPrefModel(userId,email, token))
             }
         }
 
         fun deleteToken() {
-            viewModelScope.launch(Dispatchers.IO) {
+            viewModelScope.launch {
                 userPreference.logout()
             }
         }

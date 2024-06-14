@@ -2,7 +2,9 @@ package com.kopai.shinkansen.data.repository
 
 import com.kopai.shinkansen.data.local.pref.UserPrefModel
 import com.kopai.shinkansen.data.local.pref.UserPreference
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 class UserRepository constructor(
     private val userPreference: UserPreference,

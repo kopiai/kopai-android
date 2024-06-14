@@ -57,7 +57,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="30dp"
-        android:alpha="0"
         android:background="@drawable/custom_border_button"
         android:text="Rasa asam (coarse grind)"
         android:textAllCaps="false"
@@ -65,8 +64,7 @@
         android:textColor="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_question"
-        tools:alpha="100" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_question"/>
 
     <Button
         android:id="@+id/btn_answer_two"
@@ -74,7 +72,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="10dp"
-        android:alpha="0"
         android:background="@drawable/custom_border_button"
         android:text=" Rasa seimbang (medium grind)"
         android:textAllCaps="false"
@@ -82,8 +79,7 @@
         android:textColor="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_answer_one"
-        tools:alpha="100" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_answer_one"/>
 
     <Button
         android:id="@+id/btn_answer_three"
@@ -91,7 +87,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="10dp"
-        android:alpha="0"
         android:background="@drawable/custom_border_button"
         android:text="Rasa pahit (fine grind)"
         android:textAllCaps="false"
@@ -99,8 +94,7 @@
         android:textColor="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_answer_two"
-        tools:alpha="100" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_answer_two"/>
 
     <Button
         android:id="@+id/btn_yes"
@@ -108,7 +102,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="160dp"
-        android:alpha="0"
         android:text="Continue"
         android:textAllCaps="false"
         android:textSize="16sp"
@@ -117,8 +110,7 @@
         android:drawableEnd="@drawable/ic_arrow_forward"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_answer_three"
-        tools:alpha="100" />
+        app:layout_constraintTop_toTopOf="@+id/btn_answer_three"/>
 
     <Button
         android:id="@+id/btn_no"
@@ -126,7 +118,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="10dp"
-        android:alpha="0"
         android:background="@drawable/custom_border_button"
         android:text="@string/no"
         android:textAllCaps="false"
@@ -134,7 +125,6 @@
         android:textColor="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_yes"
-        tools:alpha="100" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_yes"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

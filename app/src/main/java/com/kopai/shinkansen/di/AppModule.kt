@@ -7,6 +7,7 @@ import com.kopai.shinkansen.data.local.room.StoriesDatabase
 import com.kopai.shinkansen.data.remote.retrofit.ApiConfig
 import com.kopai.shinkansen.data.remote.retrofit.ApiService
 import com.kopai.shinkansen.data.remote.retrofit.AuthInterceptor
+import com.kopai.shinkansen.data.repository.PreferencesRepository
 import com.kopai.shinkansen.data.repository.StoriesRepository
 import com.kopai.shinkansen.data.repository.UserRepository
 import dagger.Module
@@ -54,5 +55,13 @@ object AppModule {
         apiService: ApiService,
     ): StoriesRepository {
         return StoriesRepository(storiesDatabase, apiService)
+    }
+
+    @Singleton
+    @Provides
+    fun providePreferencesRepository(
+        apiService: ApiService,
+    ): PreferencesRepository {
+        return PreferencesRepository(apiService)
     }
 }
