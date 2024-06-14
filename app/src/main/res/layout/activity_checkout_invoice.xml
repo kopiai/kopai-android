@@ -16,7 +16,7 @@
             android:id="@+id/mt_checkout_invoice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:menu="@menu/detail_product_menu"
+            app:menu="@menu/product_details_menu"
             app:title="@string/detail"
             app:titleCentered="true" />
     </com.google.android.material.appbar.AppBarLayout>

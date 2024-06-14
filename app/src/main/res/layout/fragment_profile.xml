@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="185dp"
         android:layout_marginStart="32dp"
-        android:alpha="0"
+
         android:text="Profile"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -35,14 +35,14 @@
         android:transitionName="auth"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:alpha="100" />
+         />
 
     <TextView
         android:id="@+id/tv_edit_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:alpha="0"
+
         android:text="@string/edit"
         android:textColor="@color/secondary"
         android:textSize="20sp"
@@ -50,7 +50,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_profile"
-        tools:alpha="100" />
+         />
 
     <LinearLayout
         android:id="@+id/container_profile"
@@ -70,75 +70,75 @@
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:alpha="0"
+
             android:text="@string/name"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold"
             android:transitionName="auth"
-            tools:alpha="100" />
+             />
 
         <TextView
             android:id="@+id/tv_name_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:alpha="0"
+
             android:text="@string/username"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:transitionName="auth"
-            tools:alpha="100" />
+             />
 
         <TextView
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:alpha="0"
+
             android:text="@string/email"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold"
             android:transitionName="auth"
-            tools:alpha="100" />
+             />
 
         <TextView
             android:id="@+id/tv_email_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:alpha="0"
+
             android:text="@string/example_email"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:transitionName="auth"
-            tools:alpha="100" />
+             />
 
         <TextView
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:alpha="0"
+
             android:text="@string/date"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold"
             android:transitionName="auth"
-            tools:alpha="100" />
+             />
 
         <TextView
             android:id="@+id/tv_date_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:alpha="0"
+
             android:text="@string/example_date"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:transitionName="auth"
-            tools:alpha="100" />
+             />
 
     </LinearLayout>
 
@@ -148,7 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="32dp"
-        android:alpha="0"
+
         android:text="Preferences"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -156,14 +156,14 @@
         android:transitionName="auth"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container_profile"
-        tools:alpha="100" />
+         />
 
     <TextView
         android:id="@+id/tv_edit_preferences"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:alpha="0"
+
         android:text="@string/edit"
         android:textColor="@color/secondary"
         android:textSize="20sp"
@@ -171,7 +171,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_preferences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_preferences"
-        tools:alpha="100" />
+         />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_preferences"
@@ -196,13 +196,13 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="25dp"
-        android:alpha="0"
+
         android:text="@string/logout"
         android:textAllCaps="false"
         android:textSize="16sp"
         android:transitionName="action"
         app:backgroundTint="@color/primary"
-        tools:alpha="100"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_preferences"/>

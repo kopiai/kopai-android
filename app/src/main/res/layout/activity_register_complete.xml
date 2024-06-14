@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="356dp"
-        android:alpha="0"
+
         android:text="@string/login"
         android:textAllCaps="false"
         android:textSize="16sp"
@@ -57,6 +57,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_regis_info"
-        tools:alpha="100" />
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

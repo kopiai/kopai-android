@@ -3,11 +3,11 @@ package com.kopai.shinkansen.di
 import android.content.Context
 import com.kopai.shinkansen.data.local.pref.UserPreference
 import com.kopai.shinkansen.data.local.pref.dataStore
-import com.kopai.shinkansen.data.local.room.StoriesDatabase
+import com.kopai.shinkansen.data.local.room.ProductsDatabase
 import com.kopai.shinkansen.data.remote.retrofit.ApiConfig
 import com.kopai.shinkansen.data.remote.retrofit.ApiService
 import com.kopai.shinkansen.data.remote.retrofit.AuthInterceptor
-import com.kopai.shinkansen.data.repository.StoriesRepository
+import com.kopai.shinkansen.data.repository.ProductsRepository
 import com.kopai.shinkansen.data.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -27,9 +27,9 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideStoryDatabase(
+    fun provideProductDatabase(
         @ApplicationContext context: Context,
-    ) = StoriesDatabase.getDatabase(context)
+    ) = ProductsDatabase.getDatabase(context)
 
     @Singleton
     @Provides
@@ -49,10 +49,10 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideStoriesRepository(
-        storiesDatabase: StoriesDatabase,
+    fun provideProductsRepository(
+        productsDatabase: ProductsDatabase,
         apiService: ApiService,
-    ): StoriesRepository {
-        return StoriesRepository(storiesDatabase, apiService)
+    ): ProductsRepository {
+        return ProductsRepository(productsDatabase, apiService)
     }
 }

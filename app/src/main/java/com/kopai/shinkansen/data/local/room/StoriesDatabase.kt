@@ -4,30 +4,30 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.kopai.shinkansen.data.remote.response.StoryItem
+import com.kopai.shinkansen.data.remote.response.ProductItem
 
 @Database(
-    entities = [StoryItem::class, RemoteKeysEntity::class],
+    entities = [ProductItem::class, RemoteKeysEntity::class],
     version = 2,
     exportSchema = false,
 )
-abstract class StoriesDatabase : RoomDatabase() {
-    abstract fun storyDao(): StoryDao
+abstract class ProductsDatabase : RoomDatabase() {
+    abstract fun productDao(): ProductDao
 
     abstract fun remoteKeysDao(): RemoteKeysDao
 
     companion object {
         @Suppress("ktlint:standard:property-naming")
         @Volatile
-        private var INSTANCE: StoriesDatabase? = null
+        private var INSTANCE: ProductsDatabase? = null
 
         @JvmStatic
-        fun getDatabase(context: Context): StoriesDatabase {
+        fun getDatabase(context: Context): ProductsDatabase {
             return INSTANCE ?: synchronized(this) {
                 INSTANCE ?: Room.databaseBuilder(
                     context.applicationContext,
-                    StoriesDatabase::class.java,
-                    "stories_database",
+                    ProductsDatabase::class.java,
+                    "products_database",
                 )
                     .fallbackToDestructiveMigration()
                     .build()

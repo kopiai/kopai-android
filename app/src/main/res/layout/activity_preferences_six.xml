@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="400dp"
-        android:alpha="0"
+
         android:text="Go to Home"
         android:textAllCaps="false"
         android:textSize="16sp"
@@ -45,6 +45,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_regis_completed"
-        tools:alpha="100" />
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

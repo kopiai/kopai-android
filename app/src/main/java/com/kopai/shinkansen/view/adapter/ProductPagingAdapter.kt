@@ -1,7 +1,6 @@
 package com.kopai.shinkansen.view.adapter
 
 import android.app.Activity
-import android.content.ContextWrapper
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,17 +10,17 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.kopai.shinkansen.data.remote.response.StoryItem
-import com.kopai.shinkansen.databinding.ItemStoryBinding
-import com.kopai.shinkansen.view.detailproduct.DetailProductActivity
+import com.kopai.shinkansen.data.remote.response.ProductItem
+import com.kopai.shinkansen.databinding.ItemProductBinding
+import com.kopai.shinkansen.view.product.productdetails.ProductDetailsActivity
 
-class StoryAdapter :
-    PagingDataAdapter<StoryItem, StoryAdapter.ViewHolder>(DIFF_CALLBACK) {
+class ProductPagingAdapter :
+    PagingDataAdapter<ProductItem, ProductPagingAdapter.ViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
     ): ViewHolder {
-        val binding = ItemStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -35,25 +34,25 @@ class StoryAdapter :
         }
     }
 
-    class ViewHolder(private val binding: ItemStoryBinding) :
+    class ViewHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(story: StoryItem) {
+        fun bind(product: ProductItem) {
             with(binding) {
                 Glide.with(itemView.context)
-                    .load(story.photoUrl)
+                    .load(product.photoUrl)
                     .into(ivItemPhoto)
-                tvItemName.text = story.name
-                tvItemDescription.text = story.description
+                tvItemName.text = product.name
+                tvItemDescription.text = product.description
 
                 itemView.setOnClickListener {
                     val moveIntent =
-                        Intent(itemView.context, DetailProductActivity::class.java).run {
-                            putExtra(DetailProductActivity.EXTRA_STORY, story)
+                        Intent(itemView.context, ProductDetailsActivity::class.java).run {
+                            putExtra(ProductDetailsActivity.EXTRA_STORY, product)
                         }
 
                     val optionsCompat: ActivityOptionsCompat =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(
-                            (it.context as ContextWrapper).baseContext as Activity,
+                            it.context as Activity,
                             Pair(ivItemPhoto, "detail_photo"),
                             Pair(tvItemName, "detail_name"),
                             Pair(tvItemDescription, "detail_description"),
@@ -66,17 +65,17 @@ class StoryAdapter :
 
     companion object {
         val DIFF_CALLBACK =
-            object : DiffUtil.ItemCallback<StoryItem>() {
+            object : DiffUtil.ItemCallback<ProductItem>() {
                 override fun areItemsTheSame(
-                    oldItem: StoryItem,
-                    newItem: StoryItem,
+                    oldItem: ProductItem,
+                    newItem: ProductItem,
                 ): Boolean {
                     return oldItem == newItem
                 }
 
                 override fun areContentsTheSame(
-                    oldItem: StoryItem,
-                    newItem: StoryItem,
+                    oldItem: ProductItem,
+                    newItem: ProductItem,
                 ): Boolean {
                     return oldItem.id == newItem.id
                 }

@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="270dp"
-        android:alpha="0"
+
         android:text="@string/yes"
         android:textAllCaps="false"
         android:textSize="16sp"
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_regis_info"
-        tools:alpha="100" />
+         />
 
     <Button
         android:id="@+id/btn_no"
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="10dp"
-        android:alpha="0"
+
         android:background="@drawable/custom_border_button"
         android:text="@string/no"
         android:textAllCaps="false"
@@ -74,6 +74,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_yes"
-        tools:alpha="100" />
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
