@@ -1,26 +1,27 @@
-package com.kopai.shinkansen.view.checkout
+package com.kopai.shinkansen.view.blend
 
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.kopai.shinkansen.databinding.ActivityCheckoutInvoiceBinding
+import com.kopai.shinkansen.R
+import com.kopai.shinkansen.databinding.ActivityBlendBinding
 
-class CheckoutInvoiceActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityCheckoutInvoiceBinding
+class BlendActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityBlendBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCheckoutInvoiceBinding.inflate(layoutInflater)
+        binding = ActivityBlendBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.mtCheckoutInvoice)
+        setSupportActionBar(binding.mtBlend)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()
+                finish()
                 return true
             }
         }

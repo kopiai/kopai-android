@@ -5,7 +5,7 @@
         android:id="@+id/action_main_maps"
         app:showAsAction="ifRoom"
         android:icon="@drawable/baseline_map_24"
-        android:title="@string/story_maps" />
+        android:title="@string/product_maps" />
     <item
         android:id="@+id/action_main_logout"
         app:showAsAction="never"

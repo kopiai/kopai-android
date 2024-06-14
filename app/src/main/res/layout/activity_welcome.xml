@@ -24,7 +24,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:alpha="0"
+
         android:text="@string/title_welcome_page"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -33,7 +33,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal"
-        tools:alpha="100" />
+         />
 
     <TextView
         android:id="@+id/descTextView"
@@ -42,7 +42,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:alpha="0"
+
         android:text="@string/message_welcome_page"
         android:textColor="@color/navy"
         android:textSize="14sp"
@@ -50,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-        tools:alpha="100" />
+         />
 
     <Button
         android:id="@+id/loginButton"
@@ -59,13 +59,13 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:alpha="0"
+
         android:backgroundTint="@color/navy"
         android:text="@string/login"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descTextView"
-        tools:alpha="100" />
+         />
 
     <Button
         android:id="@+id/signupButton"
@@ -74,13 +74,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:alpha="0"
+
         android:backgroundTint="@color/navy"
         android:text="@string/register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelineVertical"
         app:layout_constraintTop_toBottomOf="@+id/descTextView"
-        tools:alpha="100" />
+         />
 
     <Button
         android:id="@+id/homeButton"
@@ -89,12 +89,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:alpha="0"
+
         android:backgroundTint="@color/navy"
         android:text="@string/navigation_home"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
         app:layout_constraintStart_toStartOf="@+id/loginButton"
-        tools:alpha="100" />
+         />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal"

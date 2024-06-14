@@ -10,12 +10,12 @@ import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.google.gson.Gson
 import com.kopai.shinkansen.data.ResultState
-import com.kopai.shinkansen.data.local.StoriesRemoteMediator
-import com.kopai.shinkansen.data.local.room.StoriesDatabase
+import com.kopai.shinkansen.data.local.ProductsRemoteMediator
+import com.kopai.shinkansen.data.local.room.ProductsDatabase
 import com.kopai.shinkansen.data.remote.response.ErrorMessageResponse
 import com.kopai.shinkansen.data.remote.response.LoginResponse
-import com.kopai.shinkansen.data.remote.response.StoriesResponse
-import com.kopai.shinkansen.data.remote.response.StoryItem
+import com.kopai.shinkansen.data.remote.response.ProductItem
+import com.kopai.shinkansen.data.remote.response.ProductsResponse
 import com.kopai.shinkansen.data.remote.retrofit.ApiService
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -24,8 +24,8 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
 import java.io.File
 
-class StoriesRepository constructor(
-    private val storiesDatabase: StoriesDatabase,
+class ProductsRepository constructor(
+    private val productsDatabase: ProductsDatabase,
     private val apiService: ApiService,
 ) {
     fun register(
@@ -69,11 +69,11 @@ class StoriesRepository constructor(
             }
         }
 
-    fun getStoriesWithLocation(): LiveData<ResultState<StoriesResponse>> =
+    fun getProductsWithLocation(): LiveData<ResultState<ProductsResponse>> =
         liveData {
             emit(ResultState.Loading)
             try {
-                val response = apiService.getStories(null, null, 1)
+                val response = apiService.getProducts(null, null, 1)
                 Log.d(TAG, response.toString())
                 emit(ResultState.Success(response))
             } catch (e: Exception) {
@@ -82,35 +82,35 @@ class StoriesRepository constructor(
             }
         }
 
-    fun getStoriesPaging(): LiveData<PagingData<StoryItem>> {
+    fun getProductsPaging(): LiveData<PagingData<ProductItem>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config =
                 PagingConfig(
                     pageSize = 2,
                 ),
-            remoteMediator = StoriesRemoteMediator(storiesDatabase, apiService),
+            remoteMediator = ProductsRemoteMediator(productsDatabase, apiService),
             pagingSourceFactory = {
-                storiesDatabase.storyDao().getAllStories()
+                productsDatabase.productDao().getAllProducts()
             },
         ).liveData
     }
 
-    fun uploadStory(
-        imageStory: File,
+    fun uploadProduct(
+        imageProduct: File,
         description: String,
     ) = liveData {
         emit(ResultState.Loading)
         val requestBody = description.toRequestBody("text/plain".toMediaType())
-        val requestImageFile = imageStory.asRequestBody("image/jpeg".toMediaType())
+        val requestImageFile = imageProduct.asRequestBody("image/jpeg".toMediaType())
         val multipartBody =
             MultipartBody.Part.createFormData(
                 "photo",
-                imageStory.name,
+                imageProduct.name,
                 requestImageFile,
             )
         try {
-            val successResponse = apiService.uploadStory(multipartBody, requestBody)
+            val successResponse = apiService.uploadProduct(multipartBody, requestBody)
             emit(ResultState.Success(successResponse))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
@@ -121,6 +121,6 @@ class StoriesRepository constructor(
 
 
     companion object {
-        const val TAG = "StoriesRepository"
+        const val TAG = "ProductsRepository"
     }
 }

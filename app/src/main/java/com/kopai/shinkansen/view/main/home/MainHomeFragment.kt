@@ -1,5 +1,6 @@
 package com.kopai.shinkansen.view.main.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,8 +16,8 @@ import com.kopai.shinkansen.data.ResultState
 import com.kopai.shinkansen.databinding.FragmentMainHomeBinding
 import com.kopai.shinkansen.util.SpacesItemDecoration
 import com.kopai.shinkansen.view.adapter.BannerAdapter
-import com.kopai.shinkansen.view.adapter.LoadingStateAdapter
-import com.kopai.shinkansen.view.adapter.StoryAdapter
+import com.kopai.shinkansen.view.adapter.ProductAdapter
+import com.kopai.shinkansen.view.product.productlist.ProductListActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,7 +30,7 @@ class MainHomeFragment : Fragment() {
 
     private val viewModel: MainHomeViewModel by viewModels()
 
-    private val storyAdapter by lazy { StoryAdapter() }
+    private val productAdapter by lazy { ProductAdapter() }
     private val bannerAdapter by lazy { BannerAdapter() }
 
     override fun onCreateView(
@@ -47,8 +48,14 @@ class MainHomeFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding?.apply {
+            btnMore.setOnClickListener {
+                startActivity(Intent(activity, ProductListActivity::class.java))
+            }
+        }
+
         fetchBanner()
-        fetchStories()
+        fetchProducts()
     }
 
 //    val startForResult =
@@ -56,7 +63,7 @@ class MainHomeFragment : Fragment() {
 //            ActivityResultContracts.StartActivityForResult(),
 //        ) { result: ActivityResult ->
 //            if (result.resultCode == Activity.RESULT_OK) {
-//                storyAdapter.refresh()
+//                productAdapter.refresh()
 //            }
 //        }
 
@@ -66,35 +73,47 @@ class MainHomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         }
 
-        viewModel.getStories().observe(viewLifecycleOwner) {
+        viewModel.getProducts().observe(viewLifecycleOwner) {
             when (it) {
                 is ResultState.Error -> {
                     Toast.makeText(activity, it.error, Toast.LENGTH_SHORT).show()
                 }
+
                 ResultState.Loading -> {
                     Log.d("MainActivity", "Loading fetch banner")
                 }
+
                 is ResultState.Success -> {
-                    bannerAdapter.submitList(it.data.listStory)
+                    bannerAdapter.submitList(it.data.listProduct)
                 }
             }
         }
     }
 
-    private fun fetchStories() {
-        binding!!.rvMainStories.apply {
-            adapter =
-                storyAdapter.withLoadStateFooter(
-                    footer =
-                        LoadingStateAdapter {
-                            storyAdapter.retry()
-                        },
-                )
-            layoutManager = GridLayoutManager(activity, 2)
-            addItemDecoration(SpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.item_offset)))
-        }
-        viewModel.storiesPaging.observe(viewLifecycleOwner) {
-            storyAdapter.submitData(lifecycle, it)
+    private fun fetchProducts() {
+        binding?.apply {
+            rvMainProducts.apply {
+                adapter = productAdapter
+                layoutManager = GridLayoutManager(activity, 2)
+                addItemDecoration(SpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.item_offset)))
+            }
+            viewModel.getProducts().observe(viewLifecycleOwner) {
+                when (it) {
+                    is ResultState.Error -> {
+                        rvMainProducts.visibility = View.GONE
+                    }
+                    ResultState.Loading -> {
+                        rvMainProducts.visibility = View.GONE
+                    }
+                    is ResultState.Success -> {
+                        rvMainProducts.visibility = View.VISIBLE
+                        productAdapter.submitList(it.data.listProduct)
+                        if (it.data.listProduct.isEmpty()) {
+                            Toast.makeText(activity, "No Products found", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
         }
     }
 }

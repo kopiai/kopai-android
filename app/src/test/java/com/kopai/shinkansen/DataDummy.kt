@@ -1,13 +1,13 @@
 package com.kopai.shinkansen
 
-import com.kopai.shinkansen.data.remote.response.StoryItem
+import com.kopai.shinkansen.data.remote.response.ProductItem
 
 object DataDummy {
-    fun generateDummyStories(): List<StoryItem> {
-        val newsList = ArrayList<StoryItem>()
+    fun generateDummyProducts(): List<ProductItem> {
+        val newsList = ArrayList<ProductItem>()
         for (i in 0..10) {
             val news =
-                StoryItem(
+                ProductItem(
                     id = "id_$i",
                     name = "name_$i",
                     description = "description_$i",
