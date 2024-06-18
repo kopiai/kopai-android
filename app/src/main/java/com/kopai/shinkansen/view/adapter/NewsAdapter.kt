@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.kopai.shinkansen.data.remote.response.ProductItem
+import com.kopai.shinkansen.data.remote.response.NewsResponseItem
 import com.kopai.shinkansen.databinding.ItemBannerBinding
 
-class BannerAdapter : ListAdapter<ProductItem, BannerAdapter.ViewHolder>(DIFF_CALLBACK) {
+class NewsAdapter : ListAdapter<NewsResponseItem, NewsAdapter.ViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
@@ -30,28 +30,28 @@ class BannerAdapter : ListAdapter<ProductItem, BannerAdapter.ViewHolder>(DIFF_CA
 
     class ViewHolder(private val binding: ItemBannerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ProductItem) {
+        fun bind(item: NewsResponseItem) {
             Glide.with(itemView.context)
-                .load(item.photoUrl)
+                .load(item.picture)
                 .into(binding.ivItemBanner)
         }
     }
 
     companion object {
         val DIFF_CALLBACK =
-            object : DiffUtil.ItemCallback<ProductItem>() {
+            object : DiffUtil.ItemCallback<NewsResponseItem>() {
                 override fun areItemsTheSame(
-                    oldItem: ProductItem,
-                    newItem: ProductItem,
+                    oldItem: NewsResponseItem,
+                    newItem: NewsResponseItem,
                 ): Boolean {
                     return oldItem == newItem
                 }
 
                 override fun areContentsTheSame(
-                    oldItem: ProductItem,
-                    newItem: ProductItem,
+                    oldItem: NewsResponseItem,
+                    newItem: NewsResponseItem,
                 ): Boolean {
-                    return oldItem.id == newItem.id
+                    return oldItem.newsID == newItem.newsID
                 }
             }
     }

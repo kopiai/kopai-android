@@ -52,7 +52,7 @@ class ProductsRemoteMediator(
         try {
             val responseData = apiService.getProducts(page, state.config.pageSize)
 
-            val endOfPaginationReached = responseData.listProduct.isEmpty()
+            val endOfPaginationReached = responseData.isEmpty()
 
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
@@ -62,11 +62,11 @@ class ProductsRemoteMediator(
                 val prevKey = if (page == 1) null else page - 1
                 val nextKey = if (endOfPaginationReached) null else page + 1
                 val keys =
-                    responseData.listProduct.map {
-                        RemoteKeysEntity(id = it.id, prevKey = prevKey, nextKey = nextKey)
+                    responseData.map {
+                        RemoteKeysEntity(id = it.productId.toString(), prevKey = prevKey, nextKey = nextKey)
                     }
                 database.remoteKeysDao().insertAll(keys)
-                database.productDao().insertProduct(responseData.listProduct)
+                database.productDao().insertProduct(responseData)
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (exception: Exception) {
@@ -76,20 +76,20 @@ class ProductsRemoteMediator(
 
     private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ProductItem>): RemoteKeysEntity? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { data ->
-            database.remoteKeysDao().getRemoteKeysId(data.id)
+            database.remoteKeysDao().getRemoteKeysId(data.productId.toString())
         }
     }
 
     private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ProductItem>): RemoteKeysEntity? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.let { data ->
-            database.remoteKeysDao().getRemoteKeysId(data.id)
+            database.remoteKeysDao().getRemoteKeysId(data.productId.toString())
         }
     }
 
     private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, ProductItem>): RemoteKeysEntity? {
         return state.anchorPosition?.let { position ->
-            state.closestItemToPosition(position)?.id?.let { id ->
-                database.remoteKeysDao().getRemoteKeysId(id)
+            state.closestItemToPosition(position)?.productId?.let { id ->
+                database.remoteKeysDao().getRemoteKeysId(id.toString())
             }
         }
     }

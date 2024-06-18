@@ -99,9 +99,22 @@
     <string name="shutter_camera">shutter camera</string>
     <string name="gallery">Gallery</string>
     <string name="send">Send</string>
+    <string name="select_province">Select Province</string>
+    <string name="select_city">Select City</string>
+    <string name="enter_address">Enter address</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="enter_postal_code">Enter postal code</string>
+    <string name="field_is_required">%1$s is required</string>
 
     <string-array name="gender_menu">
         <item>Laki-laki</item>
         <item>Perempuan</item>
+    </string-array>
+
+    <string-array name="payment_methods">
+        <item>Dana</item>
+        <item>Gopay</item>
+        <item>ShopeePay</item>
+        <item>BCA</item>
     </string-array>
 </resources>

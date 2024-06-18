@@ -5,4 +5,5 @@ data class UserPrefModel(
     val email: String,
     val token: String,
     val isLogin: Boolean = false,
+    val payment: String = "",
 )

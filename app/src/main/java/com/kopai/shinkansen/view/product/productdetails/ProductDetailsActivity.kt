@@ -23,14 +23,16 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         val productData =
             if (Build.VERSION.SDK_INT >= 33) {
-                intent.getParcelableExtra<ProductItem>(EXTRA_STORY, ProductItem::class.java)
+                intent.getParcelableExtra<ProductItem>(EXTRA_PRODUCT, ProductItem::class.java)
             } else {
                 @Suppress("DEPRECATION")
-                intent.getParcelableExtra<ProductItem>(EXTRA_STORY)
+                intent.getParcelableExtra<ProductItem>(EXTRA_PRODUCT)
             }
 
         binding.btnDetailBuy.setOnClickListener {
-            startActivity(Intent(this, CheckoutActivity::class.java))
+            val checkoutIntent = Intent(this, CheckoutActivity::class.java)
+            checkoutIntent.putExtra(CheckoutActivity.EXTRA_PRODUCT, productData)
+            startActivity(checkoutIntent)
         }
 
         setDetailProduct(productData)
@@ -50,15 +52,15 @@ class ProductDetailsActivity : AppCompatActivity() {
         product?.let {
             with(binding) {
                 Glide.with(this@ProductDetailsActivity)
-                    .load(it.photoUrl)
+                    .load(it.photo)
                     .into(ivDetailPhoto)
-                tvDetailName.text = it.name
+                tvDetailName.text = it.productName
                 tvDetailDescriptionContent.text = it.description
             }
         }
     }
 
     companion object {
-        const val EXTRA_STORY = "extra_product"
+        const val EXTRA_PRODUCT = "extra_product"
     }
 }

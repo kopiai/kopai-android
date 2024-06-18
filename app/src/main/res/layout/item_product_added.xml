@@ -24,7 +24,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_overview_name"
+                android:id="@+id/tv_product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/title_main"
@@ -35,7 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_overview_stock"
+                android:id="@+id/tv_product_stock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rate_ph" />
@@ -48,12 +48,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_detail_rate"
+                    android:id="@+id/tv_product_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/price_1" />
 
                 <ImageButton
+                    android:id="@+id/btn_product_decrease"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -61,13 +62,14 @@
                     android:src="@drawable/baseline_remove_24" />
 
                 <TextView
-                    android:id="@+id/tv_overview_amount"
+                    android:id="@+id/tv_product_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:text="1" />
 
                 <ImageButton
+                    android:id="@+id/btn_product_increase"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"

@@ -10,7 +10,7 @@ class ProductsPagingSource(private val apiService: ApiService) : PagingSource<In
         return try {
             val position = params.key ?: INITIAL_PAGE_INDEX
             val responseData = apiService.getProducts(position, params.loadSize)
-            responseData.listProduct.let {
+            responseData.let {
                 LoadResult.Page(
                     data = it,
                     prevKey = if (position == INITIAL_PAGE_INDEX) null else position - 1,
