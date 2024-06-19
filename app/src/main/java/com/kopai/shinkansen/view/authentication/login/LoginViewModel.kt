@@ -2,6 +2,7 @@ package com.kopai.shinkansen.view.authentication.login
 
 import androidx.lifecycle.ViewModel
 import com.kopai.shinkansen.data.repository.StoriesRepository
+import com.kopai.shinkansen.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -9,11 +10,11 @@ import javax.inject.Inject
 class LoginViewModel
     @Inject
     constructor(
-        private val storiesRepository: StoriesRepository,
+        private val userRepository: UserRepository,
     ) :
     ViewModel() {
         fun login(
             email: String,
             password: String,
-        ) = storiesRepository.login(email, password)
+        ) = userRepository.login(email, password)
     }

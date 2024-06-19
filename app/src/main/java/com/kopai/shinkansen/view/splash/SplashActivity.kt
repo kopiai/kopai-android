@@ -34,11 +34,6 @@ class SplashActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
         )
 
-//        Timer().schedule(2000) {
-//            startActivity(Intent(this@SplashActivity, WelcomeActivity::class.java))
-//            finish()
-//        }
-
         tokenViewModel.token
             .observe(this) { userPrefModel ->
                 if (userPrefModel!!.token.isNotEmpty()) Timer().schedule(2000) {
