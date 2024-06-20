@@ -28,46 +28,6 @@ class ProductsRepository constructor(
     private val productsDatabase: ProductsDatabase,
     private val apiService: ApiService,
 ) {
-    fun register(
-        name: String,
-        email: String,
-        password: String,
-    ): LiveData<ResultState<ErrorMessageResponse>> =
-        liveData {
-            emit(ResultState.Loading)
-            try {
-                val response = apiService.register(name, email, password)
-                Log.d(TAG, response.toString())
-                emit(ResultState.Success(response))
-            } catch (e: HttpException) {
-                val jsonInString = e.response()?.errorBody()?.string()
-                val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
-                emit(ResultState.Error(errorBody.message ?: "Server error"))
-            } catch (e: Exception) {
-                Log.d(TAG, "register: ${e.message}")
-                emit(ResultState.Error(e.message.toString()))
-            }
-        }
-
-    fun login(
-        email: String,
-        password: String,
-    ): LiveData<ResultState<LoginResponse>> =
-        liveData {
-            emit(ResultState.Loading)
-            try {
-                val response = apiService.login(email, password)
-                Log.d(TAG, response.toString())
-                emit(ResultState.Success(response))
-            } catch (e: HttpException) {
-                val jsonInString = e.response()?.errorBody()?.string()
-                val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
-                emit(ResultState.Error(errorBody.message ?: "Server error"))
-            } catch (e: Exception) {
-                Log.d(TAG, "login: ${e.message}")
-                emit(ResultState.Error(e.message.toString()))
-            }
-        }
 
     fun getProductsWithLocation(): LiveData<ResultState<ProductsResponse>> =
         liveData {
@@ -118,7 +78,6 @@ class ProductsRepository constructor(
             emit(ResultState.Error(errorResponse.message ?: "Server error"))
         }
     }
-
 
     companion object {
         const val TAG = "ProductsRepository"

@@ -65,7 +65,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageview_account_profile"
+                    android:id="@+id/iv_account_profile"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_alignParentTop="true"
@@ -74,17 +74,62 @@
                     app:civ_border_color="#FFFFFF"
                     app:civ_border_width="2dp" />
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btn_change_image"
+<!--                <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                    android:id="@+id/btn_change_image"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignEnd="@+id/iv_account_profile"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:src="@drawable/ic_add_photo"-->
+<!--                    tools:ignore="SpeakableTextPresentCheck" />-->
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_change_with"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="5dp"
+                android:text="Change Image"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:transitionName="auth"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image"
+                />
+
+            <LinearLayout
+                android:id="@+id/container_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:gravity="center_horizontal"
+                android:transitionName="misc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_change_with">
+
+                <TextView
+                    android:id="@+id/tv_gallery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/imageview_account_profile"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/ic_add_photo"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
-            </RelativeLayout>
+                    android:layout_marginStart="32dp"
+                    android:text="@string/gallery"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp"
+                    android:transitionName="auth"/>
+                <TextView
+                    android:id="@+id/tv_camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="@string/camera"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp"
+                    android:transitionName="auth"/>
+            </LinearLayout>
 
 
             <LinearLayout
@@ -97,7 +142,7 @@
                 android:transitionName="misc"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_image">
+                app:layout_constraintTop_toBottomOf="@+id/container_edit">
 
                 <TextView
                     android:id="@+id/tv_name"
@@ -235,7 +280,7 @@
                     android:transitionName="email"/>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/container_address"
+                android:id="@+id/container_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -245,6 +290,43 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/container_birth">
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="Telepon"
+                    android:textColor="@color/primary"
+                    android:textSize="18sp"
+                    android:transitionName="auth"/>
+
+                <com.kopai.shinkansen.view.shared.NameEditText
+                    android:id="@+id/ed_profile_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/custom_form_input"
+                    android:hint="0821212"
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="15dp"
+                    android:transitionName="email"
+                    tools:ignore="DuplicateClickableBoundsCheck" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/container_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="start"
+                android:orientation="vertical"
+                android:transitionName="misc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/container_phone">
 
                 <TextView
                     android:id="@+id/tv_address"
@@ -288,5 +370,17 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+
+    <ProgressBar
+        android:id="@+id/pBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

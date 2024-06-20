@@ -31,11 +31,12 @@ class TokenViewModel
 
         fun saveToken(
             userId: String,
+            name: String,
             email: String,
             token: String,
         ) {
             viewModelScope.launch(Dispatchers.IO) {
-                userPreference.saveSession(UserPrefModel(userId,email, token))
+                userPreference.saveSession(UserPrefModel(userId, name, email, token))
             }
         }
 

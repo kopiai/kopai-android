@@ -99,6 +99,7 @@
     <string name="shutter_camera">shutter camera</string>
     <string name="gallery">Gallery</string>
     <string name="send">Send</string>
+    <string name="camera">Camera</string>
 
     <string-array name="gender_menu">
         <item>Laki-laki</item>

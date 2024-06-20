@@ -14,8 +14,6 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="120dp"
         android:src="@drawable/ic_mail"
-        android:scaleType="centerInside"
-        android:background="@drawable/custom_oval_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

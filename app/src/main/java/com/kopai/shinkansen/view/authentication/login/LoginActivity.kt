@@ -101,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
                             is ResultState.Success -> {
                                 binding.pBar.visibility = View.GONE
                                 loginButton.isEnabled = true
-                                handleSuccessLogin(it.data.loginResult?.userId ?: "", email, it.data.loginResult?.token ?: "")
+                                handleSuccessLogin(it.data.user!!.userId.toString() ?: "", it.data.user!!.name ?: "", email, it.data.token ?: "")
                             }
                         }
                     }
@@ -120,11 +120,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun handleSuccessLogin(
         userId: String,
+        name: String,
         email: String,
         token: String,
     ) {
 
-        tokenViewModel.saveToken(userId, email, token)
+        tokenViewModel.saveToken(userId, name, email, token)
 
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
