@@ -6,9 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.kopai.shinkansen.data.local.entity.RemoteKeysEntity
 import com.kopai.shinkansen.data.remote.response.ProductItem
+import com.kopai.shinkansen.data.remote.response.ProductsItem
 
 @Database(
-    entities = [ProductItem::class, RemoteKeysEntity::class],
+    entities = [ProductsItem::class, RemoteKeysEntity::class],
     version = 2,
     exportSchema = false,
 )

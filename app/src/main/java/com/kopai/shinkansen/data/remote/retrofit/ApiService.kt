@@ -5,6 +5,7 @@ import com.kopai.shinkansen.data.remote.response.ErrorMessageResponse
 import com.kopai.shinkansen.data.remote.response.LoginResponse
 import com.kopai.shinkansen.data.remote.response.PreferencesResponse
 import com.kopai.shinkansen.data.remote.response.ProductsResponse
+import com.kopai.shinkansen.data.remote.response.StoriesResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Field
@@ -34,24 +35,20 @@ interface ApiService {
         @Field("password") password: String,
     ): LoginResponse
 
-
-//   Stories
-    @GET("stories")
+//  Product
+    @GET("products")
     suspend fun getProducts(
         @Query("page") page: Int?,
         @Query("size") size: Int?,
-        @Query("location") location: Int = 0,
     ): ProductsResponse
 
-    @Multipart
-    @POST("stories")
-    suspend fun uploadProduct(
-        @Part file: MultipartBody.Part,
-        @Part("description") description: RequestBody,
-    ): ErrorMessageResponse
+    @GET("products")
+    suspend fun getProductsBeen(
+        @Query("bean") bean: Boolean = true,
+    ): ProductsResponse
 
 
-//   Product
+
 
 //  Blend
     @FormUrlEncoded
@@ -68,8 +65,8 @@ interface ApiService {
         @Field("description") description: String,
     ): BlendResponse
 
-//   Preferences
 
+//   Preferences
     @FormUrlEncoded
     @POST("preferences")
     suspend fun uploadPreferences(
@@ -78,15 +75,37 @@ interface ApiService {
         @Field("healthIssue") healthIssue: String,
         @Field("preferredAroma") preferredAroma: String,
         @Field("preferredTaste") preferredTaste: String,
-    ): ErrorMessageResponse
+    ): PreferencesResponse
+
+    @JvmSuppressWildcards
+    @GET("preferences")
+    suspend fun getPreferences(
+    ): PreferencesResponse
 
     @JvmSuppressWildcards
     @GET("preferences/{user_id}")
-    suspend fun getPreferences(
+    suspend fun getPreferencesById(
         @Path("user_id") userId: String,
     ): PreferencesResponse
 
+//  Order
 
 
-//   Order
+
+//  Stories
+    @GET("stories")
+    suspend fun getStories(
+        @Query("page") page: Int?,
+        @Query("size") size: Int?,
+        @Query("location") location: Int = 0,
+    ): StoriesResponse
+
+    @Multipart
+    @POST("stories")
+    suspend fun uploadStories(
+        @Part file: MultipartBody.Part,
+        @Part("description") description: RequestBody,
+    ): ErrorMessageResponse
+
+
 }

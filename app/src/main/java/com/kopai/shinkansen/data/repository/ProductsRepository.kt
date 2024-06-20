@@ -14,8 +14,10 @@ import com.kopai.shinkansen.data.local.ProductsRemoteMediator
 import com.kopai.shinkansen.data.local.room.ProductsDatabase
 import com.kopai.shinkansen.data.remote.response.ErrorMessageResponse
 import com.kopai.shinkansen.data.remote.response.LoginResponse
-import com.kopai.shinkansen.data.remote.response.ProductItem
+import com.kopai.shinkansen.data.remote.response.ProductsItem
 import com.kopai.shinkansen.data.remote.response.ProductsResponse
+import com.kopai.shinkansen.data.remote.response.StoriesResponse
+import com.kopai.shinkansen.data.remote.response.StoryItem
 import com.kopai.shinkansen.data.remote.retrofit.ApiService
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -70,11 +72,11 @@ class ProductsRepository constructor(
             }
         }
 
-    fun getProductsWithLocation(): LiveData<ResultState<ProductsResponse>> =
+    fun getProductsWithLocation(): LiveData<ResultState<StoriesResponse>> =
         liveData {
             emit(ResultState.Loading)
             try {
-                val response = apiService.getProducts(null, null, 1)
+                val response = apiService.getStories(null, null, 1)
                 Log.d(TAG, response.toString())
                 emit(ResultState.Success(response))
             } catch (e: Exception) {
@@ -83,7 +85,20 @@ class ProductsRepository constructor(
             }
         }
 
-    fun getProductsPaging(): LiveData<PagingData<ProductItem>> {
+    fun getProductsBeen(): LiveData<ResultState<ProductsResponse>> =
+        liveData {
+            emit(ResultState.Loading)
+            try {
+                val response = apiService.getProductsBeen(true)
+                Log.d(TAG, response.toString())
+                emit(ResultState.Success(response))
+            } catch (e: Exception) {
+                Log.d(TAG, "login: ${e.message}")
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
+    fun getProductsPaging(): LiveData<PagingData<ProductsItem>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config =
@@ -111,7 +126,7 @@ class ProductsRepository constructor(
                 requestImageFile,
             )
         try {
-            val successResponse = apiService.uploadProduct(multipartBody, requestBody)
+            val successResponse = apiService.uploadStories(multipartBody, requestBody)
             emit(ResultState.Success(successResponse))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()

@@ -7,14 +7,14 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.kopai.shinkansen.data.local.entity.RemoteKeysEntity
 import com.kopai.shinkansen.data.local.room.ProductsDatabase
-import com.kopai.shinkansen.data.remote.response.ProductItem
+import com.kopai.shinkansen.data.remote.response.ProductsItem
 import com.kopai.shinkansen.data.remote.retrofit.ApiService
 
 @OptIn(ExperimentalPagingApi::class)
 class ProductsRemoteMediator(
     private val database: ProductsDatabase,
     private val apiService: ApiService,
-) : RemoteMediator<Int, ProductItem>() {
+) : RemoteMediator<Int, ProductsItem>() {
     private companion object {
         const val INITIAL_PAGE_INDEX = 1
     }
@@ -25,7 +25,7 @@ class ProductsRemoteMediator(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, ProductItem>,
+        state: PagingState<Int, ProductsItem>,
     ): MediatorResult {
         val page =
             when (loadType) {
@@ -52,7 +52,7 @@ class ProductsRemoteMediator(
         try {
             val responseData = apiService.getProducts(page, state.config.pageSize)
 
-            val endOfPaginationReached = responseData.listProduct.isEmpty()
+            val endOfPaginationReached = responseData.listProducts!!.isEmpty()
 
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
@@ -62,11 +62,11 @@ class ProductsRemoteMediator(
                 val prevKey = if (page == 1) null else page - 1
                 val nextKey = if (endOfPaginationReached) null else page + 1
                 val keys =
-                    responseData.listProduct.map {
-                        RemoteKeysEntity(id = it.id, prevKey = prevKey, nextKey = nextKey)
+                    responseData.listProducts.map {
+                        RemoteKeysEntity(id = it!!.productId.toString(), prevKey = prevKey, nextKey = nextKey)
                     }
                 database.remoteKeysDao().insertAll(keys)
-                database.productDao().insertProduct(responseData.listProduct)
+                database.productDao().insertProduct(responseData.listProducts)
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (exception: Exception) {
@@ -74,22 +74,22 @@ class ProductsRemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ProductItem>): RemoteKeysEntity? {
+    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ProductsItem>): RemoteKeysEntity? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { data ->
-            database.remoteKeysDao().getRemoteKeysId(data.id)
+            database.remoteKeysDao().getRemoteKeysId(data.productId.toString())
         }
     }
 
-    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ProductItem>): RemoteKeysEntity? {
+    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ProductsItem>): RemoteKeysEntity? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.let { data ->
-            database.remoteKeysDao().getRemoteKeysId(data.id)
+            database.remoteKeysDao().getRemoteKeysId(data.productId.toString())
         }
     }
 
-    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, ProductItem>): RemoteKeysEntity? {
+    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, ProductsItem>): RemoteKeysEntity? {
         return state.anchorPosition?.let { position ->
-            state.closestItemToPosition(position)?.id?.let { id ->
-                database.remoteKeysDao().getRemoteKeysId(id)
+            state.closestItemToPosition(position)?.productId?.let { id ->
+                database.remoteKeysDao().getRemoteKeysId(id.toString())
             }
         }
     }

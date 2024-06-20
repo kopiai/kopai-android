@@ -5,15 +5,15 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.kopai.shinkansen.data.remote.response.ProductItem
+import com.kopai.shinkansen.data.remote.response.ProductsItem
 
 @Dao
 interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertProduct(quote: List<ProductItem>)
+    suspend fun insertProduct(quote: List<ProductsItem?>)
 
     @Query("SELECT * FROM products")
-    fun getAllProducts(): PagingSource<Int, ProductItem>
+    fun getAllProducts(): PagingSource<Int, ProductsItem>
 
     @Query("DELETE FROM products")
     suspend fun deleteAll()
