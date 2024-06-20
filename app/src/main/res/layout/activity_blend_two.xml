@@ -87,6 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
+                    android:background="@color/white"
                     android:padding="16dp">
 
                     <ImageView
@@ -139,6 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
+                    android:background="@color/white"
                     android:padding="16dp">
 
                     <ImageView
@@ -160,6 +162,12 @@
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
+                    <Spinner
+                        android:id="@+id/spinner_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cardImage"
+                        android:visibility="gone" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -193,7 +201,7 @@
                     android:layout_marginEnd="32dp"
                     android:background="@drawable/custom_form_input"
                     android:hint=".... gram"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="15dp"
                     android:transitionName="email"/>

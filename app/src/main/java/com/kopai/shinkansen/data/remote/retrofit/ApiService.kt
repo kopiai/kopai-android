@@ -1,5 +1,6 @@
 package com.kopai.shinkansen.data.remote.retrofit
 
+import com.kopai.shinkansen.data.remote.response.BlendResponse
 import com.kopai.shinkansen.data.remote.response.ErrorMessageResponse
 import com.kopai.shinkansen.data.remote.response.LoginResponse
 import com.kopai.shinkansen.data.remote.response.PreferencesResponse
@@ -52,14 +53,31 @@ interface ApiService {
 
 //   Product
 
+//  Blend
+    @FormUrlEncoded
+    @POST("blends")
+    suspend fun uploadBlend(
+        @Field("coffee_id1") coffeIdOne: Int,
+        @Field("coffee_id2") coffeeIdTwo: Int,
+        @Field("percentage") percentage: Int,
+        @Field("ukuran_gram") totalWeight: Int,
+        @Field("roast_id") roastId: Int,
+        @Field("grind_id") grindId: Int,
+        @Field("user_id") userId: Int,
+        @Field("blend_name") blendName: String,
+        @Field("description") description: String,
+    ): BlendResponse
 
 //   Preferences
 
-    @Multipart
+    @FormUrlEncoded
     @POST("preferences")
     suspend fun uploadPreferences(
-        @Part("user_id") userId: RequestBody,
-        @Part("preferences") preferences: RequestBody,
+        @Field("user_id") userId: Int,
+        @Field("effect") effect: String,
+        @Field("healthIssue") healthIssue: String,
+        @Field("preferredAroma") preferredAroma: String,
+        @Field("preferredTaste") preferredTaste: String,
     ): ErrorMessageResponse
 
     @JvmSuppressWildcards
@@ -68,7 +86,6 @@ interface ApiService {
         @Path("user_id") userId: String,
     ): PreferencesResponse
 
-//   Blend
 
 
 //   Order
