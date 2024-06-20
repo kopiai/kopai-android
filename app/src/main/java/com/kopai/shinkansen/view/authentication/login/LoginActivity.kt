@@ -107,14 +107,15 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
 
-            binding.tvRegister.setOnClickListener {
-                startActivity(Intent(this, RegisterActivity::class.java))
-            }
+        binding.tvRegister.setOnClickListener {
+            Log.i("TVREGIS", "DI CLICK")
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
 
-            binding.tvForgotPassword.setOnClickListener {
-                startActivity(Intent(this, RecoveryAccountActivity::class.java))
-            }
+        binding.tvForgotPassword.setOnClickListener {
+            startActivity(Intent(this, RecoveryAccountActivity::class.java))
         }
     }
 

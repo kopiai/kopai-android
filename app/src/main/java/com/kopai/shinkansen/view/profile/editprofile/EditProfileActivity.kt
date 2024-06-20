@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -34,9 +35,11 @@ import com.kopai.shinkansen.view.authentication.login.LoginViewModel
 import com.kopai.shinkansen.view.camera.CameraActivity
 import com.kopai.shinkansen.view.main.profile.MainProfileViewModel
 import com.kopai.shinkansen.view.shared.TokenViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.util.Calendar
 
+@AndroidEntryPoint
 class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditProfileBinding
@@ -93,6 +96,11 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.btnEdit.setOnClickListener {
             editProfile()
+        }
+
+        binding.btnBack.setOnClickListener {
+            Log.i("BACK", "BACK BUTTON CLICK")
+            finish()
         }
 
         tokenViewModel.token.observe(this) {user ->

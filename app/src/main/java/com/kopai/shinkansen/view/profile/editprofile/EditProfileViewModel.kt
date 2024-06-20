@@ -26,5 +26,5 @@ constructor(
         phone: String?,
         address: String?,
         photo: File?,
-    ) = userRepository.updateProfile(userId ?: 1, name ?: "", gender ?: "", birth ?: "", email ?: "", phone ?: "", address ?: "", photo ?: "")
+    ) = userRepository.updateProfile(userId ?: 1, name ?: "", gender ?: "", birth ?: "", email ?: "", phone ?: "", address ?: "", photo)
 }
