@@ -30,8 +30,10 @@ import com.kopai.shinkansen.util.Helper
 import com.kopai.shinkansen.util.getImageUri
 import com.kopai.shinkansen.util.reduceFileImage
 import com.kopai.shinkansen.util.uriToFile
+import com.kopai.shinkansen.view.authentication.login.LoginViewModel
 import com.kopai.shinkansen.view.camera.CameraActivity
 import com.kopai.shinkansen.view.main.profile.MainProfileViewModel
+import com.kopai.shinkansen.view.shared.TokenViewModel
 import java.io.File
 import java.util.Calendar
 
@@ -41,9 +43,13 @@ class EditProfileActivity : AppCompatActivity() {
 
     private var gender = ""
 
-    private val editProfileViewModel: MainProfileViewModel by viewModels()
+    private val tokenViewModel: TokenViewModel by viewModels()
+
+    private val editProfileViewModel: EditProfileViewModel by viewModels()
 
     private var currentImageUri: Uri? = null
+
+    private var userId: Int? = null
 
     private val requestPermissionLauncher =
         registerForActivityResult(
@@ -88,37 +94,42 @@ class EditProfileActivity : AppCompatActivity() {
         binding.btnEdit.setOnClickListener {
             editProfile()
         }
+
+        tokenViewModel.token.observe(this) {user ->
+            userId = user!!.userId.toInt()
+        }
     }
 
     private fun editProfile() {
         currentImageUri?.let { uri ->
-            val imageFile = uriToFile(uri, this).reduceFileImage()
+            val photo = uriToFile(uri, this).reduceFileImage()
             val name =  binding.edProfileName.text.toString()
             val email = binding.edProfileEmail.text.toString()
-            val birthday = binding.edProfileBirth.text.toString()
+            val birth = binding.edProfileBirth.text.toString()
             val address = binding.edProfileAddress.text.toString()
+            val phone = binding.edProfilePhone.text.toString()
 
-//            mainProfileViewModel.editProfile(imageFile, name, email, birthday, address).observe(this) { result ->
-//                if (result != null) {
-//                    when (result) {
-//                        is ResultState.Loading -> {
-//                            showLoading(true)
-//                        }
-//
-//                        is ResultState.Success -> {
-//                            showToast(result.data.message ?: "Success")
-//                            showLoading(false)
-//                            setResult(RESULT_OK)
-//                            finish()
-//                        }
-//
-//                        is ResultState.Error -> {
-//                            showToast(result.error)
-//                            showLoading(false)
-//                        }
-//                    }
-//                }
-//            }
+            editProfileViewModel.updateProfile(userId, name, gender, birth, email, phone, address, photo).observe(this) { result ->
+                if (result != null) {
+                    when (result) {
+                        is ResultState.Loading -> {
+                            showLoading(true)
+                        }
+
+                        is ResultState.Success -> {
+                            showToast(result.data.message ?: "Success")
+                            showLoading(false)
+                            setResult(RESULT_OK)
+                            finish()
+                        }
+
+                        is ResultState.Error -> {
+                            showToast(result.error)
+                            showLoading(false)
+                        }
+                    }
+                }
+            }
         } ?: showToast(getString(R.string.empty_image_warning))
     }
 

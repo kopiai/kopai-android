@@ -280,7 +280,7 @@
                     android:transitionName="email"/>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/container_address"
+                android:id="@+id/container_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -290,6 +290,43 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/container_birth">
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="Telepon"
+                    android:textColor="@color/primary"
+                    android:textSize="18sp"
+                    android:transitionName="auth"/>
+
+                <com.kopai.shinkansen.view.shared.NameEditText
+                    android:id="@+id/ed_profile_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/custom_form_input"
+                    android:hint="0821212"
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="15dp"
+                    android:transitionName="email"
+                    tools:ignore="DuplicateClickableBoundsCheck" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/container_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="start"
+                android:orientation="vertical"
+                android:transitionName="misc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/container_phone">
 
                 <TextView
                     android:id="@+id/tv_address"

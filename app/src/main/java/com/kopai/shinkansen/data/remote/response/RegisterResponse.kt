@@ -2,16 +2,16 @@ package com.kopai.shinkansen.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginResponse(
+data class RegisterResponse(
     @field:SerializedName("user")
-    val user: LoginResult? = null,
+    val user: RegisterResult? = null,
     @field:SerializedName("message")
     val message: String? = null,
     @field:SerializedName("token")
     val token: String? = null,
 )
 
-data class LoginResult(
+data class RegisterResult(
     @field:SerializedName("user_id")
     val userId: Int? = null,
     @field:SerializedName("name")
@@ -24,8 +24,6 @@ data class LoginResult(
     val email: String? = null,
     @field:SerializedName("phone")
     val phone: String? = null,
-    @field:SerializedName("password")
-    val password: String? = null,
     @field:SerializedName("address")
     val address: String? = null,
     @field:SerializedName("photo")

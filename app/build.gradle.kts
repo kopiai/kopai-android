@@ -6,7 +6,6 @@ plugins {
     id("com.google.devtools.ksp")
     id("kotlin-parcelize")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
-    id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
 
@@ -32,11 +31,11 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\"")
+            buildConfigField("String", "BASE_URL", "\"https://kopai-znxyez5z2a-et.a.run.app/\"")
         }
 
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\"")
+            buildConfigField("String", "BASE_URL", "\"https://kopai-znxyez5z2a-et.a.run.app/\"")
         }
     }
     compileOptions {
@@ -117,9 +116,5 @@ dependencies {
     implementation(libs.androidx.swiperefreshlayout)
 
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-}
-
-kapt {
-    correctErrorTypes = true
+    ksp(libs.hilt.android.compiler)
 }

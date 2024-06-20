@@ -3,7 +3,10 @@ package com.kopai.shinkansen.data.remote.retrofit
 import com.kopai.shinkansen.data.remote.response.ErrorMessageResponse
 import com.kopai.shinkansen.data.remote.response.LoginResponse
 import com.kopai.shinkansen.data.remote.response.PreferencesResponse
+import com.kopai.shinkansen.data.remote.response.RegisterResponse
 import com.kopai.shinkansen.data.remote.response.StoriesResponse
+import com.kopai.shinkansen.data.remote.response.UpdateProfileResponse
+import com.kopai.shinkansen.data.remote.response.UpdateResult
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Field
@@ -20,19 +23,32 @@ interface ApiService {
 
 //  Authentication
     @FormUrlEncoded
-    @POST("register")
+    @POST("users/register")
     suspend fun register(
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("password") password: String,
-    ): ErrorMessageResponse
+    ): RegisterResponse
 
     @FormUrlEncoded
-    @POST("login")
+    @POST("users/login")
     suspend fun login(
         @Field("email") email: String,
         @Field("password") password: String,
     ): LoginResponse
+
+    @Multipart
+    @POST("users/update/{user_id}")
+    suspend fun updateProfile(
+        @Path("user_id") userId: Int,
+        @Part("name") name: RequestBody,
+        @Part("gender") gender: RequestBody,
+        @Part("birth") birth: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("phone") phone: RequestBody,
+        @Part("address") address: RequestBody,
+        @Part file: MultipartBody.Part,
+    ): UpdateProfileResponse
 
 
 //   Stories
