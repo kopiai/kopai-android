@@ -19,6 +19,7 @@ class UserRepository constructor(
     private val userPreference: UserPreference,
     private val apiService: ApiService,
     ) {
+
 //    suspend fun saveSession(user: UserPrefModel) {
 //        userPreference.saveSession(user)
 //    }
@@ -36,14 +37,14 @@ class UserRepository constructor(
             emit(ResultState.Loading)
             try {
                 val response = apiService.register(name, email, password)
-                Log.d(StoriesRepository.TAG, response.toString())
+                Log.d(ProductsRepository.TAG, response.toString())
                 emit(ResultState.Success(response))
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
                 emit(ResultState.Error(errorBody.message ?: "Server error"))
             } catch (e: Exception) {
-                Log.d(StoriesRepository.TAG, "register: ${e.message}")
+                Log.d(TAG, "register: ${e.message}")
                 emit(ResultState.Error(e.message.toString()))
             }
         }
@@ -56,14 +57,14 @@ class UserRepository constructor(
             emit(ResultState.Loading)
             try {
                 val response = apiService.login(email, password)
-                Log.d(StoriesRepository.TAG, response.toString())
+                Log.d(TAG, response.toString())
                 emit(ResultState.Success(response))
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
                 emit(ResultState.Error(errorBody.message ?: "Server error"))
             } catch (e: Exception) {
-                Log.d(StoriesRepository.TAG, "login: ${e.message}")
+                Log.d(TAG, "login: ${e.message}")
                 emit(ResultState.Error(e.message.toString()))
             }
         }
@@ -77,19 +78,23 @@ fun editProfile(
         emit(ResultState.Loading)
         try {
             val response = apiService.login(email, password)
-            Log.d(StoriesRepository.TAG, response.toString())
+            Log.d(TAG, response.toString())
             emit(ResultState.Success(response))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
             emit(ResultState.Error(errorBody.message ?: "Server error"))
         } catch (e: Exception) {
-            Log.d(StoriesRepository.TAG, "login: ${e.message}")
+            Log.d(TAG, "login: ${e.message}")
             emit(ResultState.Error(e.message.toString()))
         }
     }
 
     suspend fun logout() {
         userPreference.logout()
+    }
+
+    companion object {
+        const val TAG = "UserRepository"
     }
 }

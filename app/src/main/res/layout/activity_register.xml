@@ -131,43 +131,6 @@
             android:transitionName="email" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/container_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:gravity="start"
-        android:orientation="vertical"
-        android:transitionName="misc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_password">
-
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:text="@string/date"
-            android:textColor="@color/primary"
-            android:textSize="18sp"
-            android:transitionName="auth" />
-
-        <com.kopai.shinkansen.view.shared.EmailEditText
-            android:id="@+id/ed_register_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/custom_form_input"
-            android:hint="@string/date"
-            android:inputType="date"
-            android:drawableEnd="@drawable/ic_date"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="15dp"
-            android:transitionName="email"/>
-    </LinearLayout>
 
     <Button
         android:id="@+id/btn_register"
@@ -180,10 +143,10 @@
         android:textSize="16sp"
         android:textColor="@color/white"
         android:transitionName="action"
-        app:backgroundTint="@color/primary"
+        android:background="@drawable/custom_form_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_date"/>
+        app:layout_constraintTop_toBottomOf="@+id/container_password"/>
 
     <LinearLayout
         android:id="@+id/container_have"

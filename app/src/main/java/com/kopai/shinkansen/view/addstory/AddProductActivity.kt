@@ -1,4 +1,4 @@
-package com.kopai.shinkansen.view.addstory
+package com.kopai.shinkansen.view.addproduct
 
 import android.net.Uri
 import android.os.Bundle
@@ -9,22 +9,22 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.R
 import com.kopai.shinkansen.data.ResultState
-import com.kopai.shinkansen.databinding.ActivityAddStoryBinding
+import com.kopai.shinkansen.databinding.ActivityAddProductBinding
 import com.kopai.shinkansen.util.getImageUri
 import com.kopai.shinkansen.util.reduceFileImage
 import com.kopai.shinkansen.util.uriToFile
 import javax.inject.Inject
 
-class AddStoryActivity : AppCompatActivity() {
-    @Inject lateinit var viewModel: AddStoryViewModel
+class AddProductActivity : AppCompatActivity() {
+    @Inject lateinit var viewModel: AddProductViewModel
 
-    private lateinit var binding: ActivityAddStoryBinding
+    private lateinit var binding: ActivityAddProductBinding
 
     private var currentImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddStoryBinding.inflate(layoutInflater)
+        binding = ActivityAddProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -35,16 +35,16 @@ class AddStoryActivity : AppCompatActivity() {
         binding.apply {
             btnAddGallery.setOnClickListener { startGallery() }
             btnAddCamera.setOnClickListener { startCamera() }
-            btnUpload.setOnClickListener { uploadStory() }
+            btnUpload.setOnClickListener { uploadProduct() }
         }
     }
 
-    private fun uploadStory() {
+    private fun uploadProduct() {
         currentImageUri?.let { uri ->
             val imageFile = uriToFile(uri, this).reduceFileImage()
             val description = binding.edAddDescription.text.toString()
 
-            viewModel.uploadStory(imageFile, description).observe(this) { result ->
+            viewModel.uploadProduct(imageFile, description).observe(this) { result ->
                 if (result != null) {
                     when (result) {
                         is ResultState.Loading -> {
@@ -104,7 +104,7 @@ class AddStoryActivity : AppCompatActivity() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.lpiAddStory.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.lpiAddProduct.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun showToast(message: String) {

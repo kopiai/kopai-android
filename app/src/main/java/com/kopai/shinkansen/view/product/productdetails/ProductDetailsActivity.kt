@@ -1,4 +1,4 @@
-package com.kopai.shinkansen.view.detailproduct
+package com.kopai.shinkansen.view.product.productdetails
 
 import android.content.Intent
 import android.os.Build
@@ -6,34 +6,34 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.kopai.shinkansen.data.remote.response.StoryItem
-import com.kopai.shinkansen.databinding.ActivityDetailProductBinding
+import com.kopai.shinkansen.data.remote.response.ProductItem
+import com.kopai.shinkansen.databinding.ActivityProductDetailsBinding
 import com.kopai.shinkansen.view.checkout.CheckoutActivity
 
-class DetailProductActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityDetailProductBinding
+class ProductDetailsActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityProductDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailProductBinding.inflate(layoutInflater)
+        binding = ActivityProductDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.mtDetailProduct)
+        setSupportActionBar(binding.mtProductDetails)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val storyData =
+        val productData =
             if (Build.VERSION.SDK_INT >= 33) {
-                intent.getParcelableExtra<StoryItem>(EXTRA_STORY, StoryItem::class.java)
+                intent.getParcelableExtra<ProductItem>(EXTRA_STORY, ProductItem::class.java)
             } else {
                 @Suppress("DEPRECATION")
-                intent.getParcelableExtra<StoryItem>(EXTRA_STORY)
+                intent.getParcelableExtra<ProductItem>(EXTRA_STORY)
             }
 
         binding.btnDetailBuy.setOnClickListener {
             startActivity(Intent(this, CheckoutActivity::class.java))
         }
 
-        setDetailProduct(storyData)
+        setDetailProduct(productData)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -46,10 +46,10 @@ class DetailProductActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setDetailProduct(story: StoryItem?) {
-        story?.let {
+    private fun setDetailProduct(product: ProductItem?) {
+        product?.let {
             with(binding) {
-                Glide.with(this@DetailProductActivity)
+                Glide.with(this@ProductDetailsActivity)
                     .load(it.photoUrl)
                     .into(ivDetailPhoto)
                 tvDetailName.text = it.name
@@ -59,6 +59,6 @@ class DetailProductActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val EXTRA_STORY = "extra_story"
+        const val EXTRA_STORY = "extra_product"
     }
 }

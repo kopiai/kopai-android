@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.kopai.shinkansen.data.remote.response.StoryItem
+import com.kopai.shinkansen.data.remote.response.ProductItem
 import com.kopai.shinkansen.databinding.ItemBannerBinding
 
-class BannerAdapter : ListAdapter<StoryItem, BannerAdapter.ViewHolder>(DIFF_CALLBACK) {
+class BannerAdapter : ListAdapter<ProductItem, BannerAdapter.ViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
@@ -30,7 +30,7 @@ class BannerAdapter : ListAdapter<StoryItem, BannerAdapter.ViewHolder>(DIFF_CALL
 
     class ViewHolder(private val binding: ItemBannerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: StoryItem) {
+        fun bind(item: ProductItem) {
             Glide.with(itemView.context)
                 .load(item.photoUrl)
                 .into(binding.ivItemBanner)
@@ -39,17 +39,17 @@ class BannerAdapter : ListAdapter<StoryItem, BannerAdapter.ViewHolder>(DIFF_CALL
 
     companion object {
         val DIFF_CALLBACK =
-            object : DiffUtil.ItemCallback<StoryItem>() {
+            object : DiffUtil.ItemCallback<ProductItem>() {
                 override fun areItemsTheSame(
-                    oldItem: StoryItem,
-                    newItem: StoryItem,
+                    oldItem: ProductItem,
+                    newItem: ProductItem,
                 ): Boolean {
                     return oldItem == newItem
                 }
 
                 override fun areContentsTheSame(
-                    oldItem: StoryItem,
-                    newItem: StoryItem,
+                    oldItem: ProductItem,
+                    newItem: ProductItem,
                 ): Boolean {
                     return oldItem.id == newItem.id
                 }

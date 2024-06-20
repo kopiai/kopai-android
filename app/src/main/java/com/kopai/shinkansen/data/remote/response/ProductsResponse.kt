@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-data class StoriesResponse(
+data class ProductsResponse(
     @field:SerializedName("listStory")
-    val listStory: List<StoryItem>,
+    val listProduct: List<ProductItem>,
     @field:SerializedName("error")
     val error: Boolean? = null,
     @field:SerializedName("messsage")
@@ -16,8 +16,8 @@ data class StoriesResponse(
 )
 
 @Parcelize
-@Entity(tableName = "stories")
-data class StoryItem(
+@Entity(tableName = "products")
+data class ProductItem(
     @PrimaryKey
     @field:SerializedName("id")
     val id: String = "id_",

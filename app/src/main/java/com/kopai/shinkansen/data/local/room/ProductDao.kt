@@ -5,16 +5,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.kopai.shinkansen.data.remote.response.StoryItem
+import com.kopai.shinkansen.data.remote.response.ProductItem
 
 @Dao
-interface StoryDao {
+interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertStory(quote: List<StoryItem>)
+    suspend fun insertProduct(quote: List<ProductItem>)
 
-    @Query("SELECT * FROM stories")
-    fun getAllStories(): PagingSource<Int, StoryItem>
+    @Query("SELECT * FROM products")
+    fun getAllProducts(): PagingSource<Int, ProductItem>
 
-    @Query("DELETE FROM stories")
+    @Query("DELETE FROM products")
     suspend fun deleteAll()
 }

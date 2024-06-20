@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="navy">#2D3D4F</color>
     <color name="blue">#1668C5</color>
+    <color name="gray">#909498</color>
 
     <color name="primary">#6F4E37</color>
     <color name="primaryVariant">#A67B5B</color>
@@ -14,5 +15,5 @@
     <color name="accent">#595959</color>
 
     <color name="background">#F9F9F9</color>
-    <color name="bottomNav">#FAFCFF</color>
+    <color name="bottomNav">#F9F2ED</color>
 </resources>

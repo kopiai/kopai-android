@@ -5,18 +5,40 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera.any" />
+
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
 
     <application
+        android:name=".KopAIApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.KopAI"
-        android:name=".KopAIApplication">
+        android:theme="@style/Theme.KopAI">
+        <activity
+            android:name=".view.news.DetailNewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.news.NewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.blend.BlendReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.blend.BlendThreeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.blend.BlendTwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.blend.BlendOneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.product.productlist.ProductListActivity"
+            android:exported="false" />
         <activity
             android:name=".view.camera.CameraActivity"
             android:exported="false" />
@@ -60,27 +82,27 @@
             android:name=".view.checkout.CheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".view.addstory.AddStoryActivity"
+            android:name=".view.productmaps.ProductMapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_product_maps" />
+        <activity
+            android:name=".view.addproduct.AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".view.detailproduct.DetailProductActivity"
+            android:name=".view.product.productdetails.ProductDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".view.welcome.WelcomeActivity"
-            android:exported="false"
-            android:theme="@style/Theme.KopAI.NoBar" />
+            android:exported="false" />
         <activity
             android:name=".view.authentication.register.RegisterActivity"
-            android:exported="false"
-            android:theme="@style/Theme.KopAI.NoBar" />
+            android:exported="false" />
         <activity
             android:name=".view.authentication.login.LoginActivity"
-            android:exported="false"
-            android:theme="@style/Theme.KopAI.NoBar" />
+            android:exported="false" />
         <activity
             android:name=".view.main.MainActivity"
-            android:exported="false"
-            android:theme="@style/Theme.KopAI.NoBar"/>
+            android:exported="false" />
         <activity
             android:name=".view.splash.SplashActivity"
             android:exported="true"

@@ -2,7 +2,6 @@ package com.kopai.shinkansen.view.checkout
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -10,13 +9,13 @@ import com.kopai.shinkansen.R
 import com.kopai.shinkansen.databinding.ActivityCheckoutBinding
 
 class CheckoutActivity : AppCompatActivity() {
-    private val binding by lazy { ActivityCheckoutBinding.inflate(layoutInflater) }
+    private lateinit var binding: ActivityCheckoutBinding
 
     private val viewModel: CheckoutViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        binding = ActivityCheckoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.mtCheckout)

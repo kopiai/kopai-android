@@ -1,7 +1,7 @@
 package com.kopai.shinkansen.view.authentication.login
 
 import androidx.lifecycle.ViewModel
-import com.kopai.shinkansen.data.repository.StoriesRepository
+import com.kopai.shinkansen.data.repository.ProductsRepository
 import com.kopai.shinkansen.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
