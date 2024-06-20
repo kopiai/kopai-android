@@ -3,10 +3,10 @@ import org.jetbrains.kotlin.konan.properties.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.google.ksp)
+    alias(libs.plugins.secrets.gradle.plugin)
+    alias(libs.plugins.dagger.hilt)
     id("kotlin-parcelize")
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
-    id("com.google.dagger.hilt.android")
 }
 
 val keystoreFile = project.rootProject.file("local.properties")
@@ -25,17 +25,20 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val baseUrl = properties.getProperty("BASE_URL") ?: ""
+
+        buildConfigField(
+            type = "String",
+            name = "BASE_URL",
+            value = baseUrl,
+        )
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            buildConfigField("String", "BASE_URL", "\"https://kopai-znxyez5z2a-et.a.run.app/\"")
-        }
-
-        debug {
-            buildConfigField("String", "BASE_URL", "\"https://kopai-znxyez5z2a-et.a.run.app/\"")
         }
     }
     compileOptions {
@@ -48,9 +51,10 @@ android {
     buildFeatures {
         buildConfig = true
         viewBinding = true
-        dataBinding = true
         mlModelBinding = true
     }
+
+    @Suppress("UnstableApiUsage")
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
@@ -73,10 +77,8 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.legacy.support.v4)
 
-    // Android KTX
-    implementation("androidx.fragment:fragment-ktx:1.6.2")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

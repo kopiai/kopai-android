@@ -10,12 +10,8 @@ import com.kopai.shinkansen.data.local.pref.UserPreference
 import com.kopai.shinkansen.data.remote.response.ErrorMessageResponse
 import com.kopai.shinkansen.data.remote.response.LoginResponse
 import com.kopai.shinkansen.data.remote.response.RegisterResponse
-import com.kopai.shinkansen.data.remote.response.UpdateProfileResponse
-import com.kopai.shinkansen.data.remote.response.UpdateResult
 import com.kopai.shinkansen.data.remote.retrofit.ApiService
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -27,9 +23,9 @@ class UserRepository constructor(
     private val userPreference: UserPreference,
     private val apiService: ApiService,
     ) {
-//    suspend fun saveSession(user: UserPrefModel) {
-//        userPreference.saveSession(user)
-//    }
+    suspend fun saveSession(user: UserPrefModel) {
+        userPreference.saveSession(user)
+    }
 
     fun getSession(): Flow<UserPrefModel> {
         return userPreference.getSession()
@@ -44,14 +40,14 @@ class UserRepository constructor(
             emit(ResultState.Loading)
             try {
                 val response = apiService.register(name, email, password)
-                Log.d(StoriesRepository.TAG, response.toString())
+                Log.d(TAG, response.toString())
                 emit(ResultState.Success(response))
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
                 emit(ResultState.Error(errorBody.message ?: "Server error"))
             } catch (e: Exception) {
-                Log.d(StoriesRepository.TAG, "register: ${e.message}")
+                Log.d(TAG, "register: ${e.message}")
                 emit(ResultState.Error(e.message.toString()))
             }
         }
@@ -64,14 +60,14 @@ class UserRepository constructor(
             emit(ResultState.Loading)
             try {
                 val response = apiService.login(email, password)
-                Log.d(StoriesRepository.TAG, response.toString())
+                Log.d(TAG, response.toString())
                 emit(ResultState.Success(response))
             } catch (e: HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
                 emit(ResultState.Error(errorBody.message ?: "Server error"))
             } catch (e: Exception) {
-                Log.d(StoriesRepository.TAG, "login: ${e.message}")
+                Log.d(TAG, "login: ${e.message}")
                 emit(ResultState.Error(e.message.toString()))
             }
         }
@@ -80,30 +76,6 @@ class UserRepository constructor(
         userPreference.logout()
     }
 
-    //    fun editProfille
-
-    fun uploadStory(
-        imageStory: File,
-        description: String,
-    ) = liveData {
-        emit(ResultState.Loading)
-        val requestBody = description.toRequestBody("text/plain".toMediaType())
-        val requestImageFile = imageStory.asRequestBody("image/jpeg".toMediaType())
-        val multipartBody =
-            MultipartBody.Part.createFormData(
-                "photo",
-                imageStory.name,
-                requestImageFile,
-            )
-        try {
-            val successResponse = apiService.uploadStory(multipartBody, requestBody)
-            emit(ResultState.Success(successResponse))
-        } catch (e: HttpException) {
-            val errorBody = e.response()?.errorBody()?.string()
-            val errorResponse = Gson().fromJson(errorBody, ErrorMessageResponse::class.java)
-            emit(ResultState.Error(errorResponse.message ?: "Server error"))
-        }
-    }
     fun updateProfile(
         userId: Int?,
         name: String?,
@@ -146,5 +118,9 @@ class UserRepository constructor(
             val errorResponse = Gson().fromJson(errorBody, ErrorMessageResponse::class.java)
             emit(ResultState.Error(errorResponse.message ?: "Server error"))
         }
+    }
+
+    companion object {
+        const val TAG = "UserRepository"
     }
 }

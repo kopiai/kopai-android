@@ -24,6 +24,8 @@ data class RegisterResult(
     val email: String? = null,
     @field:SerializedName("phone")
     val phone: String? = null,
+    @field:SerializedName("password")
+    val password: String? = null,
     @field:SerializedName("address")
     val address: String? = null,
     @field:SerializedName("photo")

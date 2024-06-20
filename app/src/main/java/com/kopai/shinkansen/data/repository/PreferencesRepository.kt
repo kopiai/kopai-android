@@ -7,14 +7,10 @@ import com.google.gson.Gson
 import com.kopai.shinkansen.data.ResultState
 import com.kopai.shinkansen.data.remote.response.ErrorMessageResponse
 import com.kopai.shinkansen.data.remote.response.PreferencesResponse
-import com.kopai.shinkansen.data.remote.response.StoriesResponse
 import com.kopai.shinkansen.data.remote.retrofit.ApiService
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
-import java.io.File
 
 class PreferencesRepository constructor(
     private val apiService: ApiService,
@@ -41,10 +37,10 @@ class PreferencesRepository constructor(
             emit(ResultState.Loading)
             try {
                 val response = apiService.getPreferences(userId)
-                Log.d(StoriesRepository.TAG, response.toString())
+                Log.d(ProductsRepository.TAG, response.toString())
                 emit(ResultState.Success(response))
             } catch (e: Exception) {
-                Log.d(StoriesRepository.TAG, "login: ${e.message}")
+                Log.d(ProductsRepository.TAG, "login: ${e.message}")
                 emit(ResultState.Error(e.message.toString()))
             }
         }
