@@ -37,27 +37,67 @@ class CheckoutShippingFragment : Fragment() {
         savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupView()
+    }
+
+    private fun setupView() {
+        setupShippingForm()
         setSelectProvince()
+    }
 
+    private fun validateShippingForm(): Boolean {
+        val result =
+            binding?.let {
+                if (it.edShippingName.text.toString().isEmpty()) {
+                    it.edShippingName.error = getString(R.string.field_is_required, "Name")
+                    return false
+                }
+
+                if (it.edShippingPhone.text.toString().isEmpty()) {
+                    it.edShippingPhone.error = getString(R.string.field_is_required, "Phone")
+                    return false
+                }
+
+                if (it.edShippingAddress.text.toString().isEmpty()) {
+                    it.edShippingAddress.error = getString(R.string.field_is_required, "Address")
+                    return false
+                }
+
+                if (it.edShippingPostalCode.text.toString().isEmpty()) {
+                    it.edShippingPostalCode.error = getString(R.string.field_is_required, "Postal Code")
+                    return false
+                }
+
+                return true
+            }
+
+        return result ?: false
+    }
+
+    private fun setupShippingForm() {
         binding?.apply {
+            viewModel.getUser().observe(viewLifecycleOwner) { user ->
+                when (user) {
+                    is ResultState.Success -> {
+                        edShippingName.setText(user.data.name)
+                        edShippingPhone.setText(user.data.phone)
+                        edShippingAddress.setText(user.data.address)
+                    }
+
+                    is ResultState.Error -> {
+                        Toast.makeText(activity, "Failed to get user data", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                    ResultState.Loading -> {
+                        // pass
+                    }
+                }
+            }
+
             btnShippingConfirm.setOnClickListener {
-//                if (edShippingName.text.toString().isEmpty()) {
-//                    edShippingName.error = getString(R.string.field_is_required, "Name")
-//                    return@setOnClickListener
-//                }
-
-                if (edShippingPhone.text.toString().isEmpty()) {
-                    edShippingPhone.error = getString(R.string.field_is_required, "Phone")
-                    return@setOnClickListener
-                }
-
-                if (edShippingAddress.text.toString().isEmpty()) {
-                    edShippingAddress.error = getString(R.string.field_is_required, "Address")
-                    return@setOnClickListener
-                }
-
-                if (edShippingPostalCode.text.toString().isEmpty()) {
-                    edShippingPostalCode.error = getString(R.string.field_is_required, "Postal Code")
+                if (!validateShippingForm()) {
                     return@setOnClickListener
                 }
 
@@ -65,24 +105,23 @@ class CheckoutShippingFragment : Fragment() {
                     edShippingName.text.toString(),
                     edShippingPhone.text.toString(),
                     edShippingAddress.text.toString(),
-                ).observe(viewLifecycleOwner) {
-                    when (it) {
+                ).observe(viewLifecycleOwner) { result ->
+                    when (result) {
                         is ResultState.Loading -> {
                             btnShippingConfirm.isEnabled = false
                         }
+
                         is ResultState.Success -> {
                             btnShippingConfirm.isEnabled = true
                             Toast.makeText(activity, "Shipping details updated", Toast.LENGTH_SHORT)
                                 .show()
 
-                            Navigation.findNavController(view)
+                            Navigation.findNavController(requireView())
                                 .navigate(R.id.action_navigation_checkout_shipping_to_navigation_checkout_payment)
                         }
+
                         is ResultState.Error -> {
                             btnShippingConfirm.isEnabled = true
-
-                            Navigation.findNavController(view)
-                                .navigate(R.id.action_navigation_checkout_shipping_to_navigation_checkout_payment)
                         }
                     }
                 }
@@ -91,7 +130,6 @@ class CheckoutShippingFragment : Fragment() {
     }
 
     private fun setSelectProvince() {
-        viewModel.getProvinces().observe(viewLifecycleOwner) {
-        }
+        viewModel.getProvinces().observe(viewLifecycleOwner) {}
     }
 }

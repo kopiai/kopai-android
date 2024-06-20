@@ -44,8 +44,11 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideUserRepository(userPreference: UserPreference): UserRepository {
-        return UserRepository(userPreference)
+    fun provideUserRepository(
+        userPreference: UserPreference,
+        apiService: ApiService,
+    ): UserRepository {
+        return UserRepository(userPreference, apiService)
     }
 
     @Singleton

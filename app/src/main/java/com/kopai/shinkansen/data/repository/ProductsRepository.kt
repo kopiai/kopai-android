@@ -14,9 +14,9 @@ import com.kopai.shinkansen.data.local.ProductsRemoteMediator
 import com.kopai.shinkansen.data.local.pref.UserPreference
 import com.kopai.shinkansen.data.local.room.ProductsDatabase
 import com.kopai.shinkansen.data.remote.response.ErrorMessageResponse
-import com.kopai.shinkansen.data.remote.response.LoginResponse
 import com.kopai.shinkansen.data.remote.response.NewsResponse
 import com.kopai.shinkansen.data.remote.response.OrderItemResponse
+import com.kopai.shinkansen.data.remote.response.OrderResponse
 import com.kopai.shinkansen.data.remote.response.ProductItem
 import com.kopai.shinkansen.data.remote.response.ProductsResponse
 import com.kopai.shinkansen.data.remote.retrofit.ApiService
@@ -28,81 +28,6 @@ class ProductsRepository constructor(
     private val apiService: ApiService,
     private val userPreference: UserPreference,
 ) {
-    fun register(
-        name: String,
-        email: String,
-        password: String,
-    ): LiveData<ResultState<ErrorMessageResponse>> =
-        liveData {
-            emit(ResultState.Loading)
-            try {
-                val response = apiService.register(name, email, password)
-                Log.d(TAG, response.toString())
-                emit(ResultState.Success(response))
-            } catch (e: HttpException) {
-                val jsonInString = e.response()?.errorBody()?.string()
-                val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
-                emit(ResultState.Error(errorBody.message ?: "Server error"))
-            } catch (e: Exception) {
-                Log.d(TAG, "register: ${e.message}")
-                emit(ResultState.Error(e.message.toString()))
-            }
-        }
-
-    fun login(
-        email: String,
-        password: String,
-    ): LiveData<ResultState<LoginResponse>> =
-        liveData {
-            emit(ResultState.Loading)
-            try {
-                val response = apiService.login(email, password)
-                Log.d(TAG, response.toString())
-                emit(ResultState.Success(response))
-            } catch (e: HttpException) {
-                val jsonInString = e.response()?.errorBody()?.string()
-                val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
-                emit(ResultState.Error(errorBody.message ?: "Server error"))
-            } catch (e: Exception) {
-                Log.d(TAG, "login: ${e.message}")
-                emit(ResultState.Error(e.message.toString()))
-            }
-        }
-
-    fun updateUser(
-        name: String,
-        phone: String,
-        address: String,
-    ) = liveData<ResultState<ErrorMessageResponse>> {
-        emit(ResultState.Loading)
-        val userID = userPreference.getSession().first().userId.toInt()
-        try {
-            val response = apiService.updateUser(userID, name, phone, address)
-            Log.d(TAG, response.toString())
-            emit(ResultState.Success(response))
-        } catch (e: HttpException) {
-            val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
-            emit(ResultState.Error(errorBody.message ?: "Server error"))
-        } catch (e: Exception) {
-            Log.d(TAG, "updateUser: ${e.message}")
-            emit(ResultState.Error(e.message.toString()))
-        }
-    }
-
-    fun getNews(): LiveData<ResultState<NewsResponse>> =
-        liveData {
-            emit(ResultState.Loading)
-            try {
-                val response = apiService.getNews()
-                Log.d(TAG, response.toString())
-                emit(ResultState.Success(response))
-            } catch (e: Exception) {
-                Log.d(TAG, "login: ${e.message}")
-                emit(ResultState.Error(e.message.toString()))
-            }
-        }
-
     fun getProductsWithLocation(): LiveData<ResultState<ProductsResponse>> =
         liveData {
             emit(ResultState.Loading)
@@ -130,26 +55,39 @@ class ProductsRepository constructor(
         ).liveData
     }
 
-    fun addToCart(orderItems: List<OrderItemResponse>) =
-        liveData<ResultState<ErrorMessageResponse>> {
+    fun getNews(): LiveData<ResultState<NewsResponse>> =
+        liveData {
             emit(ResultState.Loading)
-            val userID = userPreference.getSession().first().userId.toInt()
             try {
-                val successResponse = apiService.createOrder(userID, orderItems)
-                emit(ResultState.Success(successResponse))
-            } catch (e: HttpException) {
-                val errorBody = e.response()?.errorBody()?.string()
-                val errorResponse = Gson().fromJson(errorBody, ErrorMessageResponse::class.java)
-                emit(ResultState.Error(errorResponse.message ?: "Server error"))
+                val response = apiService.getNews()
+                Log.d(TAG, response.toString())
+                emit(ResultState.Success(response))
+            } catch (e: Exception) {
+                Log.d(TAG, "login: ${e.message}")
+                emit(ResultState.Error(e.message.toString()))
             }
         }
+
+//    fun addOrderItem(orderItems: List<OrderItemResponse>) =
+//        liveData<ResultState<ErrorMessageResponse>> {
+//            emit(ResultState.Loading)
+//            val userID = userPreference.getSession().first().userId.toInt()
+//            try {
+//                val successResponse = apiService.createOrder(OrderResponse(userID, orderItems))
+//                emit(ResultState.Success(successResponse))
+//            } catch (e: HttpException) {
+//                val errorBody = e.response()?.errorBody()?.string()
+//                val errorResponse = Gson().fromJson(errorBody, ErrorMessageResponse::class.java)
+//                emit(ResultState.Error(errorResponse.message ?: "Server error"))
+//            }
+//        }
 
     fun createOrder(orderItems: List<OrderItemResponse>) =
         liveData<ResultState<ErrorMessageResponse>> {
             emit(ResultState.Loading)
-            val userID = userPreference.getSession().first().userId.toInt()
+            val userID = userPreference.getSession().first().userId.toIntOrNull() ?: 1
             try {
-                val successResponse = apiService.createOrder(userID, orderItems)
+                val successResponse = apiService.createOrder(OrderResponse(userID, orderItems))
                 emit(ResultState.Success(successResponse))
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()

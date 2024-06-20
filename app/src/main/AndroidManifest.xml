@@ -9,8 +9,6 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
 
-
-
     <application
         android:name=".KopAIApplication"
         android:allowBackup="true"

@@ -3,7 +3,7 @@ package com.kopai.shinkansen.view.checkout.shipping
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.kopai.shinkansen.data.repository.ProductsRepository
+import com.kopai.shinkansen.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -11,14 +11,16 @@ import javax.inject.Inject
 class CheckoutShippingViewModel
     @Inject
     constructor(
-        private val productsRepository: ProductsRepository,
+        private val userRepository: UserRepository,
     ) :
     ViewModel() {
+        fun getUser() = userRepository.getUser()
+
         fun updateUser(
             name: String,
             phone: String,
             address: String,
-        ) = productsRepository.updateUser(
+        ) = userRepository.updateUser(
             name,
             phone,
             address,

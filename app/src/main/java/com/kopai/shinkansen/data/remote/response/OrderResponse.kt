@@ -8,7 +8,7 @@ data class OrderResponse(
     @field:SerializedName("orderItems")
     val orderItems: List<OrderItemResponse>,
     @field:SerializedName("status")
-    val status: String,
+    val status: String? = null,
 )
 
 data class OrderItemResponse(
@@ -22,4 +22,6 @@ data class OrderItemResponse(
     val productId: Int,
     @field:SerializedName("order_id")
     val orderId: Int? = null,
+    @field:SerializedName("product")
+    val productItem: ProductItem? = null,
 )

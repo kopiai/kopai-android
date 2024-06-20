@@ -1,7 +1,7 @@
 package com.kopai.shinkansen.view.authentication.register
 
 import androidx.lifecycle.ViewModel
-import com.kopai.shinkansen.data.repository.ProductsRepository
+import com.kopai.shinkansen.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -9,12 +9,12 @@ import javax.inject.Inject
 class RegisterViewModel
     @Inject
     constructor(
-        private val productsRepository: ProductsRepository,
+        private val userRepository: UserRepository,
     ) :
     ViewModel() {
         fun register(
             name: String,
             email: String,
             password: String,
-        ) = productsRepository.register(name, email, password)
+        ) = userRepository.register(name, email, password)
     }

@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.kopai.shinkansen.data.ResultState
 import com.kopai.shinkansen.data.remote.response.OrderItemResponse
 import com.kopai.shinkansen.data.remote.response.ProductItem
 import com.kopai.shinkansen.databinding.FragmentCheckoutOverviewBinding
+import com.kopai.shinkansen.util.Constant
 import com.kopai.shinkansen.util.Helper
 import com.kopai.shinkansen.view.checkout.CheckoutInvoiceActivity
 import com.kopai.shinkansen.view.product.productdetails.ProductDetailsActivity
@@ -46,7 +48,9 @@ class CheckoutOverviewFragment : Fragment() {
                 )
             } else {
                 @Suppress("DEPRECATION")
-                activity?.intent?.getParcelableExtra<ProductItem>(ProductDetailsActivity.EXTRA_PRODUCT)
+                activity?.intent?.getParcelableExtra<ProductItem>(
+                    ProductDetailsActivity.EXTRA_PRODUCT,
+                )
             }
 
         return binding!!.root
@@ -62,6 +66,19 @@ class CheckoutOverviewFragment : Fragment() {
         setupConfirmCheckout()
     }
 
+    private fun updateTotalPrice() {
+        binding?.apply {
+            lCheckoutOverviewProduct.tvProductQuantity.text = productQuantity.toString()
+
+            val totalPrice = (productExtra?.price?.toDouble() ?: 0.0) * productQuantity
+            lCheckoutOverviewBottomSheet.tvOverviewTotal.text = Helper.rupiah(totalPrice)
+            lCheckoutOverviewBottomSheet.tvOverviewSubtotal.text =
+                Helper.rupiah(
+                    totalPrice + Constant.FIXED_SHIPPING_COST,
+                )
+        }
+    }
+
     private fun setupOrderItem() {
         binding?.apply {
             lCheckoutOverviewProduct.tvProductName.text = productExtra?.productName
@@ -70,18 +87,19 @@ class CheckoutOverviewFragment : Fragment() {
             lCheckoutOverviewProduct.btnProductDecrease.setOnClickListener {
                 if (productQuantity > 1) {
                     productQuantity--
-                    lCheckoutOverviewProduct.tvProductQuantity.text = productQuantity.toString()
+                    updateTotalPrice()
                 }
             }
             lCheckoutOverviewProduct.btnProductIncrease.setOnClickListener {
                 productQuantity++
-                lCheckoutOverviewProduct.tvProductQuantity.text = productQuantity.toString()
+                updateTotalPrice()
             }
         }
     }
 
     private fun setupConfirmCheckout() {
         binding?.lCheckoutOverviewBottomSheet?.apply {
+            updateTotalPrice()
             btnOverviewConfirm.setOnClickListener {
                 val createOrderParam =
                     listOf(
@@ -100,12 +118,19 @@ class CheckoutOverviewFragment : Fragment() {
                         is ResultState.Success -> {
                             btnOverviewConfirm.isEnabled = true
 
-                            context?.startActivity(
+                            Toast.makeText(
+                                activity,
+                                "Order created successfully",
+                                Toast.LENGTH_SHORT,
+                            ).show()
+
+                            activity?.startActivity(
                                 Intent(
-                                    context,
+                                    activity,
                                     CheckoutInvoiceActivity::class.java,
                                 ),
                             )
+                            activity?.finish()
                         }
 
                         is ResultState.Error -> {
