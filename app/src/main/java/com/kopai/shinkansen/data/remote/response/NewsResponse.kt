@@ -2,9 +2,9 @@ package com.kopai.shinkansen.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-typealias NewsResponse = List<NewsResponseItem>
+typealias NewsResponse = PagingResponse<NewsResponseItem>
 
-data class NewsResponseItem(
+class NewsResponseItem(
     @field:SerializedName("date")
     val date: String,
     @field:SerializedName("newsID")

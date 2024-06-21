@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-typealias ProductsResponse = List<ProductItem>
+typealias ProductsResponse = PagingResponse<ProductItem>
 
 @Entity(tableName = "products")
 @Parcelize
