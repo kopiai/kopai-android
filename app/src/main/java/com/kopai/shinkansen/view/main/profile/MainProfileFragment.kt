@@ -51,6 +51,7 @@ class MainProfileFragment : Fragment() {
             mainProfileViewModel.logout()
             startActivity(Intent(requireActivity(), LoginActivity::class.java))
         }
+
     }
 
 }

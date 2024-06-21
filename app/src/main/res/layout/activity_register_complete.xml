@@ -51,6 +51,7 @@
         android:text="@string/login"
         android:textAllCaps="false"
         android:textSize="16sp"
+        android:textColor="@color/white"
         android:transitionName="action"
         android:textColor="@color/white"
         app:backgroundTint="@color/primary"
