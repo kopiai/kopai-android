@@ -41,13 +41,26 @@ class ProductsRepository constructor(
             }
         }
 
+    fun getProductsBeen(): LiveData<ResultState<ProductsResponse>> =
+        liveData {
+            emit(ResultState.Loading)
+            try {
+                val response = apiService.getProductsBeen(true)
+                Log.d(TAG, response.toString())
+                emit(ResultState.Success(response))
+            } catch (e: Exception) {
+                Log.d(TAG, "login: ${e.message}")
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
     fun getProductsPaging(): LiveData<PagingData<ProductItem>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config =
-                PagingConfig(
-                    pageSize = 2,
-                ),
+            PagingConfig(
+                pageSize = 2,
+            ),
             remoteMediator = ProductsRemoteMediator(productsDatabase, apiService),
             pagingSourceFactory = {
                 productsDatabase.productDao().getAllProducts()

@@ -15,6 +15,9 @@ class PreferencesViewModel
 
         fun uploadPreferences(
             userId: String,
-            preferences: String,
-        ) = preferencesRepository.uploadPreferences(userId, preferences)
+            effect: String,
+            healthIssue: String,
+            preferredAroma: String,
+            preferredTaste: String,
+        ) = preferencesRepository.uploadPreferences(userId, effect, healthIssue, preferredAroma, preferredTaste)
     }

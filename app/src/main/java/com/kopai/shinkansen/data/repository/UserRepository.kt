@@ -113,7 +113,7 @@ class UserRepository constructor(
             val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
             emit(ResultState.Error(errorBody.message ?: "Server error"))
         } catch (e: Exception) {
-            Log.d(ProductsRepository.TAG, "updateUser: ${e.message}")
+            Log.d(TAG, "updateUser: ${e.message}")
             emit(ResultState.Error(e.message.toString()))
         }
     }

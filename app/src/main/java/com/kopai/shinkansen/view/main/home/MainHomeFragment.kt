@@ -17,6 +17,7 @@ import com.kopai.shinkansen.databinding.FragmentMainHomeBinding
 import com.kopai.shinkansen.util.SpacesItemDecoration
 import com.kopai.shinkansen.view.adapter.NewsAdapter
 import com.kopai.shinkansen.view.adapter.ProductAdapter
+import com.kopai.shinkansen.view.news.NewsActivity
 import com.kopai.shinkansen.view.product.productlist.ProductListActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,7 +53,11 @@ class MainHomeFragment : Fragment() {
             btnMore.setOnClickListener {
                 startActivity(Intent(activity, ProductListActivity::class.java))
             }
+            btnNews.setOnClickListener {
+                startActivity(Intent(activity, NewsActivity::class.java))
+            }
         }
+
 
         fetchBanner()
         fetchProducts()

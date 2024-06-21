@@ -1,9 +1,12 @@
 package com.kopai.shinkansen.data.remote.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 typealias NewsResponse = PagingResponse<NewsResponseItem>
 
+@Parcelize
 class NewsResponseItem(
     @field:SerializedName("date")
     val date: String,
@@ -16,7 +19,7 @@ class NewsResponseItem(
     @field:SerializedName("description")
     val description: String,
     @field:SerializedName("picture")
-    val picture: Any,
+    val picture: String,
     @field:SerializedName("content")
     val content: String,
-)
+) : Parcelable

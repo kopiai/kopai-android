@@ -10,11 +10,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductMapsViewModel
-    @Inject
-    constructor(
-        private val productsRepository: ProductsRepository,
-    ) : ViewModel() {
-        fun getProductsWithLocation(): LiveData<ResultState<ProductsResponse>> {
-            return productsRepository.getProductsWithLocation()
-        }
+@Inject
+constructor(
+    private val productsRepository: ProductsRepository,
+) : ViewModel() {
+    fun getProductsWithLocation(): LiveData<ResultState<ProductsResponse>> {
+        return productsRepository.getProductsWithLocation()
     }
+}

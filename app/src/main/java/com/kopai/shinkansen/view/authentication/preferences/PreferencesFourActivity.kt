@@ -62,7 +62,7 @@ class PreferencesFourActivity : AppCompatActivity() {
 
         binding.btnYes.setOnClickListener {
             // upload preferences
-            preferencesViewModel.uploadPreferences(userId, answer)
+            preferencesViewModel.uploadPreferences(userId, "", "", "", "")
             startActivity(Intent(this, PreferencesTwoActivity::class.java))
         }
 

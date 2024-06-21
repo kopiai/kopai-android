@@ -8,28 +8,25 @@ import kotlinx.parcelize.Parcelize
 
 // Dummy
 data class PreferencesResponse(
-    @field:SerializedName("listStory")
-    val listStory: List<Preferencesitem>,
-    @field:SerializedName("error")
-    val error: Boolean? = null,
+    @field:SerializedName("message")
+    val message: String? = null,
+    @field:SerializedName("preference")
+    val preference: List<Preferenceitem>,
 )
 
 @Parcelize
-data class Preferencesitem(
-    @PrimaryKey
-    @field:SerializedName("id")
-    val id: String = "id_",
-    @field:SerializedName("photoUrl")
-    val photoUrl: String? = null,
-    @field:SerializedName("createdAt")
-    val createdAt: String? = null,
-    @field:SerializedName("name")
-    val name: String? = null,
-    @field:SerializedName("description")
-    val description: String? = null,
-    @field:SerializedName("lat")
-    val lat: Double? = null,
-    @field:SerializedName("lon")
-    val lon: Double? = null,
+data class Preferenceitem(
+    @field:SerializedName("preference_id")
+    val preferenceId: Int? = null,
+    @field:SerializedName("user_id")
+    val userId: Int? = null,
+    @field:SerializedName("effect")
+    val effect: String? = null,
+    @field:SerializedName("healthIssue")
+    val healthIssue: String? = null,
+    @field:SerializedName("preferredAroma")
+    val preferredAroma: String? = null,
+    @field:SerializedName("preferredTaste")
+    val preferredTaste: String? = null,
 ) : Parcelable
 

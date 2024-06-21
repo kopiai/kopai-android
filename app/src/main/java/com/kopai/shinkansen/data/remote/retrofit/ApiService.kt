@@ -1,5 +1,6 @@
 package com.kopai.shinkansen.data.remote.retrofit
 
+import com.kopai.shinkansen.data.remote.response.BlendResponse
 import com.kopai.shinkansen.data.remote.response.ErrorMessageResponse
 import com.kopai.shinkansen.data.remote.response.LoginResponse
 import com.kopai.shinkansen.data.remote.response.LoginResult
@@ -40,6 +41,58 @@ interface ApiService {
         @Field("password") password: String,
     ): LoginResponse
 
+//  Product
+    @GET("products")
+    suspend fun getProducts(
+        @Query("page") page: Int?,
+        @Query("size") size: Int?,
+    ): ProductsResponse
+
+    @GET("products")
+    suspend fun getProductsBeen(
+        @Query("bean") bean: Boolean = true,
+    ): ProductsResponse
+
+//  Blend
+    @FormUrlEncoded
+    @POST("blends")
+    suspend fun uploadBlend(
+        @Field("coffee_id1") coffeIdOne: Int,
+        @Field("coffee_id2") coffeeIdTwo: Int,
+        @Field("percentage") percentage: Int,
+        @Field("ukuran_gram") totalWeight: Int,
+        @Field("roast_id") roastId: Int,
+        @Field("grind_id") grindId: Int,
+        @Field("user_id") userId: Int,
+        @Field("blend_name") blendName: String,
+        @Field("description") description: String,
+    ): BlendResponse
+
+//   Preferences
+    @FormUrlEncoded
+    @POST("preferences")
+    suspend fun uploadPreferences(
+        @Field("user_id") userId: Int,
+        @Field("effect") effect: String,
+        @Field("healthIssue") healthIssue: String,
+        @Field("preferredAroma") preferredAroma: String,
+        @Field("preferredTaste") preferredTaste: String,
+    ): PreferencesResponse
+
+    @JvmSuppressWildcards
+    @GET("preferences")
+    suspend fun getPreferences(
+    ): PreferencesResponse
+
+    @JvmSuppressWildcards
+    @GET("preferences/{user_id}")
+    suspend fun getPreferencesById(
+        @Path("user_id") userId: Int,
+    ): PreferencesResponse
+
+//  Order
+
+
     @GET("users/profile/{user_id}")
     suspend fun profile(
         @Path("user_id") userId: Int,
@@ -75,6 +128,14 @@ interface ApiService {
         @Query("location") location: Int = 0,
     ): ProductsResponse
 
+    @Multipart
+    @POST("stories")
+    suspend fun uploadStories(
+        @Part file: MultipartBody.Part,
+        @Part("description") description: RequestBody,
+    ): ErrorMessageResponse
+
+
 //    @POST("orders/items")
 //    suspend fun addOrderItem(
 //        @Field("userID") userID: Int,
@@ -84,27 +145,14 @@ interface ApiService {
     @GET("news")
     suspend fun getNews(): NewsResponse
 
+
+//   Order
     @Headers("Content-Type: application/json")
     @POST("orders/create")
     suspend fun createOrder(
         @Body order: OrderResponse,
     ): ErrorMessageResponse
 
-//   Preferences
-    @Multipart
-    @POST("preferences")
-    suspend fun uploadPreferences(
-        @Part("user_id") userId: RequestBody,
-        @Part("preferences") preferences: RequestBody,
-    ): ErrorMessageResponse
 
-    @JvmSuppressWildcards
-    @GET("preferences/{user_id}")
-    suspend fun getPreferences(
-        @Path("user_id") userId: String,
-    ): PreferencesResponse
 
-//   Blend
-
-//   Order
 }

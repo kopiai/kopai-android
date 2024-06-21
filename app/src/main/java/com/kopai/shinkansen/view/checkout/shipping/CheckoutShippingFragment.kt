@@ -81,7 +81,7 @@ class CheckoutShippingFragment : Fragment() {
                 when (user) {
                     is ResultState.Success -> {
                         edShippingName.setText(user.data.name)
-                        edShippingPhone.setText(user.data.phone)
+                        edShippingPhone.setText(user.data.phone.toString())
                         edShippingAddress.setText(user.data.address)
                     }
 

@@ -17,13 +17,16 @@ class PreferencesRepository constructor(
 ) {
     fun uploadPreferences(
         userId: String,
-        preferences: String,
+        effect: String,
+        healthIssue: String,
+        preferredAroma: String,
+        preferredTaste: String,
     ) = liveData {
         emit(ResultState.Loading)
-        val requestUserId = userId.toRequestBody("text/plain".toMediaType())
-        val requestPreferences = preferences.toRequestBody("text/plain".toMediaType())
+//        val requestUserId = userId.toRequestBody("text/plain".toMediaType())
+//        val requestPreferences = preferences.toRequestBody("text/plain".toMediaType())
         try {
-            val successResponse = apiService.uploadPreferences(requestUserId, requestPreferences)
+            val successResponse = apiService.uploadPreferences(userId.toInt(), effect, healthIssue, preferredAroma, preferredTaste)
             emit(ResultState.Success(successResponse))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
@@ -36,12 +39,16 @@ class PreferencesRepository constructor(
         liveData {
             emit(ResultState.Loading)
             try {
-                val response = apiService.getPreferences(userId)
-                Log.d(ProductsRepository.TAG, response.toString())
+                val response = apiService.getPreferencesById(userId.toInt())
+                Log.d(PreferencesRepository.TAG, response.toString())
                 emit(ResultState.Success(response))
             } catch (e: Exception) {
-                Log.d(ProductsRepository.TAG, "login: ${e.message}")
+                Log.d(PreferencesRepository.TAG, "login: ${e.message}")
                 emit(ResultState.Error(e.message.toString()))
             }
         }
+
+    companion object {
+        const val TAG = "PreferencesRepository"
+    }
 }

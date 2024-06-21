@@ -10,6 +10,7 @@ import com.kopai.shinkansen.data.remote.response.ProductItem
 @Dao
 interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+
     suspend fun insertProduct(quote: List<ProductItem>)
 
     @Query("SELECT * FROM products")

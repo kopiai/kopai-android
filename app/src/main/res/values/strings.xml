@@ -106,6 +106,10 @@
     <string name="enter_postal_code">Enter postal code</string>
     <string name="field_is_required">%1$s is required</string>
     <string name="camera">Camera</string>
+    <string name="pilih_bubuk_kopi_pertama">Pilih Bubuk Kopi Pertama</string>
+    <string name="pilih_bubuk_kopi_kedua">Pilih Bubuk Kopi Kedua</string>
+    <string name="informasi_bubuk_kopi">Informasi Bubuk Kopi</string>
+    <string name="image_coffee">image coffee</string>
     <string name="nama_penerima">Nama penerima :</string>
     <string name="evan_agustian_lukius">Evan Agustian Lukius</string>
     <string name="alamat_1">Jl. Buah Batu No. 250, Bandung, Kota Bandung, Jawa Barat, 42087, (+62)819-1100-8711</string>
@@ -116,6 +120,13 @@
     <string name="price_2">Rp 15.0000</string>
     <string name="total">Total :</string>
     <string name="pay">PAY</string>
+    <string name="berat">Berat</string>
+    <string name="gram">.... gram</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="nanggroe_aceh_darussalam">Nanggroe Aceh Darussalam</string>
+    <string name="karakteristik">Karakteristik</string>
+    <string name="aroma">Aroma</string>
+    >>>>>>> main
 
     <string-array name="gender_menu">
         <item>Laki-laki</item>

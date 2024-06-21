@@ -27,7 +27,6 @@ class MainProfileFragment : Fragment() {
 
     private val mainProfileViewModel: MainProfileViewModel by viewModels()
 
-    private val preferencesViewModel: PreferencesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

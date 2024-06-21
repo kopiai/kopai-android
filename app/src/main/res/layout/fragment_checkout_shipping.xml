@@ -92,53 +92,53 @@
                     android:transitionName="email" />
             </LinearLayout>
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/l_shipping_province"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="15dp"-->
-<!--                android:gravity="start"-->
-<!--                android:orientation="vertical"-->
-<!--                android:transitionName="misc">-->
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/l_shipping_province"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="15dp"-->
+            <!--                android:gravity="start"-->
+            <!--                android:orientation="vertical"-->
+            <!--                android:transitionName="misc">-->
 
-<!--                <com.kopai.shinkansen.view.shared.NameEditText-->
-<!--                    android:id="@+id/ed_shipping_province"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="32dp"-->
-<!--                    android:layout_marginTop="4dp"-->
-<!--                    android:layout_marginEnd="32dp"-->
-<!--                    android:background="@drawable/custom_form_input"-->
-<!--                    android:hint="@string/select_province"-->
-<!--                    android:inputType="text"-->
-<!--                    android:paddingHorizontal="20dp"-->
-<!--                    android:paddingVertical="15dp"-->
-<!--                    android:transitionName="email" />-->
-<!--            </LinearLayout>-->
+            <!--                <com.kopai.shinkansen.view.shared.NameEditText-->
+            <!--                    android:id="@+id/ed_shipping_province"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="32dp"-->
+            <!--                    android:layout_marginTop="4dp"-->
+            <!--                    android:layout_marginEnd="32dp"-->
+            <!--                    android:background="@drawable/custom_form_input"-->
+            <!--                    android:hint="@string/select_province"-->
+            <!--                    android:inputType="text"-->
+            <!--                    android:paddingHorizontal="20dp"-->
+            <!--                    android:paddingVertical="15dp"-->
+            <!--                    android:transitionName="email" />-->
+            <!--            </LinearLayout>-->
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/l_shipping_city"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="15dp"-->
-<!--                android:gravity="start"-->
-<!--                android:orientation="vertical"-->
-<!--                android:transitionName="misc">-->
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/l_shipping_city"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="15dp"-->
+            <!--                android:gravity="start"-->
+            <!--                android:orientation="vertical"-->
+            <!--                android:transitionName="misc">-->
 
-<!--                <com.kopai.shinkansen.view.shared.NameEditText-->
-<!--                    android:id="@+id/ed_shipping_city"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="32dp"-->
-<!--                    android:layout_marginTop="4dp"-->
-<!--                    android:layout_marginEnd="32dp"-->
-<!--                    android:background="@drawable/custom_form_input"-->
-<!--                    android:hint="@string/select_city"-->
-<!--                    android:inputType="text"-->
-<!--                    android:paddingHorizontal="20dp"-->
-<!--                    android:paddingVertical="15dp"-->
-<!--                    android:transitionName="email" />-->
-<!--            </LinearLayout>-->
+            <!--                <com.kopai.shinkansen.view.shared.NameEditText-->
+            <!--                    android:id="@+id/ed_shipping_city"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="32dp"-->
+            <!--                    android:layout_marginTop="4dp"-->
+            <!--                    android:layout_marginEnd="32dp"-->
+            <!--                    android:background="@drawable/custom_form_input"-->
+            <!--                    android:hint="@string/select_city"-->
+            <!--                    android:inputType="text"-->
+            <!--                    android:paddingHorizontal="20dp"-->
+            <!--                    android:paddingVertical="15dp"-->
+            <!--                    android:transitionName="email" />-->
+            <!--            </LinearLayout>-->
 
             <LinearLayout
                 android:id="@+id/l_shipping_address"
