@@ -15,8 +15,9 @@ import com.kopai.shinkansen.R
 import com.kopai.shinkansen.data.ResultState
 import com.kopai.shinkansen.databinding.FragmentMainHomeBinding
 import com.kopai.shinkansen.util.SpacesItemDecoration
-import com.kopai.shinkansen.view.adapter.BannerAdapter
+import com.kopai.shinkansen.view.adapter.NewsAdapter
 import com.kopai.shinkansen.view.adapter.ProductAdapter
+import com.kopai.shinkansen.view.news.NewsActivity
 import com.kopai.shinkansen.view.product.productlist.ProductListActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,7 +32,7 @@ class MainHomeFragment : Fragment() {
     private val viewModel: MainHomeViewModel by viewModels()
 
     private val productAdapter by lazy { ProductAdapter() }
-    private val bannerAdapter by lazy { BannerAdapter() }
+    private val newsAdapter by lazy { NewsAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,7 +53,11 @@ class MainHomeFragment : Fragment() {
             btnMore.setOnClickListener {
                 startActivity(Intent(activity, ProductListActivity::class.java))
             }
+            btnNews.setOnClickListener {
+                startActivity(Intent(activity, NewsActivity::class.java))
+            }
         }
+
 
         fetchBanner()
         fetchProducts()
@@ -69,11 +74,11 @@ class MainHomeFragment : Fragment() {
 
     private fun fetchBanner() {
         binding!!.rvMainBanner.apply {
-            adapter = bannerAdapter
+            adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         }
 
-        viewModel.getProducts().observe(viewLifecycleOwner) {
+        viewModel.getNews().observe(viewLifecycleOwner) {
             when (it) {
                 is ResultState.Error -> {
                     Toast.makeText(activity, it.error, Toast.LENGTH_SHORT).show()
@@ -84,7 +89,7 @@ class MainHomeFragment : Fragment() {
                 }
 
                 is ResultState.Success -> {
-                    bannerAdapter.submitList(it.data.listProducts)
+                    newsAdapter.submitList(it.data.data)
                 }
             }
         }
@@ -107,8 +112,8 @@ class MainHomeFragment : Fragment() {
                     }
                     is ResultState.Success -> {
                         rvMainProducts.visibility = View.VISIBLE
-                        productAdapter.submitList(it.data.listProducts)
-                        if (it.data.listProducts!!.isEmpty()) {
+                        productAdapter.submitList(it.data.data)
+                        if (it.data.data.isEmpty()) {
                             Toast.makeText(activity, "No Products found", Toast.LENGTH_SHORT).show()
                         }
                     }

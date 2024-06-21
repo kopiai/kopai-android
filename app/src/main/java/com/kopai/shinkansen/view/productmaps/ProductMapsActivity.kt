@@ -2,20 +2,14 @@ package com.kopai.shinkansen.view.productmaps
 
 import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.MarkerOptions
 import com.kopai.shinkansen.R
-import com.kopai.shinkansen.data.ResultState
-import com.kopai.shinkansen.data.remote.response.ProductItem
 import com.kopai.shinkansen.databinding.ActivityProductMapsBinding
 import javax.inject.Inject
 
@@ -43,7 +37,6 @@ class ProductMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         setMapStyle()
-        fetchProducts()
     }
 
     private fun setMapStyle() {
@@ -57,30 +50,6 @@ class ProductMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         } catch (exception: Resources.NotFoundException) {
             Toast.makeText(this, getString(R.string.can_t_find_style_error), Toast.LENGTH_SHORT)
                 .show()
-        }
-    }
-
-    private fun fetchProducts() {
-        viewModel.getProductsWithLocation().observe(this) {
-            when (it) {
-                is ResultState.Error -> {
-                    Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
-                }
-
-                ResultState.Loading -> {
-                    Log.d("ProductMapsActivity", "Loading")
-                }
-
-                is ResultState.Success -> {
-                    if (it.data.listProducts!!.isEmpty()) {
-                        Toast.makeText(
-                            this,
-                            getString(R.string.can_t_find_any_product_with_location),
-                            Toast.LENGTH_SHORT,
-                        ).show()
-                    }
-                }
-            }
         }
     }
 

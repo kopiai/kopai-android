@@ -19,6 +19,7 @@ class UserPreference constructor(private val dataStore: DataStore<Preferences>) 
             preferences[EMAIL_KEY] = user.email
             preferences[TOKEN_KEY] = user.token
             preferences[IS_LOGIN_KEY] = true
+            preferences[USER_PAYMENT] = user.payment
         }
     }
 
@@ -33,9 +34,11 @@ class UserPreference constructor(private val dataStore: DataStore<Preferences>) 
         return dataStore.data.map { preferences ->
             UserPrefModel(
                 preferences[USER_ID_KEY] ?: "",
+                preferences[NAME] ?: "",
                 preferences[EMAIL_KEY] ?: "",
                 preferences[TOKEN_KEY] ?: "",
                 preferences[IS_LOGIN_KEY] ?: false,
+                preferences[USER_PAYMENT] ?: "",
             )
         }
     }
@@ -56,11 +59,12 @@ class UserPreference constructor(private val dataStore: DataStore<Preferences>) 
     }
 
     companion object {
-
         private val USER_ID_KEY = stringPreferencesKey("userId")
+        private val NAME = stringPreferencesKey("name")
         private val EMAIL_KEY = stringPreferencesKey("email")
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val IS_LOGIN_KEY = booleanPreferencesKey("isLogin")
+        private val USER_PAYMENT = stringPreferencesKey("payment")
 
         private val PREF_NAME = stringPreferencesKey("name")
         private val IS_PREFERENCES = booleanPreferencesKey("isPreferences")

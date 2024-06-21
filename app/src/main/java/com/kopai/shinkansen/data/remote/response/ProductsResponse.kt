@@ -6,35 +6,21 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-data class ProductsResponse(
-	val listProducts: List<ProductItem>? = null
-)
+typealias ProductsResponse = PagingResponse<ProductItem>
 
-@Parcelize
 @Entity(tableName = "products")
+@Parcelize
 data class ProductItem(
-	@PrimaryKey
-	@field:SerializedName("product_id")
-	val productId: Int? = null,
-	@field:SerializedName("blend_id")
-	val blendId: Int? = null,
-	@field:SerializedName("product_name")
-	val productName: String? = null,
-	@field:SerializedName("quantity")
-	val quantity: Int? = null,
-	@field:SerializedName("bean")
-	val bean: Boolean? = null,
-	@field:SerializedName("size")
-	val size: Int? = null,
-	@field:SerializedName("price")
-	val price: Int? = null,
-	@field:SerializedName("grinded")
-	val grinded: String? = null,
-	@field:SerializedName("status")
-	val status: String? = null,
-	@field:SerializedName("description")
-	val description: String? = null,
-	@field:SerializedName("photo")
-	val photo: String? = null
+    @PrimaryKey
+    @field:SerializedName("product_id") val productId: Int,
+    @field:SerializedName("product_name") val productName: String,
+    @field:SerializedName("description") val description: String,
+    @field:SerializedName("photo") val photo: String?,
+    @field:SerializedName("blend_id") val blendId: Int?,
+    @field:SerializedName("quantity") val quantity: Int,
+    @field:SerializedName("size") val size: Int,
+    @field:SerializedName("price") val price: Int,
+    @field:SerializedName("grinded") val grinded: Boolean?,
+    @field:SerializedName("bean") val bean: Boolean?,
+    @field:SerializedName("status") val status: Boolean?,
 ) : Parcelable
-

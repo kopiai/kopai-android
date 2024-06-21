@@ -6,6 +6,7 @@ import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.databinding.ActivitySplashBinding
+import com.kopai.shinkansen.view.authentication.login.LoginActivity
 import com.kopai.shinkansen.view.authentication.register.RegisterActivity
 import com.kopai.shinkansen.view.blend.BlendOneActivity
 import com.kopai.shinkansen.view.main.MainActivity
@@ -34,10 +35,10 @@ class SplashActivity : AppCompatActivity() {
         tokenViewModel.token
             .observe(this) { userPrefModel ->
                 if (userPrefModel!!.token.isNotEmpty()) Timer().schedule(2000) {
-                    startActivity(Intent(this@SplashActivity, BlendOneActivity::class.java))
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                     finish()
                 } else Timer().schedule(2000) {
-                    startActivity(Intent(this@SplashActivity, BlendOneActivity::class.java))
+                    startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
                     finish()
                 }
             }

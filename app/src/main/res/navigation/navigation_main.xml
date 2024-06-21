@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_main_home" >
     </fragment>
     <fragment
-        android:id="@+id/navigation_beans"
-        android:name="com.kopai.shinkansen.view.main.beans.MainBeansFragment"
-        android:label="fragment_main_beans"
-        tools:layout="@layout/fragment_main_beans" >
+        android:id="@+id/navigation_blend"
+        android:name="com.kopai.shinkansen.view.blend.BlendOneFragment"
+        android:label="Blend"
+        tools:layout="@layout/fragment_blend_one" >
     </fragment>
     <fragment
         android:id="@+id/navigation_cart"

@@ -66,7 +66,7 @@
     <string name="delivery">Delivery</string>
     <string name="size">Size</string>
     <string name="size_100g">100g</string>
-    <string name="price">Price</string>
+    <string name="price_0">Price</string>
     <string name="price_1">Rp 39.999</string>
     <string name="buy">BUY</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -99,14 +99,44 @@
     <string name="shutter_camera">shutter camera</string>
     <string name="gallery">Gallery</string>
     <string name="send">Send</string>
+    <string name="select_province">Select Province</string>
+    <string name="select_city">Select City</string>
+    <string name="enter_address">Enter address</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="enter_postal_code">Enter postal code</string>
+    <string name="field_is_required">%1$s is required</string>
     <string name="camera">Camera</string>
     <string name="pilih_bubuk_kopi_pertama">Pilih Bubuk Kopi Pertama</string>
     <string name="pilih_bubuk_kopi_kedua">Pilih Bubuk Kopi Kedua</string>
     <string name="informasi_bubuk_kopi">Informasi Bubuk Kopi</string>
     <string name="image_coffee">image coffee</string>
+    <string name="nama_penerima">Nama penerima :</string>
+    <string name="evan_agustian_lukius">Evan Agustian Lukius</string>
+    <string name="alamat_1">Jl. Buah Batu No. 250, Bandung, Kota Bandung, Jawa Barat, 42087, (+62)819-1100-8711</string>
+    <string name="alamat_lengkap">Alamat Lengkap :</string>
+    <string name="jenis_pembayaran">Jenis pembayaran :</string>
+    <string name="bca">BCA</string>
+    <string name="biaya_pengiriman">Biaya pengiriman :</string>
+    <string name="price_2">Rp 15.0000</string>
+    <string name="total">Total :</string>
+    <string name="pay">PAY</string>
+    <string name="berat">Berat</string>
+    <string name="gram">.... gram</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="nanggroe_aceh_darussalam">Nanggroe Aceh Darussalam</string>
+    <string name="karakteristik">Karakteristik</string>
+    <string name="aroma">Aroma</string>
+    >>>>>>> main
 
     <string-array name="gender_menu">
         <item>Laki-laki</item>
         <item>Perempuan</item>
+    </string-array>
+
+    <string-array name="payment_methods">
+        <item>Dana</item>
+        <item>Gopay</item>
+        <item>ShopeePay</item>
+        <item>BCA</item>
     </string-array>
 </resources>

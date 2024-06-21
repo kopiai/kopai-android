@@ -47,7 +47,7 @@ class ProductPagingAdapter :
                 itemView.setOnClickListener {
                     val moveIntent =
                         Intent(itemView.context, ProductDetailsActivity::class.java).run {
-                            putExtra(ProductDetailsActivity.EXTRA_STORY, product)
+                            putExtra(ProductDetailsActivity.EXTRA_PRODUCT, product)
                         }
 
                     val optionsCompat: ActivityOptionsCompat =

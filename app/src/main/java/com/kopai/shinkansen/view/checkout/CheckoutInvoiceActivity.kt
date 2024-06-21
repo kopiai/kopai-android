@@ -26,4 +26,9 @@ class CheckoutInvoiceActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    private fun setupView() {
+        binding.apply {
+        }
+    }
 }

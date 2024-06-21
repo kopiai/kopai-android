@@ -25,18 +25,19 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        val baseUrl = properties.getProperty("BASE_URL") ?: ""
 
+        buildConfigField(
+            type = "String",
+            name = "BASE_URL",
+            value = baseUrl,
+        )
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\"")
-        }
-
-        debug {
-            buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\"")
         }
     }
     compileOptions {

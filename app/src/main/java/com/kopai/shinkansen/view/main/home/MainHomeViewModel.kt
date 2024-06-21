@@ -18,6 +18,8 @@ class MainHomeViewModel
         private val userRepository: UserRepository,
         private val productsRepository: ProductsRepository,
     ) : ViewModel() {
+        fun getNews() = productsRepository.getNews()
+
         fun getProducts() = productsRepository.getProductsWithLocation()
 
         fun getSession(): LiveData<UserPrefModel> {

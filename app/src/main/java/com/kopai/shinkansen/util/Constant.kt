@@ -1,7 +1,6 @@
 package com.kopai.shinkansen.util
 
 object Constant {
-
     const val EXTRA_PHOTO_RESULT = "PHOTO_RESULT"
     const val EXTRA_CAMERA_MODE = "CAMERA_MODE"
     const val CAMERAX_RESULT = 200
@@ -19,4 +18,6 @@ object Constant {
     const val EXTRA_WEIGHT_BLEND_TWO = "WEIGHT_BLEND_TWO"
 
     val emailPattern = Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
+
+    const val FIXED_SHIPPING_COST = 15000
 }

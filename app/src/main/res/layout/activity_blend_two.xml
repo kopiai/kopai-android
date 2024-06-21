@@ -187,7 +187,7 @@
                     android:id="@+id/tv_weight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Weight"
+                    android:text="@string/berat"
                     android:textColor="@color/primary"
                     android:textSize="18sp"
                     android:transitionName="auth"/>

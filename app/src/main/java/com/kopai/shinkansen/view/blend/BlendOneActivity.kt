@@ -44,10 +44,6 @@ class BlendOneActivity : AppCompatActivity() {
                 putExtra(Constant.EXTRA_DATA_BLEND_ONE, SpinnerItemImage(imageBlendOne, nameBlendOne))
                 putExtra(Constant.EXTRA_WEIGHT_BLEND_ONE, binding.edWeight.text.toString())
             }
-//            val intent = Intent(this, BlendTwoActivity::class.java)
-//            intent.putExtra(Constant.EXTRA_PHOTO_BLEND_ONE, imageBlendOne)
-//            intent.putExtra(Constant.EXTRA_NAME_BLEND_ONE, nameBlendOne)
-//            intent.putExtra(Constant.EXTRA_WEIGHT_BLEND_ONE, binding.edWeight.text.toString())
             startActivity(intent)
         }
 
@@ -56,11 +52,6 @@ class BlendOneActivity : AppCompatActivity() {
                 putExtra(Constant.EXTRA_DATA_BLEND_ONE, SpinnerItemImage(imageBlendOne, nameBlendOne))
                 putExtra(Constant.EXTRA_WEIGHT_BLEND_ONE, binding.edWeight.text.toString())
             }
-//            val intent = Intent(this, BlendThreeActivity::class.java)
-//            intent.putExtra(Constant.EXTRA_PHOTO_BLEND_ONE, imageBlendOne)
-//            intent.putExtra(Constant.EXTRA_NAME_BLEND_ONE, nameBlendOne)
-//            intent.putExtra(Constant.EXTRA_WEIGHT_BLEND_ONE, binding.edWeight.text.toString())
-
             startActivity(intent)
         }
 

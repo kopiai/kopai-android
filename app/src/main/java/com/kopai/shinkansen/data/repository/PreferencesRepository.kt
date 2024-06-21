@@ -40,11 +40,15 @@ class PreferencesRepository constructor(
             emit(ResultState.Loading)
             try {
                 val response = apiService.getPreferencesById(userId.toInt())
-                Log.d(ProductsRepository.TAG, response.toString())
+                Log.d(PreferencesRepository.TAG, response.toString())
                 emit(ResultState.Success(response))
             } catch (e: Exception) {
-                Log.d(ProductsRepository.TAG, "login: ${e.message}")
+                Log.d(PreferencesRepository.TAG, "login: ${e.message}")
                 emit(ResultState.Error(e.message.toString()))
             }
         }
+
+    companion object {
+        const val TAG = "PreferencesRepository"
+    }
 }
