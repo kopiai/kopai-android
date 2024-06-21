@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -22,8 +23,11 @@ import com.kopai.shinkansen.util.getImageUri
 import com.kopai.shinkansen.util.reduceFileImage
 import com.kopai.shinkansen.util.uriToFile
 import com.kopai.shinkansen.view.shared.TokenViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
 import java.util.Calendar
 
+@AndroidEntryPoint
 class EditProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
 
@@ -79,6 +83,10 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.btnEdit.setOnClickListener {
             editProfile()
+        }
+
+        binding.btnBack.setOnClickListener {
+            finish()
         }
 
         tokenViewModel.token.observe(this) { user ->

@@ -12,23 +12,15 @@ class EditProfileViewModel
         private val userRepository: UserRepository,
     ) :
     ViewModel() {
-//        fun updateProfile(
-//            userId: Int?,
-//            name: String?,
-//            gender: String?,
-//            birth: String?,
-//            email: String?,
-//            phone: String?,
-//            address: String?,
-//            photo: File?,
-//        ) = userRepository.updateProfile(
-//            userId ?: 1,
-//            name ?: "",
-//            gender ?: "",
-//            birth ?: "",
-//            email ?: "",
-//            phone ?: "",
-//            address ?: "",
-//            photo ?: "",
-//        )
-    }
+
+    fun updateProfile(
+        userId: Int?,
+        name: String?,
+        gender: String?,
+        birth: String?,
+        email: String?,
+        phone: String?,
+        address: String?,
+        photo: File?,
+    ) = userRepository.updateProfile(userId ?: 1, name ?: "", gender ?: "", birth ?: "", email ?: "", phone ?: "", address ?: "", photo)
+}
