@@ -65,7 +65,7 @@ class PreferencesThreeActivity : AppCompatActivity() {
         binding.btnYes.setOnClickListener {
             // upload preferences
             preferencesViewModel.uploadPreferences(userId,  "", "", "", "")
-            startActivity(Intent(this, PreferencesTwoActivity::class.java))
+            startActivity(Intent(this, PreferencesFourActivity::class.java))
         }
 
         binding.btnNo.setOnClickListener {

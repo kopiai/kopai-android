@@ -27,6 +27,7 @@
         android:text="@string/first_time_in_kopai"
         android:textSize="25sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,6 +39,7 @@
         android:layout_marginTop="15dp"
         android:text="@string/we_ll_give_you_a_preferences"
         android:textSize="15sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_regis_completed" />
 
@@ -50,6 +52,7 @@
         android:text="@string/yes"
         android:textAllCaps="false"
         android:textSize="16sp"
+        android:textColor="@color/white"
         android:transitionName="action"
         android:background="@drawable/custom_form_input"
         app:layout_constraintEnd_toEndOf="parent"
