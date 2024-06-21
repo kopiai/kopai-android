@@ -52,7 +52,7 @@ class ProductsRemoteMediator(
         try {
             val responseData = apiService.getProducts(page, state.config.pageSize)
 
-            val endOfPaginationReached = responseData.isEmpty()
+            val endOfPaginationReached = responseData.data.isEmpty()
 
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
@@ -62,11 +62,11 @@ class ProductsRemoteMediator(
                 val prevKey = if (page == 1) null else page - 1
                 val nextKey = if (endOfPaginationReached) null else page + 1
                 val keys =
-                    responseData.map {
+                    responseData.data.map {
                         RemoteKeysEntity(id = it.productId.toString(), prevKey = prevKey, nextKey = nextKey)
                     }
                 database.remoteKeysDao().insertAll(keys)
-                database.productDao().insertProduct(responseData)
+                database.productDao().insertProduct(responseData.data)
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (exception: Exception) {
