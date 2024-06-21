@@ -26,6 +26,7 @@
         android:text="Have \nPreferences?"
         android:textSize="25sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,6 +38,7 @@
         android:layout_marginTop="15dp"
         android:text="KopAI will recommend\nthe coffee you like"
         android:textSize="15sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_regis_completed" />
 
@@ -48,6 +50,7 @@
         android:layout_marginTop="40dp"
         android:text="Menghindari rasa ngantuk atau\nmenikmati rasa kopi yang unik?"
         android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_regis_info" />
 
@@ -106,6 +109,7 @@
         android:textAllCaps="false"
         android:textSize="16sp"
         android:transitionName="action"
+        android:textColor="@color/white"
         android:background="@drawable/custom_form_input"
         android:drawableEnd="@drawable/ic_arrow_forward"
         app:layout_constraintEnd_toEndOf="parent"

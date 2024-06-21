@@ -95,7 +95,8 @@
                         android:backgroundTint="@color/secondary"
                         android:padding="16dp"
                         app:cornerRadius="12dp"
-                        app:icon="@drawable/baseline_tune_24" />
+                        app:icon="@drawable/ic_news" />
+
 
                 </LinearLayout>
 

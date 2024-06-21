@@ -25,6 +25,8 @@ class DetailNewsActivity : AppCompatActivity() {
                 @Suppress("DEPRECATION")
                 intent.getParcelableExtra<NewsResponseItem>(DetailNewsActivity.EXTRA_NEWS)
             }
+
+        setDetailNews(newsData)
     }
 
     private fun setDetailNews(news: NewsResponseItem?) {

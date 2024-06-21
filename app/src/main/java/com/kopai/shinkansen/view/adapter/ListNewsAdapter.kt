@@ -55,7 +55,7 @@ class ListNewsAdapter : ListAdapter<NewsResponseItem, ListNewsAdapter.ViewHolder
 
                     val optionsCompat: ActivityOptionsCompat =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(
-                            (it.context as ContextWrapper).baseContext as Activity,
+                            it.context as  Activity,
                             Pair(imgItemPhoto, "detail_photo"),
                             Pair(tvItemName, "detail_name"),
                             Pair(tvItemAuthore, "detail_author"),

@@ -15,7 +15,9 @@ import com.kopai.shinkansen.view.adapter.ListNewsAdapter
 import com.kopai.shinkansen.view.adapter.NewsAdapter
 import com.kopai.shinkansen.view.adapter.ProductAdapter
 import com.kopai.shinkansen.view.main.home.MainHomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNewsBinding
