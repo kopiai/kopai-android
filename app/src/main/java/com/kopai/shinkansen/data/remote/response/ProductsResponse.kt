@@ -6,31 +6,21 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-data class ProductsResponse(
-    @field:SerializedName("listStory")
-    val listProduct: List<ProductItem>,
-    @field:SerializedName("error")
-    val error: Boolean? = null,
-    @field:SerializedName("messsage")
-    val message: String? = null,
-)
+typealias ProductsResponse = List<ProductItem>
 
-@Parcelize
 @Entity(tableName = "products")
+@Parcelize
 data class ProductItem(
     @PrimaryKey
-    @field:SerializedName("id")
-    val id: String = "id_",
-    @field:SerializedName("photoUrl")
-    val photoUrl: String? = null,
-    @field:SerializedName("createdAt")
-    val createdAt: String? = null,
-    @field:SerializedName("name")
-    val name: String? = null,
-    @field:SerializedName("description")
-    val description: String? = null,
-    @field:SerializedName("lat")
-    val lat: Double? = null,
-    @field:SerializedName("lon")
-    val lon: Double? = null,
+    @field:SerializedName("product_id") val productId: Int,
+    @field:SerializedName("product_name") val productName: String,
+    @field:SerializedName("description") val description: String,
+    @field:SerializedName("photo") val photo: String?,
+    @field:SerializedName("blend_id") val blendId: Int?,
+    @field:SerializedName("quantity") val quantity: Int,
+    @field:SerializedName("size") val size: Int,
+    @field:SerializedName("price") val price: Int,
+    @field:SerializedName("grinded") val grinded: Boolean?,
+    @field:SerializedName("bean") val bean: Boolean?,
+    @field:SerializedName("status") val status: Boolean?,
 ) : Parcelable

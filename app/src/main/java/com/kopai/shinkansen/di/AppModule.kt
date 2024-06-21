@@ -44,8 +44,11 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideUserRepository(userPreference: UserPreference): UserRepository {
-        return UserRepository(userPreference)
+    fun provideUserRepository(
+        userPreference: UserPreference,
+        apiService: ApiService,
+    ): UserRepository {
+        return UserRepository(userPreference, apiService)
     }
 
     @Singleton
@@ -53,15 +56,14 @@ object AppModule {
     fun provideProductsRepository(
         productsDatabase: ProductsDatabase,
         apiService: ApiService,
+        userPreference: UserPreference,
     ): ProductsRepository {
-        return ProductsRepository(productsDatabase, apiService)
+        return ProductsRepository(productsDatabase, apiService, userPreference)
     }
 
     @Singleton
     @Provides
-    fun providePreferencesRepository(
-        apiService: ApiService,
-    ): PreferencesRepository {
+    fun providePreferencesRepository(apiService: ApiService): PreferencesRepository {
         return PreferencesRepository(apiService)
     }
 }

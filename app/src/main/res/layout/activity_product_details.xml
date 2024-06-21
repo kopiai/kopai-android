@@ -183,7 +183,7 @@
                 android:id="@+id/tv_detail_price_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/price"
+                android:text="@string/price_0"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:transitionName="detail_description" />
