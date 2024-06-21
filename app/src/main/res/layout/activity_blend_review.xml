@@ -270,13 +270,14 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_blend"
+                android:id="@+id/btn_checkout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="32dp"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/custom_form_input"
                 android:text="Checkout"
+                android:textColor="@color/white"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:transitionName="action"

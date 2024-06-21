@@ -47,9 +47,6 @@ interface ApiService {
         @Query("bean") bean: Boolean = true,
     ): ProductsResponse
 
-
-
-
 //  Blend
     @FormUrlEncoded
     @POST("blends")
@@ -64,7 +61,6 @@ interface ApiService {
         @Field("blend_name") blendName: String,
         @Field("description") description: String,
     ): BlendResponse
-
 
 //   Preferences
     @FormUrlEncoded
@@ -85,7 +81,7 @@ interface ApiService {
     @JvmSuppressWildcards
     @GET("preferences/{user_id}")
     suspend fun getPreferencesById(
-        @Path("user_id") userId: String,
+        @Path("user_id") userId: Int,
     ): PreferencesResponse
 
 //  Order

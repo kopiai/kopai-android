@@ -50,9 +50,9 @@ class ProductDetailsActivity : AppCompatActivity() {
         product?.let {
             with(binding) {
                 Glide.with(this@ProductDetailsActivity)
-                    .load(it.photoUrl)
+                    .load(it.photo)
                     .into(ivDetailPhoto)
-                tvDetailName.text = it.name
+                tvDetailName.text = it.productName
                 tvDetailDescriptionContent.text = it.description
             }
         }

@@ -227,7 +227,6 @@
                         android:layout_height="110dp"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="15dp"
-                        android:layout_marginStart="32dp"
                         android:background="@drawable/card_roasting_background"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="4dp">
@@ -236,6 +235,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:background="@color/white"
                             android:padding="16dp">
 
                             <ImageView
@@ -245,7 +245,7 @@
                                 android:layout_gravity="center"
                                 android:background="@drawable/card_image_background"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/logo" />
+                                android:src="@drawable/browning" />
 
                             <TextView
                                 android:id="@+id/tv_roasting_browning"
@@ -265,7 +265,7 @@
                         android:layout_height="110dp"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="15dp"
-                        android:layout_marginStart="32dp"
+                        android:layout_marginStart="15dp"
                         android:background="@drawable/card_roasting_background"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="4dp">
@@ -274,6 +274,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:background="@color/white"
                             android:padding="16dp">
 
                             <ImageView
@@ -283,7 +284,7 @@
                                 android:layout_gravity="center"
                                 android:background="@drawable/card_image_background"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/logo" />
+                                android:src="@drawable/light" />
 
                             <TextView
                                 android:id="@+id/tv_roasting_light"
@@ -304,7 +305,7 @@
                         android:layout_height="110dp"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="15dp"
-                        android:layout_marginStart="32dp"
+                        android:layout_marginStart="20dp"
                         android:background="@drawable/card_roasting_background"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="4dp">
@@ -313,6 +314,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:background="@color/white"
                             android:padding="16dp">
 
                             <ImageView
@@ -322,7 +324,7 @@
                                 android:layout_gravity="center"
                                 android:background="@drawable/card_image_background"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/logo" />
+                                android:src="@drawable/roast_medium" />
 
                             <TextView
                                 android:id="@+id/tv_roasting_medium"
@@ -343,7 +345,7 @@
                     android:id="@+id/container_roasting_three"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="start"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:transitionName="misc"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -356,7 +358,6 @@
                         android:layout_height="110dp"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="15dp"
-                        android:layout_marginStart="32dp"
                         android:background="@drawable/card_roasting_background"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="4dp">
@@ -365,6 +366,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:background="@color/white"
                             android:padding="16dp">
 
                             <ImageView
@@ -374,7 +376,7 @@
                                 android:layout_gravity="center"
                                 android:background="@drawable/card_image_background"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/logo" />
+                                android:src="@drawable/roast_medium_dark" />
 
                             <TextView
                                 android:id="@+id/tv_roasting_medium_to_dark"
@@ -394,7 +396,7 @@
                         android:layout_height="110dp"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="15dp"
-                        android:layout_marginStart="32dp"
+                        android:layout_marginStart="20dp"
                         android:background="@drawable/card_roasting_background"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="4dp">
@@ -403,6 +405,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:background="@color/white"
                             android:padding="16dp">
 
                             <ImageView
@@ -412,7 +415,7 @@
                                 android:layout_gravity="center"
                                 android:background="@drawable/card_image_background"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/logo" />
+                                android:src="@drawable/viena" />
 
                             <TextView
                                 android:id="@+id/tv_roasting_viena_roast"
@@ -433,7 +436,7 @@
                         android:layout_height="110dp"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="15dp"
-                        android:layout_marginStart="32dp"
+                        android:layout_marginStart="20dp"
                         android:background="@drawable/card_roasting_background"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="4dp">
@@ -442,6 +445,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:background="@color/white"
                             android:padding="16dp">
 
                             <ImageView
@@ -451,7 +455,7 @@
                                 android:layout_gravity="center"
                                 android:background="@drawable/card_image_background"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/logo" />
+                                android:src="@drawable/italian" />
 
                             <TextView
                                 android:id="@+id/tv_roasting_italian_roast"
@@ -520,7 +524,7 @@
                 android:id="@+id/container_grinding_two"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:transitionName="misc"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -532,7 +536,6 @@
                     android:layout_height="110dp"
                     android:layout_centerInParent="true"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="32dp"
                     android:background="@drawable/card_roasting_background"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
@@ -541,6 +544,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:background="@color/white"
                         android:padding="16dp">
 
                         <ImageView
@@ -550,7 +554,7 @@
                             android:layout_gravity="center"
                             android:background="@drawable/card_image_background"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/logo" />
+                            android:src="@drawable/coarse" />
 
                         <TextView
                             android:id="@+id/tv_grinding_coarse"
@@ -570,7 +574,7 @@
                     android:layout_height="110dp"
                     android:layout_centerInParent="true"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="20dp"
                     android:background="@drawable/card_roasting_background"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
@@ -579,6 +583,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:background="@color/white"
                         android:padding="16dp">
 
                         <ImageView
@@ -588,7 +593,7 @@
                             android:layout_gravity="center"
                             android:background="@drawable/card_image_background"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/logo" />
+                            android:src="@drawable/medium_coarse" />
 
                         <TextView
                             android:id="@+id/tv_grinding_medium_coarse"
@@ -609,7 +614,7 @@
                     android:layout_height="110dp"
                     android:layout_centerInParent="true"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="20dp"
                     android:background="@drawable/card_roasting_background"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
@@ -618,6 +623,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:background="@color/white"
                         android:padding="16dp">
 
                         <ImageView
@@ -627,7 +633,7 @@
                             android:layout_gravity="center"
                             android:background="@drawable/card_image_background"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/logo" />
+                            android:src="@drawable/grind_medium" />
 
                         <TextView
                             android:id="@+id/tv_roasting_mediumgrinding_medium"
@@ -648,7 +654,7 @@
                 android:id="@+id/container_grinding_three"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:transitionName="misc"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -661,7 +667,6 @@
                     android:layout_height="110dp"
                     android:layout_centerInParent="true"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="32dp"
                     android:background="@drawable/card_roasting_background"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
@@ -670,6 +675,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:background="@color/white"
                         android:padding="16dp">
 
                         <ImageView
@@ -679,7 +685,7 @@
                             android:layout_gravity="center"
                             android:background="@drawable/card_image_background"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/logo" />
+                            android:src="@drawable/grind_medium_fine" />
 
                         <TextView
                             android:id="@+id/tv_grinding_medium_fine"
@@ -699,7 +705,7 @@
                     android:layout_height="110dp"
                     android:layout_centerInParent="true"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="20dp"
                     android:background="@drawable/card_roasting_background"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
@@ -708,6 +714,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:background="@color/white"
                         android:padding="16dp">
 
                         <ImageView
@@ -717,7 +724,7 @@
                             android:layout_gravity="center"
                             android:background="@drawable/card_image_background"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/logo" />
+                            android:src="@drawable/fine" />
 
                         <TextView
                             android:id="@+id/tv_grinding_fine"
@@ -738,7 +745,7 @@
                     android:layout_height="110dp"
                     android:layout_centerInParent="true"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="20dp"
                     android:background="@drawable/card_roasting_background"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
@@ -747,6 +754,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:background="@color/white"
                         android:padding="16dp">
 
                         <ImageView
@@ -756,7 +764,7 @@
                             android:layout_gravity="center"
                             android:background="@drawable/card_image_background"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/logo" />
+                            android:src="@drawable/extra_fine" />
 
                         <TextView
                             android:id="@+id/tv_grinding_extra_fine"
@@ -784,6 +792,7 @@
                 android:text="Blend"
                 android:textAllCaps="false"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 android:transitionName="action"
                 android:background="@drawable/custom_form_input"
                 app:layout_constraintEnd_toEndOf="parent"

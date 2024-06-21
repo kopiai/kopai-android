@@ -84,7 +84,7 @@ class MainHomeFragment : Fragment() {
                 }
 
                 is ResultState.Success -> {
-                    bannerAdapter.submitList(it.data.listProduct)
+                    bannerAdapter.submitList(it.data.listProducts)
                 }
             }
         }
@@ -107,8 +107,8 @@ class MainHomeFragment : Fragment() {
                     }
                     is ResultState.Success -> {
                         rvMainProducts.visibility = View.VISIBLE
-                        productAdapter.submitList(it.data.listProduct)
-                        if (it.data.listProduct.isEmpty()) {
+                        productAdapter.submitList(it.data.listProducts)
+                        if (it.data.listProducts!!.isEmpty()) {
                             Toast.makeText(activity, "No Products found", Toast.LENGTH_SHORT).show()
                         }
                     }

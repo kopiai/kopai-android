@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.kopai.shinkansen.R
 import com.kopai.shinkansen.util.SpinnerItemImage
 
@@ -35,7 +36,10 @@ class SpinnerImageAdapter(
         }
 
         val item = getItem(position) as SpinnerItemImage
-        viewHolder.imageView.setImageResource(item.imageResId)
+        Glide.with(view.context)
+            .load(item.imageResId)
+            .into(viewHolder.imageView)
+//        viewHolder.imageView.setImageResource(item.imageResId)
         viewHolder.textView.text = item.text
 
         return view

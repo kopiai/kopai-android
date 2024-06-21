@@ -40,9 +40,9 @@ class ProductAdapter :
         fun bind(product: ProductItem) {
             with(binding) {
                 Glide.with(itemView.context)
-                    .load(product.photoUrl)
+                    .load(product.photo)
                     .into(ivItemPhoto)
-                tvItemName.text = product.name
+                tvItemName.text = product.productName
                 tvItemDescription.text = product.description
 
                 itemView.setOnClickListener {
@@ -78,7 +78,7 @@ class ProductAdapter :
                     oldItem: ProductItem,
                     newItem: ProductItem,
                 ): Boolean {
-                    return oldItem.id == newItem.id
+                    return oldItem.productId == newItem.productId
                 }
             }
     }

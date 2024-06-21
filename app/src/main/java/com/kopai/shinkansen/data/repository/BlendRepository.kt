@@ -24,11 +24,11 @@ class BlendRepository constructor(
         grindId: Int,
         userId: Int,
         blendName: String,
-        description: String,,
+        description: String,
     ) = liveData {
         emit(ResultState.Loading)
         try {
-            val successResponse = apiService.upload(multipartBody, requestBody)
+            val successResponse = apiService.uploadBlend(coffeeIdOne, coffeeIdTwo, percentage, totalWeight, roastId, grindId, userId, blendName, description)
             emit(ResultState.Success(successResponse))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()

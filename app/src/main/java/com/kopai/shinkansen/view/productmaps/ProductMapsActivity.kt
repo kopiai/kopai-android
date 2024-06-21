@@ -72,37 +72,35 @@ class ProductMapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
 
                 is ResultState.Success -> {
-                    if (it.data.listProduct.isEmpty()) {
+                    if (it.data.listProducts!!.isEmpty()) {
                         Toast.makeText(
                             this,
                             getString(R.string.can_t_find_any_product_with_location),
                             Toast.LENGTH_SHORT,
                         ).show()
-                    } else {
-                        addManyMarker(it.data.listProduct)
                     }
                 }
             }
         }
     }
 
-    private fun addManyMarker(productItem: List<ProductItem>) {
-        productItem.forEach { item ->
-            if (item.lat != null && item.lon != null && item.lat != 0.0 && item.lon != 0.0) {
-                val latLng = LatLng(item.lat, item.lon)
-                mMap.addMarker(MarkerOptions().position(latLng).title(item.name))
-                boundsBuilder.include(latLng)
-            }
-        }
-
-        val bounds: LatLngBounds = boundsBuilder.build()
-        mMap.animateCamera(
-            CameraUpdateFactory.newLatLngBounds(
-                bounds,
-                resources.displayMetrics.widthPixels,
-                resources.displayMetrics.heightPixels,
-                300,
-            ),
-        )
-    }
+//    private fun addManyMarker(productItem: List<ProductItem>) {
+//        productItem.forEach { item ->
+//            if (item.lat != null && item.lon != null && item.lat != 0.0 && item.lon != 0.0) {
+//                val latLng = LatLng(item.lat, item.lon)
+//                mMap.addMarker(MarkerOptions().position(latLng).title(item.name))
+//                boundsBuilder.include(latLng)
+//            }
+//        }
+//
+//        val bounds: LatLngBounds = boundsBuilder.build()
+//        mMap.animateCamera(
+//            CameraUpdateFactory.newLatLngBounds(
+//                bounds,
+//                resources.displayMetrics.widthPixels,
+//                resources.displayMetrics.heightPixels,
+//                300,
+//            ),
+//        )
+//    }
 }

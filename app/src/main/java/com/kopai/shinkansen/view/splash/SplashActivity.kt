@@ -4,16 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.viewModels
-import com.kopai.shinkansen.data.local.pref.UserPreference
-import com.kopai.shinkansen.data.local.pref.dataStore
 import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.databinding.ActivitySplashBinding
-import com.kopai.shinkansen.view.authentication.login.LoginActivity
 import com.kopai.shinkansen.view.authentication.register.RegisterActivity
-import com.kopai.shinkansen.view.blend.SpinnerImageActivity
+import com.kopai.shinkansen.view.blend.BlendOneActivity
 import com.kopai.shinkansen.view.main.MainActivity
 import com.kopai.shinkansen.view.shared.TokenViewModel
-import com.kopai.shinkansen.view.welcome.WelcomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Timer
 import kotlin.concurrent.schedule
@@ -38,10 +34,10 @@ class SplashActivity : AppCompatActivity() {
         tokenViewModel.token
             .observe(this) { userPrefModel ->
                 if (userPrefModel!!.token.isNotEmpty()) Timer().schedule(2000) {
-                    startActivity(Intent(this@SplashActivity, SpinnerImageActivity::class.java))
+                    startActivity(Intent(this@SplashActivity, BlendOneActivity::class.java))
                     finish()
                 } else Timer().schedule(2000) {
-                    startActivity(Intent(this@SplashActivity, SpinnerImageActivity::class.java))
+                    startActivity(Intent(this@SplashActivity, BlendOneActivity::class.java))
                     finish()
                 }
             }

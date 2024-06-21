@@ -7,14 +7,14 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.kopai.shinkansen.data.local.entity.RemoteKeysEntity
 import com.kopai.shinkansen.data.local.room.ProductsDatabase
-import com.kopai.shinkansen.data.remote.response.ProductsItem
+import com.kopai.shinkansen.data.remote.response.ProductItem
 import com.kopai.shinkansen.data.remote.retrofit.ApiService
 
 @OptIn(ExperimentalPagingApi::class)
 class ProductsRemoteMediator(
     private val database: ProductsDatabase,
     private val apiService: ApiService,
-) : RemoteMediator<Int, ProductsItem>() {
+) : RemoteMediator<Int, ProductItem>() {
     private companion object {
         const val INITIAL_PAGE_INDEX = 1
     }
@@ -25,7 +25,7 @@ class ProductsRemoteMediator(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, ProductsItem>,
+        state: PagingState<Int, ProductItem>,
     ): MediatorResult {
         val page =
             when (loadType) {
@@ -74,19 +74,19 @@ class ProductsRemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ProductsItem>): RemoteKeysEntity? {
+    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ProductItem>): RemoteKeysEntity? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { data ->
             database.remoteKeysDao().getRemoteKeysId(data.productId.toString())
         }
     }
 
-    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ProductsItem>): RemoteKeysEntity? {
+    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ProductItem>): RemoteKeysEntity? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.let { data ->
             database.remoteKeysDao().getRemoteKeysId(data.productId.toString())
         }
     }
 
-    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, ProductsItem>): RemoteKeysEntity? {
+    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, ProductItem>): RemoteKeysEntity? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.productId?.let { id ->
                 database.remoteKeysDao().getRemoteKeysId(id.toString())

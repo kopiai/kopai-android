@@ -9,10 +9,10 @@ class ProductsPagingSource(private val apiService: ApiService) : PagingSource<In
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ProductItem> {
         return try {
             val position = params.key ?: INITIAL_PAGE_INDEX
-            val responseData = apiService.getStories(position, params.loadSize)
-            responseData.listProduct.let {
+            val responseData = apiService.getProducts(position, params.loadSize)
+            responseData.listProducts.let {
                 LoadResult.Page(
-                    data = it,
+                    data = it!!,
                     prevKey = if (position == INITIAL_PAGE_INDEX) null else position - 1,
                     nextKey = if (it.isEmpty()) null else position + 1,
                 )

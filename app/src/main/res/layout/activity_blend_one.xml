@@ -114,7 +114,7 @@
                         android:id="@+id/spinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/cardImage"
+                        android:layout_below="@id/tv_coffee"
                         android:visibility="gone" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -165,7 +165,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="8dp"
-                        android:text="Robusta"
+                        android:text=""
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
@@ -240,7 +240,7 @@
                     android:background="@drawable/custom_border_button"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="15dp"
-                    android:text="Toraja, Sulawesi Selatan"
+                    android:text="Nanggroe Aceh Darussalam"
                     android:textColor="@color/primary"/>
 
             </LinearLayout>
@@ -300,7 +300,7 @@
                         android:background="@drawable/custom_border_button"
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="15dp"
-                        android:text="Toraja, Sulawesi Selatan"
+                        android:text="Tanah"
                         android:textColor="@color/primary"/>
 
                 </LinearLayout>
@@ -445,9 +445,9 @@
                     android:layout_marginTop="8dp"
                     android:textAlignment="gravity"
                     android:textSize="14sp"
-                    android:text="Biji kopi Toraja adalah jenis kopi arabica
+                    android:text="Biji kopi Gayo adalah jenis kopi arabica
 yang di sebut quen of coffe.
-Cita rasa kopi Toraja dangat nikmat
+Cita rasa kopi Gayo dangat nikmat
 dan khas. Ciri kopi ini memiliki
 aroma seperti aroma tanah. 
 Rasa pahitnya menonjol, namun
@@ -463,11 +463,12 @@ mual ketika meminumnya."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="32dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="40dp"
                 android:text="Continue"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:transitionName="action"
+                android:textColor="@color/white"
                 android:background="@drawable/custom_form_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -478,16 +479,15 @@ mual ketika meminumnya."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="32dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="100dp"
                 android:background="@drawable/custom_border_button"
                 android:text="Single Origin"
                 android:textAllCaps="false"
-                android:textSize="16sp"
                 android:textColor="@color/primary"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_continue"/>
+                app:layout_constraintTop_toBottomOf="@+id/container_fact" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

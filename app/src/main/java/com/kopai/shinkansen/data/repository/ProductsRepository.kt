@@ -14,10 +14,9 @@ import com.kopai.shinkansen.data.local.ProductsRemoteMediator
 import com.kopai.shinkansen.data.local.room.ProductsDatabase
 import com.kopai.shinkansen.data.remote.response.ErrorMessageResponse
 import com.kopai.shinkansen.data.remote.response.LoginResponse
-import com.kopai.shinkansen.data.remote.response.ProductsItem
+import com.kopai.shinkansen.data.remote.response.ProductItem
 import com.kopai.shinkansen.data.remote.response.ProductsResponse
 import com.kopai.shinkansen.data.remote.response.StoriesResponse
-import com.kopai.shinkansen.data.remote.response.StoryItem
 import com.kopai.shinkansen.data.remote.retrofit.ApiService
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -30,53 +29,11 @@ class ProductsRepository constructor(
     private val productsDatabase: ProductsDatabase,
     private val apiService: ApiService,
 ) {
-
-    fun register(
-        name: String,
-        email: String,
-        password: String,
-    ): LiveData<ResultState<ErrorMessageResponse>> =
+    fun getProductsWithLocation(): LiveData<ResultState<ProductsResponse>> =
         liveData {
             emit(ResultState.Loading)
             try {
-                val response = apiService.register(name, email, password)
-                Log.d(TAG, response.toString())
-                emit(ResultState.Success(response))
-            } catch (e: HttpException) {
-                val jsonInString = e.response()?.errorBody()?.string()
-                val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
-                emit(ResultState.Error(errorBody.message ?: "Server error"))
-            } catch (e: Exception) {
-                Log.d(TAG, "register: ${e.message}")
-                emit(ResultState.Error(e.message.toString()))
-            }
-        }
-
-    fun login(
-        email: String,
-        password: String,
-    ): LiveData<ResultState<LoginResponse>> =
-        liveData {
-            emit(ResultState.Loading)
-            try {
-                val response = apiService.login(email, password)
-                Log.d(TAG, response.toString())
-                emit(ResultState.Success(response))
-            } catch (e: HttpException) {
-                val jsonInString = e.response()?.errorBody()?.string()
-                val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
-                emit(ResultState.Error(errorBody.message ?: "Server error"))
-            } catch (e: Exception) {
-                Log.d(TAG, "login: ${e.message}")
-                emit(ResultState.Error(e.message.toString()))
-            }
-        }
-
-    fun getProductsWithLocation(): LiveData<ResultState<StoriesResponse>> =
-        liveData {
-            emit(ResultState.Loading)
-            try {
-                val response = apiService.getStories(null, null, 1)
+                val response = apiService.getProducts(null, null)
                 Log.d(TAG, response.toString())
                 emit(ResultState.Success(response))
             } catch (e: Exception) {
@@ -98,7 +55,7 @@ class ProductsRepository constructor(
             }
         }
 
-    fun getProductsPaging(): LiveData<PagingData<ProductsItem>> {
+    fun getProductsPaging(): LiveData<PagingData<ProductItem>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config =

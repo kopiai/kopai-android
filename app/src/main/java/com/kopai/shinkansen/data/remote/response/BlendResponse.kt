@@ -3,10 +3,10 @@ package com.kopai.shinkansen.data.remote.response
 import com.google.gson.annotations.SerializedName
 
 data class BlendResponse(
-    @field:SerializedName("blend")
-    val blend: BlendResult? = null,
     @field:SerializedName("message")
     val message: String? = null,
+    @field:SerializedName("blend")
+    val blend: BlendResult? = null,
 )
 
 data class BlendResult(

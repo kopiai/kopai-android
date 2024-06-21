@@ -2,16 +2,14 @@ package com.kopai.shinkansen.view.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.kopai.shinkansen.data.remote.response.Preferencesitem
+import com.kopai.shinkansen.data.remote.response.Preferenceitem
 import com.kopai.shinkansen.databinding.ItemPreferencesBinding
 
 class PreferenceAdapter(
-    private val data: MutableList<Preferencesitem> = mutableListOf(),
+    private val data: MutableList<Preferenceitem> = mutableListOf(),
 ) : RecyclerView.Adapter<PreferenceAdapter.UserViewHolder>() {
 
-    fun setData(data: MutableList<Preferencesitem>) {
+    fun setData(data: MutableList<Preferenceitem>) {
         this.data.clear()
         this.data.addAll(data)
         notifyDataSetChanged()
@@ -20,7 +18,7 @@ class PreferenceAdapter(
 
     class UserViewHolder(private val binding: ItemPreferencesBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: Preferencesitem) {
+        fun bind(user: Preferenceitem) {
 //            Glide.with(itemView)
 //                .load(user.avatarUrl)
 //                .circleCrop()

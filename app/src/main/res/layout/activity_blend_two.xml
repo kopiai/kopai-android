@@ -158,7 +158,6 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="8dp"
-                        android:text="Robusta"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
@@ -166,7 +165,7 @@
                         android:id="@+id/spinner_two"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/cardImage"
+                        android:layout_below="@id/tv_coffee_two"
                         android:visibility="gone" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -466,6 +465,7 @@ mual ketika meminumnya."
                 android:text="Continue"
                 android:textAllCaps="false"
                 android:textSize="16sp"
+                android:textColor="@color/white"
                 android:transitionName="action"
                 android:background="@drawable/custom_form_input"
                 app:layout_constraintEnd_toEndOf="parent"

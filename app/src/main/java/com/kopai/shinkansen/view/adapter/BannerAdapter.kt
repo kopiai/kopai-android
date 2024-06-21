@@ -32,7 +32,7 @@ class BannerAdapter : ListAdapter<ProductItem, BannerAdapter.ViewHolder>(DIFF_CA
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ProductItem) {
             Glide.with(itemView.context)
-                .load(item.photoUrl)
+                .load(item.photo)
                 .into(binding.ivItemBanner)
         }
     }
@@ -51,7 +51,7 @@ class BannerAdapter : ListAdapter<ProductItem, BannerAdapter.ViewHolder>(DIFF_CA
                     oldItem: ProductItem,
                     newItem: ProductItem,
                 ): Boolean {
-                    return oldItem.id == newItem.id
+                    return oldItem.productId == newItem.productId
                 }
             }
     }
