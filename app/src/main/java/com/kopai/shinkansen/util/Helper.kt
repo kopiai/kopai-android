@@ -19,21 +19,22 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.OutputStream
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 object Helper {
-
     @SuppressLint("ConstantLocale")
-    val currentTimestamp: String = SimpleDateFormat(
-        "ddMMyySSSSS",
-        Locale.getDefault()
-    ).format(System.currentTimeMillis())
+    val currentTimestamp: String =
+        SimpleDateFormat(
+            "ddMMyySSSSS",
+            Locale.getDefault(),
+        ).format(System.currentTimeMillis())
 
     fun dialogInfoBuilder(
         context: Context,
         message: String,
-        alignment: Int = Gravity.CENTER
+        alignment: Int = Gravity.CENTER,
     ): Dialog {
         val dialog = Dialog(context)
         dialog.setCancelable(false)
@@ -55,10 +56,11 @@ object Helper {
         tvMessage.text = message
         return dialog
     }
+
     fun showDialogInfo(
         context: Context,
         message: String,
-        alignment: Int = Gravity.CENTER
+        alignment: Int = Gravity.CENTER,
     ) {
         val dialog = dialogInfoBuilder(context, message, alignment)
         val btnOk = dialog.findViewById<Button>(R.id.button_ok)
@@ -68,7 +70,10 @@ object Helper {
         dialog.show()
     }
 
-    fun uriToFile(selectedImg: Uri, context: Context): File {
+    fun uriToFile(
+        selectedImg: Uri,
+        context: Context,
+    ): File {
         val contentResolver: ContentResolver = context.contentResolver
         val myFile = createCustomTempFile(context)
         val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
@@ -82,17 +87,26 @@ object Helper {
     }
 
     fun createFile(application: Application): File {
-        val mediaDir = application.externalMediaDirs.firstOrNull()?.let {
-            File(it, "story").apply { mkdirs() }
-        }
-        val outputDirectory = if (
-            mediaDir != null && mediaDir.exists()
-        ) mediaDir else application.filesDir
+        val mediaDir =
+            application.externalMediaDirs.firstOrNull()?.let {
+                File(it, "story").apply { mkdirs() }
+            }
+        val outputDirectory =
+            if (
+                mediaDir != null && mediaDir.exists()
+            ) {
+                mediaDir
+            } else {
+                application.filesDir
+            }
 
         return File(outputDirectory, "STORY-$currentTimestamp.jpg")
     }
 
-    fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = false): Bitmap {
+    fun rotateBitmap(
+        bitmap: Bitmap,
+        isBackCamera: Boolean = false,
+    ): Bitmap {
         val matrix = Matrix()
         return if (isBackCamera) {
             matrix.postRotate(0f)
@@ -103,7 +117,7 @@ object Helper {
                 bitmap.width,
                 bitmap.height,
                 matrix,
-                true
+                true,
             )
         } else {
             matrix.postRotate(0f)
@@ -114,24 +128,34 @@ object Helper {
                 bitmap.width,
                 bitmap.height,
                 matrix,
-                true
+                true,
             )
         }
     }
 
-    fun resizeBitmap(bm: Bitmap, newWidth: Int, newHeight: Int): Bitmap {
+    fun resizeBitmap(
+        bm: Bitmap,
+        newWidth: Int,
+        newHeight: Int,
+    ): Bitmap {
         val width = bm.width
         val height = bm.height
         val scaleWidth = newWidth.toFloat() / width
         val scaleHeight = newHeight.toFloat() / height
 
-        /* init matrix to resize bitmap */
+        // init matrix to resize bitmap
         val matrix = Matrix()
         matrix.postScale(scaleWidth, scaleHeight)
 
-        /* recreate new bitmap as new defined size */
+        // recreate new bitmap as new defined size
         val resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false)
         bm.recycle()
         return resizedBitmap
+    }
+
+    fun rupiah(number: Double): String {
+        val localeID = Locale("in", "ID")
+        val numberFormat = NumberFormat.getCurrencyInstance(localeID)
+        return numberFormat.format(number).toString()
     }
 }

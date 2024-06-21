@@ -9,9 +9,12 @@ import com.kopai.shinkansen.data.local.pref.UserPrefModel
 import com.kopai.shinkansen.data.local.pref.UserPreference
 import com.kopai.shinkansen.data.remote.response.ErrorMessageResponse
 import com.kopai.shinkansen.data.remote.response.LoginResponse
+import com.kopai.shinkansen.data.remote.response.LoginResult
 import com.kopai.shinkansen.data.remote.response.RegisterResponse
+import com.kopai.shinkansen.data.remote.response.UpdateProfileResponse
 import com.kopai.shinkansen.data.remote.retrofit.ApiService
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -22,7 +25,7 @@ import java.io.File
 class UserRepository constructor(
     private val userPreference: UserPreference,
     private val apiService: ApiService,
-    ) {
+) {
     suspend fun saveSession(user: UserPrefModel) {
         userPreference.saveSession(user)
     }
@@ -72,8 +75,47 @@ class UserRepository constructor(
             }
         }
 
+    fun getUser(): LiveData<ResultState<LoginResult>> =
+        liveData {
+            emit(ResultState.Loading)
+            val userID = userPreference.getSession().first().userId.toIntOrNull() ?: 1
+            try {
+                val response = apiService.profile(userID)
+                Log.d(TAG, response.toString())
+                emit(ResultState.Success(response))
+            } catch (e: HttpException) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
+                emit(ResultState.Error(errorBody.message ?: "Server error"))
+            } catch (e: Exception) {
+                Log.d(TAG, "getUser: ${e.message}")
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
     suspend fun logout() {
         userPreference.logout()
+    }
+
+    fun updateUser(
+        name: String,
+        phone: String,
+        address: String,
+    ) = liveData<ResultState<UpdateProfileResponse>> {
+        emit(ResultState.Loading)
+        val userID = userPreference.getSession().first().userId.toIntOrNull() ?: 1
+        try {
+            val response = apiService.updateUser(userID, name, phone, address)
+            Log.d(ProductsRepository.TAG, response.toString())
+            emit(ResultState.Success(response))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorMessageResponse::class.java)
+            emit(ResultState.Error(errorBody.message ?: "Server error"))
+        } catch (e: Exception) {
+            Log.d(ProductsRepository.TAG, "updateUser: ${e.message}")
+            emit(ResultState.Error(e.message.toString()))
+        }
     }
 
     fun updateProfile(
@@ -102,16 +144,17 @@ class UserRepository constructor(
                 requestImageFile,
             )
         try {
-            val successResponse = apiService.updateProfile(
-                userId!!.toInt(),
-                requestName,
-                requestGender,
-                requestBirth,
-                requestEmail,
-                requestPhone,
-                requestAddress,
-                multipartBody
-            )
+            val successResponse =
+                apiService.updateProfile(
+                    userId!!.toInt(),
+                    requestName,
+                    requestGender,
+                    requestBirth,
+                    requestEmail,
+                    requestPhone,
+                    requestAddress,
+                    multipartBody,
+                )
             emit(ResultState.Success(successResponse))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()

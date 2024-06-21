@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_checkout_shipping"
-        android:name="com.kopai.shinkansen.view.checkout.steps.CheckoutShippingFragment"
+        android:name="com.kopai.shinkansen.view.checkout.shipping.CheckoutShippingFragment"
         android:label="@string/shipping"
         tools:layout="@layout/fragment_checkout_shipping" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/navigation_checkout_payment"
-        android:name="com.kopai.shinkansen.view.checkout.steps.CheckoutPaymentFragment"
+        android:name="com.kopai.shinkansen.view.checkout.payment.CheckoutPaymentFragment"
         android:label="@string/payment"
         tools:layout="@layout/fragment_checkout_payment" >
         <action
@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/navigation_checkout_overview"
-        android:name="com.kopai.shinkansen.view.checkout.steps.CheckoutOverviewFragment"
+        android:name="com.kopai.shinkansen.view.checkout.overview.CheckoutOverviewFragment"
         android:label="@string/overview"
         tools:layout="@layout/fragment_checkout_overview" >
         <action

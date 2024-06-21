@@ -3,20 +3,17 @@ package com.kopai.shinkansen.view.authentication.login
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.kopai.shinkansen.R
 import com.kopai.shinkansen.data.ResultState
 import com.kopai.shinkansen.databinding.ActivityLoginBinding
 import com.kopai.shinkansen.util.Constant
 import com.kopai.shinkansen.util.Helper
-import com.kopai.shinkansen.view.authentication.preferences.PreferencesOneActivity
 import com.kopai.shinkansen.view.authentication.preferences.PreferencesViewModel
 import com.kopai.shinkansen.view.authentication.recovery.RecoveryAccountActivity
 import com.kopai.shinkansen.view.authentication.register.RegisterActivity
@@ -66,21 +63,21 @@ class LoginActivity : AppCompatActivity() {
                 email.isEmpty() or password.isEmpty() -> {
                     Helper.showDialogInfo(
                         this,
-                        getString(R.string.UI_validation_empty_email_password)
+                        getString(R.string.UI_validation_empty_email_password),
                     )
                 }
 
                 !email.matches(Constant.emailPattern) -> {
                     Helper.showDialogInfo(
                         this,
-                        getString(R.string.UI_validation_invalid_email)
+                        getString(R.string.UI_validation_invalid_email),
                     )
                 }
 
                 password.length <= 6 -> {
                     Helper.showDialogInfo(
                         this,
-                        getString(R.string.UI_validation_password_rules)
+                        getString(R.string.UI_validation_password_rules),
                     )
                 }
 
@@ -101,7 +98,12 @@ class LoginActivity : AppCompatActivity() {
                             is ResultState.Success -> {
                                 binding.pBar.visibility = View.GONE
                                 loginButton.isEnabled = true
-                                handleSuccessLogin(it.data.user!!.userId.toString() ?: "", it.data.user!!.name ?: "", email, it.data.token ?: "")
+                                handleSuccessLogin(
+                                    it.data.user?.userId.toString() ?: "",
+                                    it.data.user?.name ?: "",
+                                    email,
+                                    it.data.token ?: "",
+                                )
                             }
                         }
                     }
@@ -110,7 +112,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.tvRegister.setOnClickListener {
-            Log.i("TVREGIS", "DI CLICK")
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
@@ -125,7 +126,6 @@ class LoginActivity : AppCompatActivity() {
         email: String,
         token: String,
     ) {
-
         tokenViewModel.saveToken(userId, name, email, token)
 
         val intent = Intent(this, MainActivity::class.java)

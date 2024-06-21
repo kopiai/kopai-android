@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.kopai.shinkansen.R
 import com.kopai.shinkansen.databinding.ActivityCheckoutBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CheckoutActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCheckoutBinding
 
@@ -50,5 +52,9 @@ class CheckoutActivity : AppCompatActivity() {
         }
 
         viewModel.getCheckoutStatus()
+    }
+
+    companion object {
+        const val EXTRA_PRODUCT = "extra_product"
     }
 }

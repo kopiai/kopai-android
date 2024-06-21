@@ -1,20 +1,16 @@
 package com.kopai.shinkansen.view.profile.editprofile
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import com.kopai.shinkansen.data.local.pref.UserPrefModel
 import com.kopai.shinkansen.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
 class EditProfileViewModel
-@Inject
-constructor(
-    private val userRepository: UserRepository,
-) :
+    @Inject
+    constructor(
+        private val userRepository: UserRepository,
+    ) :
     ViewModel() {
 
     fun updateProfile(
